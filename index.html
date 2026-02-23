@@ -1225,9 +1225,30 @@
 <script>
   const FORMSPREE_ID = 'mkovpozy';
 
+  // Version flag — increment this to force a full localStorage reset
+  const SITE_VERSION = '6';
+  if (localStorage.getItem('svm_v') !== SITE_VERSION) {
+    localStorage.clear();
+    localStorage.setItem('svm_v', SITE_VERSION);
+    console.log('Cache cleared, version set to', SITE_VERSION);
+  }
+
+  // Static posts — hardcoded, never touched by localStorage
+  const STATIC_POSTS = [
+    { id: 2, title: '#1', date: '2026-02-07', body: '', img: '/images/buttagain.jpg' },
+    { id: 3, title: '#2', date: '2026-02-14', body: '', img: '/images/doorsagain.jpg' },
+    { id: 4, title: '#3', date: '2026-02-19', body: '', img: '/images/gaolagainagain.jpg' },
+    { id: 5, title: '#4', date: '2026-02-21', body: '', img: '/images/zagagain.jpg' }
+  ];
+
   function getPosts() {
-    try { return JSON.parse(localStorage.getItem('svm_posts') || '[]'); }
-    catch(e) { return []; }
+    try {
+      const stored = JSON.parse(localStorage.getItem('svm_posts') || '[]');
+      const staticIds = new Set(STATIC_POSTS.map(p => p.id));
+      const userPosts = stored.filter(p => !staticIds.has(p.id));
+      return [...STATIC_POSTS, ...userPosts];
+    }
+    catch(e) { return [...STATIC_POSTS]; }
   }
 
   function savePosts(posts) {
@@ -1244,21 +1265,10 @@
     console.log('Post added:', post.title);
   }
 
-  (function seedRetro() {
-    // Always reseed retro posts so images are never missing
-    localStorage.removeItem('svm_posts');
-    const existing = [];
-    const retroPosts = [
-      { id: 2, title: '#1', date: '2026-02-07', body: '', img: 'https://putzman51.github.io/secret-vending-machine/buttagain.jpg' },
-      { id: 3, title: '#2', date: '2026-02-14', body: '', img: 'https://putzman51.github.io/secret-vending-machine/doorsagain.jpg' },
-      { id: 4, title: '#3', date: '2026-02-19', body: '', img: 'https://putzman51.github.io/secret-vending-machine/gaolagainagain.jpg' }
-    ];
-    savePosts([...existing, ...retroPosts]);
-  })();
-
   (function seed() {
-    // Always update the seed post to latest, preserving any other posts
-    const existing = getPosts().filter(p => p.id !== 1);
+    // Only save id:1 to localStorage — static posts never touch localStorage
+    const stored = JSON.parse(localStorage.getItem('svm_posts') || '[]');
+    const existing = stored.filter(p => p.id !== 1);
     const _now = new Date();
     const today = _now.getFullYear() + '-' +
       String(_now.getMonth()+1).padStart(2,'0') + '-' +
@@ -1329,7 +1339,7 @@
       <div class="post-dateline"><span>${formatDate(post.date)}</span></div>
       <div class="post-card">
         ${imgHtml}
-        ${titleHtml}
+${titleHtml}
         ${bodyHtml}
       </div>`;
     showPage('post');
