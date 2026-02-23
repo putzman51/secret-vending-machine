@@ -356,13 +356,12 @@
     letter-spacing: -0.01em;
   }
 
-  /* Image breaks out of the main column — full viewport width */
+  /* Image — constrained on desktop, full width on mobile */
   .post-card .post-img {
     display: block;
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
+    max-width: 680px;
     height: auto;
-    margin-left: calc(-50vw + 50%);
     margin-bottom: 1.8rem;
   }
 
