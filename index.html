@@ -371,10 +371,10 @@
 
   .post-card .post-img {
     width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    margin-bottom: 1.5rem;
+    max-width: 100%;
+    height: auto;           /* full natural height — no cropping */
     display: block;
+    margin-bottom: 1.5rem;
   }
 
   .no-posts {
@@ -1141,33 +1141,33 @@
     if (getPosts().filter(p => p.id === 2).length > 0) return;
     const existing = getPosts().filter(p => p.id === 1);
     const retroPosts = [
-      { id: 2,  title: '', date: '2026-01-02', body: '', img: 'https://i.imgur.com/LgZOGPv.jpg' },
-      { id: 3,  title: '', date: '2026-01-03', body: '', img: 'https://i.imgur.com/lBaGwtm.jpg' },
-      { id: 4,  title: '', date: '2026-01-06', body: '', img: 'https://i.imgur.com/R6oeTKB.jpg' },
-      { id: 5,  title: '', date: '2026-01-07', body: '', img: 'https://i.imgur.com/0EpfvYv.jpg' },
-      { id: 6,  title: '', date: '2026-01-08', body: '', img: 'https://i.imgur.com/V2pdf8o.jpg' },
-      { id: 7,  title: '', date: '2026-01-09', body: '', img: 'https://i.imgur.com/h0Pk2Jv.jpg' },
-      { id: 8,  title: '', date: '2026-01-13', body: '', img: 'https://i.imgur.com/vzhFzaB.jpg' },
-      { id: 9,  title: '', date: '2026-01-14', body: '', img: 'https://i.imgur.com/CUbLxcy.jpg' },
-      { id: 10, title: '', date: '2026-01-15', body: '', img: 'https://i.imgur.com/bRpd43q.jpg' },
-      { id: 11, title: '', date: '2026-01-16', body: '', img: 'https://i.imgur.com/3IjNpe5.jpg' },
-      { id: 12, title: '', date: '2026-01-18', body: '', img: 'https://i.imgur.com/zU89LQ7.jpg' },
-      { id: 13, title: '', date: '2026-01-21', body: '', img: 'https://i.imgur.com/FclmqZw.jpg' },
-      { id: 14, title: '', date: '2026-01-23', body: '', img: 'https://i.imgur.com/F0PZlYc.jpg' },
-      { id: 15, title: '', date: '2026-01-28', body: '', img: 'https://i.imgur.com/sbI4PVv.jpg' },
-      { id: 16, title: '', date: '2026-01-31', body: '', img: 'https://i.imgur.com/Up2d3p7.jpg' },
-      { id: 17, title: '', date: '2026-02-02', body: '', img: 'https://i.imgur.com/HwbSH18.jpg' },
-      { id: 18, title: '', date: '2026-02-04', body: '', img: 'https://i.imgur.com/8QBQJgr.jpg' },
-      { id: 19, title: '', date: '2026-02-05', body: '', img: 'https://i.imgur.com/wGVEfHK.jpg' },
-      { id: 20, title: '', date: '2026-02-07', body: '', img: 'https://i.imgur.com/aPd4lWY.jpg' },
-      { id: 21, title: '', date: '2026-02-10', body: '', img: 'https://i.imgur.com/K2LJwRs.jpg' },
-      { id: 22, title: '', date: '2026-02-11', body: '', img: 'https://i.imgur.com/knyxibd.jpg' },
-      { id: 23, title: '', date: '2026-02-15', body: '', img: 'https://i.imgur.com/oLVMLuw.jpg' },
-      { id: 24, title: '', date: '2026-02-17', body: '', img: 'https://i.imgur.com/KraPD8p.jpg' },
-      { id: 25, title: '', date: '2026-02-18', body: '', img: 'https://i.imgur.com/WMzBZU9.jpg' },
-      { id: 26, title: '', date: '2026-02-19', body: '', img: 'https://i.imgur.com/9RmoIqv.jpg' },
-      { id: 27, title: '', date: '2026-02-20', body: '', img: 'https://i.imgur.com/ScmEoug.jpg' },
-      { id: 28, title: '', date: '2026-02-21', body: '', img: 'https://i.imgur.com/Q2i25n9.jpg' }
+      { id: 2,  title: 'sediment light', date: '2026-01-02', body: '', img: 'https://i.imgur.com/LgZOGPv.jpg' },
+      { id: 3,  title: 'bronze theorem', date: '2026-01-03', body: '', img: 'https://i.imgur.com/lBaGwtm.jpg' },
+      { id: 4,  title: 'field notation', date: '2026-01-06', body: '', img: 'https://i.imgur.com/R6oeTKB.jpg' },
+      { id: 5,  title: 'spore geometry', date: '2026-01-07', body: '', img: 'https://i.imgur.com/0EpfvYv.jpg' },
+      { id: 6,  title: 'mineral dusk', date: '2026-01-08', body: '', img: 'https://i.imgur.com/V2pdf8o.jpg' },
+      { id: 7,  title: 'chalk meridian', date: '2026-01-09', body: '', img: 'https://i.imgur.com/h0Pk2Jv.jpg' },
+      { id: 8,  title: 'root syntax', date: '2026-01-13', body: '', img: 'https://i.imgur.com/vzhFzaB.jpg' },
+      { id: 9,  title: 'tide specimen', date: '2026-01-14', body: '', img: 'https://i.imgur.com/CUbLxcy.jpg' },
+      { id: 10, title: 'ash interval', date: '2026-01-15', body: '', img: 'https://i.imgur.com/bRpd43q.jpg' },
+      { id: 11, title: 'grain doctrine', date: '2026-01-16', body: '', img: 'https://i.imgur.com/3IjNpe5.jpg' },
+      { id: 12, title: 'lichen margin', date: '2026-01-18', body: '', img: 'https://i.imgur.com/zU89LQ7.jpg' },
+      { id: 13, title: 'stone fugue', date: '2026-01-21', body: '', img: 'https://i.imgur.com/FclmqZw.jpg' },
+      { id: 14, title: 'birch register', date: '2026-01-23', body: '', img: 'https://i.imgur.com/F0PZlYc.jpg' },
+      { id: 15, title: 'salt chapter', date: '2026-01-28', body: '', img: 'https://i.imgur.com/sbI4PVv.jpg' },
+      { id: 16, title: 'moss frequency', date: '2026-01-31', body: '', img: 'https://i.imgur.com/Up2d3p7.jpg' },
+      { id: 17, title: 'iron botany', date: '2026-02-02', body: '', img: 'https://i.imgur.com/HwbSH18.jpg' },
+      { id: 18, title: 'cloud suture', date: '2026-02-04', body: '', img: 'https://i.imgur.com/8QBQJgr.jpg' },
+      { id: 19, title: 'petal schema', date: '2026-02-05', body: '', img: 'https://i.imgur.com/wGVEfHK.jpg' },
+      { id: 20, title: 'bark index', date: '2026-02-07', body: '', img: 'https://i.imgur.com/aPd4lWY.jpg' },
+      { id: 21, title: 'soil draft', date: '2026-02-10', body: '', img: 'https://i.imgur.com/K2LJwRs.jpg' },
+      { id: 22, title: 'amber archive', date: '2026-02-11', body: '', img: 'https://i.imgur.com/knyxibd.jpg' },
+      { id: 23, title: 'reed notation', date: '2026-02-15', body: '', img: 'https://i.imgur.com/oLVMLuw.jpg' },
+      { id: 24, title: 'frost theorem', date: '2026-02-17', body: '', img: 'https://i.imgur.com/KraPD8p.jpg' },
+      { id: 25, title: 'clay meridian', date: '2026-02-18', body: '', img: 'https://i.imgur.com/WMzBZU9.jpg' },
+      { id: 26, title: 'vein syntax', date: '2026-02-19', body: '', img: 'https://i.imgur.com/9RmoIqv.jpg' },
+      { id: 27, title: 'ember margin', date: '2026-02-20', body: '', img: 'https://i.imgur.com/ScmEoug.jpg' },
+      { id: 28, title: 'dune register', date: '2026-02-21', body: '', img: 'https://i.imgur.com/Q2i25n9.jpg' }
     ];
     savePosts([...existing, ...retroPosts]);
   })();
