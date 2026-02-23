@@ -312,16 +312,15 @@
     background: #FF8C00;
   }
 
-  /* Dateline floats above the card — newspaper convention */
+  /* ── POST — lives on the page, no card, no box ── */
+
   .post-dateline {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 0.6rem;
-    padding-left: 0;
+    margin-bottom: 1rem;
   }
 
-  /* Thin mango rule — press vocabulary entering the content */
   .post-dateline::before {
     content: '';
     display: block;
@@ -339,22 +338,32 @@
     text-transform: uppercase;
   }
 
+  /* No card — post lives directly on the page */
   .post-card {
-    background: #111;
-    border: 1px solid #1e1e1e;
-    border-left: 3px solid #FF8C00; /* mango left rule — entry point for the eye */
-    padding: 2rem 2.5rem 2.5rem;
-    margin-bottom: 2.5rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 5rem;
   }
 
   .post-card h2 {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.9rem;
+    font-size: 2rem;
     font-weight: 400;
     line-height: 1.15;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.5rem;
     color: var(--white);
     letter-spacing: -0.01em;
+  }
+
+  /* Image breaks out of the main column — full viewport width */
+  .post-card .post-img {
+    display: block;
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    margin-left: calc(-50vw + 50%);
+    margin-bottom: 1.8rem;
   }
 
   .post-card .post-body {
@@ -369,13 +378,34 @@
     word-break: break-word;
   }
 
-  .post-card .post-img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;           /* full natural height — no cropping */
-    display: block;
-    margin-bottom: 1.5rem;
+  /* Thin separator between posts */
+  .post-separator {
+    width: 40px;
+    height: 1px;
+    background: #FF8C00;
+    opacity: 0.3;
+    margin: 0 0 5rem 0;
   }
+
+  /* Back button on single post page */
+  .post-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 3rem;
+    transition: color 0.15s;
+  }
+
+  .post-back:hover { color: #FF8C00; }
 
   .no-posts {
     text-align: center;
@@ -560,6 +590,47 @@
 
   /* SUBMIT FORM */
   /* ── SUBMIT PAGE ── */
+
+  /* Big celebratory color grid at top of submit page */
+  .submit-squares {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    margin-bottom: 3rem;
+    gap: 3px;
+  }
+
+  .submit-squares span {
+    display: block;
+    aspect-ratio: 1;
+  }
+
+  /* Three rows of mango gradient — lightest to darkest, repeating warmly */
+  .ss-1  { background: #FFE0A0; }
+  .ss-2  { background: #FFD070; }
+  .ss-3  { background: #FFC040; }
+  .ss-4  { background: #FFB020; }
+  .ss-5  { background: #FF8C00; }
+  .ss-6  { background: #E06800; }
+  .ss-7  { background: #B84E00; }
+  .ss-8  { background: #8C3800; }
+  .ss-9  { background: #FFD070; }
+  .ss-10 { background: #FFC040; }
+  .ss-11 { background: #FFB020; }
+  .ss-12 { background: #FF8C00; }
+  .ss-13 { background: #E06800; }
+  .ss-14 { background: #B84E00; }
+  .ss-15 { background: #8C3800; }
+  .ss-16 { background: #FFE0A0; }
+  .ss-17 { background: #FFC040; }
+  .ss-18 { background: #FFB020; }
+  .ss-19 { background: #FF8C00; }
+  .ss-20 { background: #E06800; }
+  .ss-21 { background: #B84E00; }
+  .ss-22 { background: #8C3800; }
+  .ss-23 { background: #FFE0A0; }
+  .ss-24 { background: #FFD070; }
 
   /* Intro text — sets the emotional register */
   .submit-intro {
@@ -903,13 +974,22 @@
       padding: 1.5rem 1rem 4rem;
     }
 
-    /* ── POST CARD ── */
+    /* ── POST ── */
     .post-card {
-      padding: 1.2rem 1.2rem 1.5rem;
+      padding: 0;
+      margin-bottom: 3.5rem;
     }
 
     .post-card h2 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    /* On mobile the negative margin trick for full-bleed still works */
+    .post-card .post-img {
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: calc(-50vw + 50%);
     }
 
     /* ── ABOUT PAGE ── */
@@ -948,6 +1028,17 @@
 
     .about-colophon {
       padding: 2rem 1.5rem;
+    }
+
+    .submit-squares {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      gap: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .submit-heading {
+      font-size: clamp(2rem, 10vw, 3.5rem);
     }
 
     /* ── ARCHIVE ── */
@@ -1024,6 +1115,12 @@
     <div id="archive-list"></div>
   </div>
 
+  <!-- Single post page — navigated to from archive -->
+  <div id="page-post" class="page">
+    <button class="post-back" onclick="showPage('archive')">&#8592; archive</button>
+    <div id="post-content"></div>
+  </div>
+
   <div id="page-about" class="page">
     <div class="about-content">
 
@@ -1063,12 +1160,22 @@
 
   <div id="page-submit" class="page">
 
-    <div class="success-msg" id="success-msg">Received. It will be read. Whether it goes up is another question — and that's not an insult. Thank you for putting something in.</div>
+    <div class="success-msg" id="success-msg">Got it. Thank you for sharing something — that's the whole point of this place. It'll be read with care.</div>
     <div class="error-msg" id="error-msg">&#10007; Something went wrong. Try again.</div>
 
-    <div class="submit-heading">drop<span>.</span></div>
+    <!-- Celebratory color grid -->
+    <div class="submit-squares" aria-hidden="true">
+      <span class="ss-1"></span><span class="ss-2"></span><span class="ss-3"></span><span class="ss-4"></span>
+      <span class="ss-5"></span><span class="ss-6"></span><span class="ss-7"></span><span class="ss-8"></span>
+      <span class="ss-9"></span><span class="ss-10"></span><span class="ss-11"></span><span class="ss-12"></span>
+      <span class="ss-13"></span><span class="ss-14"></span><span class="ss-15"></span><span class="ss-16"></span>
+      <span class="ss-17"></span><span class="ss-18"></span><span class="ss-19"></span><span class="ss-20"></span>
+      <span class="ss-21"></span><span class="ss-22"></span><span class="ss-23"></span><span class="ss-24"></span>
+    </div>
 
-    <p class="submit-intro">If you made something worth sharing, put it here. It will be read carefully. It may not go up — that's editorial, not personal. The machine is selective. So are you, probably.</p>
+    <div class="submit-heading">send something<span>.</span></div>
+
+    <p class="submit-intro">You made a thing. That already means something. Drop it here — a poem, a photo, four words, a song you love, something you saw on a walk. It doesn't have to be finished or perfect or explained. If it moved you, it might move someone else. That's how this works.</p>
 
     <div class="form-group">
       <span class="field-num">01</span>
@@ -1138,36 +1245,13 @@
   }
 
   (function seedRetro() {
-    if (getPosts().filter(p => p.id === 2).length > 0) return;
-    const existing = getPosts().filter(p => p.id === 1);
+    // Always reseed retro posts so images are never missing
+    localStorage.removeItem('svm_posts');
+    const existing = [];
     const retroPosts = [
-      { id: 2,  title: 'sediment light', date: '2026-01-02', body: '', img: 'https://i.imgur.com/UmX1egR.jpg' },
-      { id: 3,  title: 'bronze theorem', date: '2026-01-03', body: '', img: 'https://i.imgur.com/k2J130a.jpg' },
-      { id: 4,  title: 'field notation', date: '2026-01-06', body: '', img: 'https://i.imgur.com/x146N0M.jpg' },
-      { id: 5,  title: 'spore geometry', date: '2026-01-07', body: '', img: 'https://i.imgur.com/0EpfvYv.jpg' },
-      { id: 6,  title: 'mineral dusk', date: '2026-01-08', body: '', img: 'https://i.imgur.com/V2pdf8o.jpg' },
-      { id: 7,  title: 'chalk meridian', date: '2026-01-09', body: '', img: 'https://i.imgur.com/h0Pk2Jv.jpg' },
-      { id: 8,  title: 'root syntax', date: '2026-01-13', body: '', img: 'https://i.imgur.com/vzhFzaB.jpg' },
-      { id: 9,  title: 'tide specimen', date: '2026-01-14', body: '', img: 'https://i.imgur.com/CUbLxcy.jpg' },
-      { id: 10, title: 'ash interval', date: '2026-01-15', body: '', img: 'https://i.imgur.com/bRpd43q.jpg' },
-      { id: 11, title: 'grain doctrine', date: '2026-01-16', body: '', img: 'https://i.imgur.com/3IjNpe5.jpg' },
-      { id: 12, title: 'lichen margin', date: '2026-01-18', body: '', img: 'https://i.imgur.com/zU89LQ7.jpg' },
-      { id: 13, title: 'stone fugue', date: '2026-01-21', body: '', img: 'https://i.imgur.com/FclmqZw.jpg' },
-      { id: 14, title: 'birch register', date: '2026-01-23', body: '', img: 'https://i.imgur.com/F0PZlYc.jpg' },
-      { id: 15, title: 'salt chapter', date: '2026-01-28', body: '', img: 'https://i.imgur.com/sbI4PVv.jpg' },
-      { id: 16, title: 'moss frequency', date: '2026-01-31', body: '', img: 'https://i.imgur.com/Up2d3p7.jpg' },
-      { id: 17, title: 'iron botany', date: '2026-02-02', body: '', img: 'https://i.imgur.com/HwbSH18.jpg' },
-      { id: 18, title: 'cloud suture', date: '2026-02-04', body: '', img: 'https://i.imgur.com/8QBQJgr.jpg' },
-      { id: 19, title: 'petal schema', date: '2026-02-05', body: '', img: 'https://i.imgur.com/wGVEfHK.jpg' },
-      { id: 20, title: 'bark index', date: '2026-02-07', body: '', img: 'https://i.imgur.com/aPd4lWY.jpg' },
-      { id: 21, title: 'soil draft', date: '2026-02-10', body: '', img: 'https://i.imgur.com/K2LJwRs.jpg' },
-      { id: 22, title: 'amber archive', date: '2026-02-11', body: '', img: 'https://i.imgur.com/knyxibd.jpg' },
-      { id: 23, title: 'reed notation', date: '2026-02-15', body: '', img: 'https://i.imgur.com/oLVMLuw.jpg' },
-      { id: 24, title: 'frost theorem', date: '2026-02-17', body: '', img: 'https://i.imgur.com/KraPD8p.jpg' },
-      { id: 25, title: 'clay meridian', date: '2026-02-18', body: '', img: 'https://i.imgur.com/WMzBZU9.jpg' },
-      { id: 26, title: 'vein syntax', date: '2026-02-19', body: '', img: 'https://i.imgur.com/9RmoIqv.jpg' },
-      { id: 27, title: 'ember margin', date: '2026-02-20', body: '', img: 'https://i.imgur.com/ScmEoug.jpg' },
-      { id: 28, title: 'dune register', date: '2026-02-21', body: '', img: 'https://i.imgur.com/Q2i25n9.jpg' }
+      { id: 2, title: '#1', date: '2026-02-07', body: '', img: 'https://putzman51.github.io/secret-vending-machine/images/buttagain.jpg' },
+      { id: 3, title: '#2', date: '2026-02-14', body: '', img: 'https://putzman51.github.io/secret-vending-machine/images/doorsagain.jpg' },
+      { id: 4, title: '#3', date: '2026-02-19', body: '', img: 'https://putzman51.github.io/secret-vending-machine/images/gaolagainagain.jpg' }
     ];
     savePosts([...existing, ...retroPosts]);
   })();
@@ -1211,11 +1295,13 @@
 
   function renderPostCard(post) {
     const imgHtml = post.img ? `<img class="post-img" src="${esc(post.img)}" alt="${esc(post.title)}">` : '';
+    const titleHtml = post.title ? `<h2>${esc(post.title)}</h2>` : '';
+    const bodyHtml = post.body ? `<div class="post-body">${esc(post.body)}</div>` : '';
     return `<div class="post-dateline"><span>${formatDate(post.date)}</span></div>
     <div class="post-card">
       ${imgHtml}
-      <h2>${esc(post.title)}</h2>
-      <div class="post-body">${esc(post.body)}</div>
+      ${titleHtml}
+      ${bodyHtml}
     </div>`;
   }
 
@@ -1228,14 +1314,26 @@
     }
     el.innerHTML = posts.map(p => `
       <div class="archive-item" onclick="openPost(${p.id})">
-        <div class="arch-title">${esc(p.title)}</div>
+        <div class="arch-title">${esc(p.title) || formatDate(p.date)}</div>
         <div class="arch-date">${formatDate(p.date)}</div>
       </div>`).join('');
   }
 
   function openPost(id) {
     const post = getPosts().find(p => p.id === id);
-    if (post) showModal(post);
+    if (!post) return;
+    const imgHtml = post.img ? `<img class="post-img" src="${esc(post.img)}" alt="${esc(post.title)}">` : '';
+    const titleHtml = post.title ? `<h2>${esc(post.title)}</h2>` : '';
+    const bodyHtml = post.body ? `<div class="post-body">${esc(post.body)}</div>` : '';
+    document.getElementById('post-content').innerHTML = `
+      <div class="post-dateline"><span>${formatDate(post.date)}</span></div>
+      <div class="post-card">
+        ${imgHtml}
+        ${titleHtml}
+        ${bodyHtml}
+      </div>`;
+    showPage('post');
+    window.scrollTo(0, 0);
   }
 
   async function submitToFormspree() {
@@ -1277,7 +1375,8 @@
   function vend() {
     const posts = getPosts();
     if (!posts.length) { alert('The machine is empty.'); return; }
-    showModal(posts[Math.floor(Math.random() * posts.length)]);
+    const post = posts[Math.floor(Math.random() * posts.length)];
+    openPost(post.id);
   }
 
   function showModal(post) {
