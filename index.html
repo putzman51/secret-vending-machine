@@ -1030,10 +1030,16 @@
     }
 
     .submit-squares {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(6, 1fr);
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: 1fr;
+      height: 28px;
       gap: 2px;
       margin-bottom: 2rem;
+    }
+
+    /* Hide bottom 16 squares on mobile — show only first 8 */
+    .submit-squares span:nth-child(n+9) {
+      display: none;
     }
 
     .submit-heading {
@@ -1172,19 +1178,19 @@
       <span class="ss-21"></span><span class="ss-22"></span><span class="ss-23"></span><span class="ss-24"></span>
     </div>
 
-    <div class="submit-heading">send something<span>.</span></div>
+    <div class="submit-heading">ayyy, send away<span>:-)</span></div>
 
-    <p class="submit-intro">You made a thing. That already means something. Drop it here — a poem, a photo, four words, a song you love, something you saw on a walk. It doesn't have to be finished or perfect or explained. If it moved you, it might move someone else. That's how this works.</p>
+    <p class="submit-intro">The old internet is alive and well. You are standing at the precipice of it. Send a note, story, word, letter, or upload your fave B roll photo. Whatever you want to submit, it's pretty simple and cute. We believe in fun here. If you match the vibe, you'll live in the machine. Why not? Try it out.</p>
 
     <div class="form-group">
       <span class="field-num">01</span>
-      <label for="sub-title">what's it called</label>
+      <label for="sub-title">Title</label>
       <input type="text" id="sub-title" placeholder="give it a name...">
     </div>
 
     <div class="form-group">
       <span class="field-num">02</span>
-      <label for="sub-body">the thing itself</label>
+      <label for="sub-body">Body</label>
       <textarea id="sub-body" placeholder="write it here. paste it. whatever it is."></textarea>
     </div>
 
