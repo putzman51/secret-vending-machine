@@ -942,17 +942,17 @@
     /* ── PRESS MARK — tucked directly under mango base bar, part of the logo object ── */
     .press-mark {
       position: static;
-      margin-top: 3px; /* sits just below the mango base bar */
-      grid-template-columns: repeat(8, 1fr);
-      grid-template-rows: 1fr;
-      width: 100%;
-      height: 5px;
-      gap: 1px;
+      margin-top: 4px;
+      grid-template-columns: repeat(4, 12px);
+      grid-template-rows: repeat(2, 12px);
+      width: auto;
+      height: auto;
+      gap: 2px;
     }
 
     .press-mark span {
-      width: auto;
-      height: 5px;
+      width: 12px;
+      height: 12px;
     }
 
 
@@ -969,17 +969,18 @@
       padding: 0.4rem 0.5rem;
     }
 
-    /* VEND — double size, square, flush right */
+    /* VEND — big, square, flush right, dominant */
     .nav-vend {
-      font-size: 1.1rem;
-      padding: 0.7rem 1.1rem;
-      letter-spacing: 0.15em;
+      font-size: 1.3rem;
+      padding: 0.9rem 1.6rem;
+      letter-spacing: 0.18em;
       border-radius: 0;
       margin-left: auto;
       align-self: stretch;
       display: flex;
       align-items: center;
       justify-content: center;
+      min-width: 90px;
     }
 
     /* ── MAIN ── */
@@ -1129,7 +1130,7 @@
   <div id="page-archive" class="page">
     <div class="page-header">
       <h1>Archive</h1>
-      <div class="sub">Every drop, preserved</div>
+      <div class="sub">stocked with care</div>
     </div>
     <div id="archive-list"></div>
   </div>
@@ -1232,7 +1233,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '16';
+  const SITE_VERSION = '18';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
@@ -1362,8 +1363,8 @@
     document.getElementById('post-content').innerHTML = `
       <div class="post-dateline"><span>${formatDate(post.date)}</span></div>
       <div class="post-card">
+        ${titleHtml}
         ${imgHtml}
-${titleHtml}
         ${bodyHtml}
       </div>`;
     showPage('post');
