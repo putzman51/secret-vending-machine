@@ -941,22 +941,22 @@
       font-size: clamp(1.5rem, 7.2vw, 2.4rem);
     }
 
-    /* ── PRESS MARK — top-right corner, equidistant from both edges ── */
+    /* ── PRESS MARK — top-right corner, connected, 2.5x larger ── */
     .press-mark {
       position: absolute;
       top: 0;
       right: 0;
       margin-top: 0;
-      grid-template-columns: repeat(4, 14px);
-      grid-template-rows: repeat(2, 14px);
+      grid-template-columns: repeat(4, 30px);
+      grid-template-rows: repeat(2, 30px);
       width: auto;
       height: auto;
-      gap: 3px;
+      gap: 0;
     }
 
     .press-mark span {
-      width: 14px;
-      height: 14px;
+      width: 30px;
+      height: 30px;
     }
 
 
@@ -1237,7 +1237,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '20';
+  const SITE_VERSION = '21';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
