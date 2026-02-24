@@ -961,11 +961,25 @@
     nav {
       justify-content: flex-end;
       gap: 0;
+      align-items: stretch;
     }
 
     nav button {
       font-size: 0.6rem;
       padding: 0.4rem 0.5rem;
+    }
+
+    /* VEND — double size, square, flush right */
+    .nav-vend {
+      font-size: 1.1rem;
+      padding: 0.7rem 1.1rem;
+      letter-spacing: 0.15em;
+      border-radius: 0;
+      margin-left: auto;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* ── MAIN ── */
@@ -1218,7 +1232,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '15';
+  const SITE_VERSION = '16';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
