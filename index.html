@@ -1216,7 +1216,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '13';
+  const SITE_VERSION = '14';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
@@ -1390,11 +1390,27 @@ ${titleHtml}
     btn.textContent = 'Drop it in the machine';
   }
 
+  // Shuffle queue — cycles through all posts before repeating
+  let vendQueue = [];
+
+  function shuffleArray(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
   function vend() {
     const posts = getPosts();
     if (!posts.length) { alert('The machine is empty.'); return; }
-    const post = posts[Math.floor(Math.random() * posts.length)];
-    openPost(post.id);
+    // Refill queue when empty
+    if (vendQueue.length === 0) {
+      vendQueue = shuffleArray(posts.map(p => p.id));
+    }
+    const id = vendQueue.pop();
+    openPost(id);
   }
 
   function showModal(post) {
