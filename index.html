@@ -931,12 +931,12 @@
 
     /* ── LOGO ── */
     .word-secret {
-      font-size: clamp(3.8rem, 18vw, 5.5rem);
+      font-size: clamp(3.2rem, 15.3vw, 4.7rem);
     }
 
     .word-vending,
     .word-machine {
-      font-size: clamp(1.8rem, 8.5vw, 2.8rem);
+      font-size: clamp(1.5rem, 7.2vw, 2.4rem);
     }
 
     /* ── PRESS MARK — tucked directly under mango base bar, part of the logo object ── */
@@ -959,7 +959,7 @@
 
     /* ── NAV ── */
     nav {
-      justify-content: flex-start;
+      justify-content: flex-end;
       gap: 0;
     }
 
@@ -1108,7 +1108,7 @@
 <main>
 
   <div id="page-home" class="page active">
-    <div class="home-label">Today's Drop</div>
+    <div class="home-label">For you, RN</div>
     <div id="home-content"></div>
   </div>
 
@@ -1132,9 +1132,11 @@
       <div class="about-section about-section-secret">
         <div class="about-title-secret">about</div>
         <div class="about-body">
+          <p>You can send something (see SUBMIT) or just look around. It's chill. Also, hit VEND and you get a mystery post. Maybe the machine gives you exactly what you need RN.</p>
           <p>This is the B roll. No algorithm. No cookies (unless you bake them). No shopping. No angles. Vibes. All vibes.</p>
           <p>I've got a whole mango theme going on for whatever reason, and then there are pictures and all that. Submit something if you want. That's pretty much the whole thing.</p>
-          <p>Let's curate a weird art blog thing together like it's the 90's.</p>
+          <p>For anyone wondering, this is kind of what the 90's was like.</p>
+          <p style="margin-top:2rem;font-size:0.85rem;color:#666;">Note: Photos should be loaded to imgur at around a "medium" size. Don't go small or large. If I really like the photo and need it in another size and you provided your email, we'll figure it out together.</p>
         </div>
       </div>
 
@@ -1216,7 +1218,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '14';
+  const SITE_VERSION = '15';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
@@ -1317,8 +1319,8 @@
     const bodyHtml = post.body ? `<div class="post-body">${esc(post.body)}</div>` : '';
     return `<div class="post-dateline"><span>${formatDate(post.date)}</span></div>
     <div class="post-card">
-      ${imgHtml}
       ${titleHtml}
+      ${imgHtml}
       ${bodyHtml}
     </div>`;
   }
