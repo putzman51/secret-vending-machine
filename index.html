@@ -901,26 +901,28 @@
 
     .header-top {
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.75rem;
+      position: relative;
     }
 
     .logo-wrap {
-      width: 100%;
+      width: auto;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-left: 0;
     }
 
     .title-box {
-      text-align: center;
+      text-align: left;
     }
 
     .title-stack {
-      align-items: center;
+      align-items: flex-start;
     }
 
     .title-row {
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .header-bottom {
@@ -939,20 +941,22 @@
       font-size: clamp(1.5rem, 7.2vw, 2.4rem);
     }
 
-    /* ── PRESS MARK — tucked directly under mango base bar, part of the logo object ── */
+    /* ── PRESS MARK — top-right corner, equidistant from both edges ── */
     .press-mark {
-      position: static;
-      margin-top: 4px;
-      grid-template-columns: repeat(4, 12px);
-      grid-template-rows: repeat(2, 12px);
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 0;
+      grid-template-columns: repeat(4, 14px);
+      grid-template-rows: repeat(2, 14px);
       width: auto;
       height: auto;
-      gap: 2px;
+      gap: 3px;
     }
 
     .press-mark span {
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
     }
 
 
@@ -1233,7 +1237,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '18';
+  const SITE_VERSION = '19';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
