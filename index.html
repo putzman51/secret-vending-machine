@@ -1173,10 +1173,10 @@
       <div class="about-section about-section-secret">
         <div class="about-title-secret">about</div>
         <div class="about-body">
-          <p>You can send something (see SUBMIT) or just look around. It's chill. Also, hit VEND and you get a mystery post. Maybe the machine gives you exactly what you need RN.</p>
-          <p>This is the B roll. No algorithm. No cookies (unless you bake them). No shopping. No angles. Vibes. All vibes.</p>
-          <p>I've got a whole mango theme going on for whatever reason, and then there are pictures and all that. Submit something if you want. That's pretty much the whole thing.</p>
-          <p>For anyone wondering, this is kind of what the 90's was like.</p>
+          <p>Submit or look at stuff. Pretty simple.</p>
+          <p>Hit Vend: gives you a random hit from the archive.<br>Hit Submit: you can make suggestions, send a lo-fi thought or photo.</p>
+          <p>Old camera stuff, lo-fi stuff, zine stuff, old-style internet vibes. B roll.<br>No cookies, no algo. No selling, no angle. All vibes.</p>
+          <p>You're probably super neat somehow so share that here through images and/or words. Might be worth it:-)</p>
           <p style="margin-top:2rem;font-size:0.85rem;color:#666;">Note: Photos should be loaded to imgur at around a "medium" size. Don't go small or large. If I really like the photo and need it in another size and you provided your email, we'll figure it out together.</p>
         </div>
       </div>
@@ -1208,7 +1208,9 @@
 
     <div class="submit-heading">ayyy, send away<span>:-)</span></div>
 
-    <p class="submit-intro">The old internet is alive and well. You are standing at the precipice of it. Send a note, story, word, letter, or upload your fave B roll photo. Whatever you want to submit, it's pretty simple and cute. We believe in fun here. If you match the vibe, you'll live in the machine. Why not? Try it out.</p>
+    <p class="submit-intro">Don't be shy, it's okay to participate!</p>
+    <p class="submit-intro">You probably have cool B roll photos, or a short story you wrote. Maybe it's a poem, or a quote. Like your quote, because you're profound.</p>
+    <p class="submit-intro">Come live in the machine. It's cozy in here.</p>
 
     <div class="form-group">
       <span class="field-num">01</span>
@@ -1261,7 +1263,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '22';
+  const SITE_VERSION = '26';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
@@ -1279,26 +1281,19 @@
     { id: 113, title: 'rainbow stairway', date: '2025-09-20', body: '', img: '/images/de73e2bc-be60-4ede-a44f-fb57c381e6c9.jpg' },
     { id: 116, title: 'morning mist explosion', date: '2025-09-24', body: '', img: '/images/d2cb2f93-2542-49b7-b678-fb3ee938e76b.jpg' },
     { id: 117, title: 'yesterday today', date: '2025-09-29', body: '', img: '/images/cc766f6c-a253-4f12-a6bc-174e04b89c67.jpg' },
-    { id: 119, title: 'plain & tasty', date: '2025-09-30', body: '', img: '/images/c3135005-eb59-420b-95c4-d48fb73a4f83.jpg' },
     { id: 121, title: 'weeeee. Skeeball.', date: '2025-10-22', body: '', img: '/images/b5da5702-d5aa-4576-a671-45ad98d16631.jpg' },
     { id: 124, title: 'space is the place', date: '2025-11-02', body: '', img: '/images/9bc7c9e5-4c7b-43f0-ab21-792fbf727484.jpg' },
     { id: 125, title: 'free lil bee', date: '2025-11-03', body: '', img: '/images/950baa56-d1bc-431e-9a3e-15a0081ae006.jpg' },
     { id: 127, title: 'happy little psychadelic visions', date: '2025-11-08', body: '', img: '/images/914d0da6-f52f-4ed2-8f67-317f711b7b95.jpg' },
     { id: 128, title: 'purple park power', date: '2025-11-12', body: '', img: '/images/8eaf0b76-ace2-4a1e-b9b0-e51f696da14d.jpg' },
     { id: 131, title: 'where the dinosaurs roamed', date: '2025-11-30', body: '', img: '/images/8b43868b-006e-429c-a938-0ae68fa27468.jpg' },
-    { id: 133, title: 'awww, thats chill', date: '2025-12-12', body: '', img: '/images/8776f893-9ff8-48b9-ab29-4bffc514e7f1.jpg' },
-    { id: 134, title: 'time cycles, as shadow', date: '2025-12-20', body: '', img: '/images/7e965507-5887-44a8-bc71-36314f722b49.jpg' },
-    { id: 137, title: 'DOG. YELLOW. REPEAT', date: '2025-12-25', body: '', img: '/images/70c86faf-9a75-48fb-9002-4c26f132258d.png' },
     { id: 140, title: 'Please do not', date: '2025-12-31', body: '', img: '/images/628b898e-d6bb-4264-a7fc-67beccd8336c.jpg' },
-    { id: 143, title: 'moon bunny', date: '2026-01-03', body: '', img: '/images/4951e39d-1d4e-4f45-9bb7-4d020fbdd5eb.png' },
     { id: 148, title: 'cuppa yo life', date: '2026-01-18', body: '', img: '/images/276be38a-1b52-4830-bb26-5d7e6ce2907e.jpg' },
     { id: 149, title: 'all aboard the wizard train', date: '2026-01-19', body: '', img: '/images/24210a7a-8e95-4b4e-a344-b2abd278c82c.jpg' },
-    { id: 151, title: 'floating berry of life', date: '2026-01-23', body: '', img: '/images/1b3190c0-5d3a-49fc-a636-4ac3595ac63d.png' },
     { id: 152, title: 'like only a midsummer morning', date: '2026-01-28', body: '', img: '/images/185c8b0f-c54d-46df-a141-f00c5d18cb17.jpg' },
     { id: 154, title: 'not sure. is cool.', date: '2026-01-30', body: '', img: '/images/166cba7e-8c23-4447-8515-eeb797fddb78.jpg' },
     { id: 155, title: 'lil bit of bear, lil bit of purp', date: '2026-02-07', body: '', img: '/images/13634443-cd8a-4d34-a63d-958202ec112e.png' },
     { id: 156, title: 'no, yr the goat', date: '2026-02-13', body: '', img: '/images/121a9ef7-c38a-45f5-8e72-c422d1114f00.jpg' },
-    { id: 157, title: 'do it. err day.', date: '2026-02-18', body: '', img: '/images/11fc330a-c8a9-4c8b-b73f-d3feac330b43.jpg' },
     { id: 158, title: 'golden slumbers fill your eyes', date: '2026-02-20', body: '', img: '/images/07cdca41-f1c6-4d2f-a3e6-edae555cda86.jpg' }
   ];
 
