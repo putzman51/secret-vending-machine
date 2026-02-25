@@ -781,13 +781,16 @@
 
   .success-msg {
     background: transparent;
-    border-left: 3px solid #FF8C00;
+    border: none;
     color: #FF8C00;
-    padding: 1rem 1.5rem;
+    padding: 4rem 0 2rem;
     font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 12;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
+    font-style: italic;
+    font-weight: 900;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-size: clamp(4rem, 12vw, 8rem);
+    letter-spacing: -0.02em;
+    text-align: center;
     margin-bottom: 2rem;
     display: none;
   }
@@ -1194,7 +1197,7 @@
 
   <div id="page-submit" class="page">
 
-    <div class="success-msg" id="success-msg">Got it. Thank you for sharing something — that's the whole point of this place. It'll be read with care.</div>
+    <div class="success-msg" id="success-msg">THNX!</div>
     <div class="error-msg" id="error-msg">&#10007; Something went wrong. Try again.</div>
 
     <!-- Celebratory color grid -->
@@ -1209,19 +1212,18 @@
 
     <div class="submit-heading">submit<span>.</span></div>
 
-    <p class="submit-intro">Don't be shy, it's okay to participate!</p>
     <p class="submit-intro">Come live in the machine. It's cozy in here.</p>
 
     <div class="form-group">
       <span class="field-num">01</span>
       <label for="sub-title">Title</label>
-      <input type="text" id="sub-title" placeholder="give it a name...">
+      <input type="text" id="sub-title" placeholder="type title here">
     </div>
 
     <div class="form-group">
       <span class="field-num">02</span>
       <label for="sub-body">Body</label>
-      <textarea id="sub-body" placeholder="write it here. paste it. whatever it is."></textarea>
+      <textarea id="sub-body" placeholder="write words here"></textarea>
     </div>
 
     <div class="form-group">
@@ -1243,7 +1245,7 @@
       <input type="email" id="sub-email" placeholder="only if you want to hear back">
     </div>
 
-    <button class="btn-submit" id="submit-btn" onclick="submitToFormspree()">put it in the machine</button>
+    <button class="btn-submit" id="submit-btn" onclick="submitToFormspree()">drop it in</button>
 
   </div>
 
@@ -1263,7 +1265,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '29';
+  const SITE_VERSION = '30';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
