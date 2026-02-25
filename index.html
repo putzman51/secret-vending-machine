@@ -1002,10 +1002,10 @@
       padding: 0.4rem 0.5rem;
     }
 
-    /* VEND — big, square, flush right, dominant */
+    /* VEND — reduced 25%, flush right */
     .nav-vend {
-      font-size: 1.3rem;
-      padding: 0.9rem 1.6rem;
+      font-size: 0.975rem;
+      padding: 0.675rem 1.2rem;
       letter-spacing: 0.18em;
       border-radius: 0;
       margin-left: auto;
@@ -1013,7 +1013,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 90px;
+      min-width: 68px;
     }
 
     /* ── MAIN ── */
@@ -1265,7 +1265,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '33';
+  const SITE_VERSION = '34';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
