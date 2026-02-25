@@ -1016,6 +1016,20 @@
       min-width: 68px;
     }
 
+    /* ── POST back button — hidden on mobile, date moves up ── */
+    .post-back {
+      display: none;
+    }
+
+    #page-post {
+      padding-top: 0;
+    }
+
+    .post-dateline {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
     /* ── MAIN ── */
     main {
       padding: 1.5rem 1rem 4rem;
@@ -1265,7 +1279,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '34';
+  const SITE_VERSION = '35';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
