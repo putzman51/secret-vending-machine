@@ -1279,7 +1279,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '35';
+  const SITE_VERSION = '36';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
@@ -1288,6 +1288,7 @@
 
   // Static posts — hardcoded, never touched by localStorage
   const STATIC_POSTS = [
+    { id: 200, title: 'up in copper country', date: '2026-02-25', body: '', img: '/images/copper.jpeg' },
     { id: 3, title: '2 2', date: '2025-08-18', body: '', img: '/images/doorsagain.jpg' },
     { id: 4, title: 'a dream within', date: '2025-08-19', body: '', img: '/images/gaolagainagain.jpg' },
     { id: 5, title: 'zig then zag', date: '2025-08-31', body: '', img: '/images/zagagain.jpg' },
