@@ -1279,7 +1279,7 @@
   const FORMSPREE_ID = 'mkovpozy';
 
   // Version flag — increment this to force a full localStorage reset
-  const SITE_VERSION = '37';
+  const SITE_VERSION = '39';
   if (localStorage.getItem('svm_v') !== SITE_VERSION) {
     localStorage.clear();
     localStorage.setItem('svm_v', SITE_VERSION);
@@ -1288,6 +1288,22 @@
 
   // Static posts — hardcoded, never touched by localStorage
   const STATIC_POSTS = [
+    { id: 300, title: 'be grate', date: '2026-02-26', body: '', img: '/images/8.jpg' },
+    { id: 301, title: 'double eagle aka albatross in golf', date: '2026-02-28', body: '', img: '/images/10.jpg' },
+    { id: 302, title: 'dream in daytime means \"daydream\"', date: '2026-03-03', body: '', img: '/images/6.jpg' },
+    { id: 303, title: 'like a sando', date: '2026-03-06', body: '', img: '/images/7.jpg' },
+    { id: 304, title: 'tiny and tall', date: '2026-03-08', body: '', img: '/images/15.jpg' },
+    { id: 305, title: 'best of both worlds', date: '2026-03-11', body: '', img: '/images/11.jpg' },
+    { id: 306, title: 'i thought it was the moon', date: '2026-03-13', body: '', img: '/images/13.jpg' },
+    { id: 307, title: 'for ice cream?', date: '2026-03-16', body: '', img: '/images/9.jpg' },
+    { id: 308, title: 'tucked away in paradise', date: '2026-03-19', body: '', img: '/images/2.jpg' },
+    { id: 309, title: 'dance w/me', date: '2026-03-22', body: '', img: '/images/3.jpg' },
+    { id: 310, title: 'forbidden sledding', date: '2026-03-25', body: '', img: '/images/14.jpg' },
+    { id: 311, title: 'i want this feeling in my heart today', date: '2026-03-27', body: '', img: '/images/16.jpg' },
+    { id: 312, title: 'bounce me off the water', date: '2026-03-29', body: '', img: '/images/5.jpg' },
+    { id: 313, title: 'wise warrior', date: '2026-03-31', body: '', img: '/images/12.jpg' },
+    { id: 314, title: 'breeze beneath the trees', date: '2026-04-03', body: '', img: '/images/1.jpg' },
+    { id: 315, title: 'zen din din', date: '2026-04-05', body: '', img: '/images/4.jpg' },
     { id: 200, title: 'up in copper country', date: '2026-02-25', body: '', img: '/images/copper.jpg' },
     { id: 3, title: '2 2', date: '2025-08-18', body: '', img: '/images/doorsagain.jpg' },
     { id: 4, title: 'a dream within', date: '2025-08-19', body: '', img: '/images/gaolagainagain.jpg' },
@@ -1316,12 +1332,18 @@
 
   function getPosts() {
     try {
+      const today = new Date().toISOString().slice(0, 10);
       const stored = JSON.parse(localStorage.getItem('svm_posts') || '[]');
       const staticIds = new Set(STATIC_POSTS.map(p => p.id));
       const userPosts = stored.filter(p => !staticIds.has(p.id));
-      return [...STATIC_POSTS, ...userPosts];
+      const all = [...STATIC_POSTS, ...userPosts];
+      // Hide posts with future dates — scheduled content
+      return all.filter(p => p.date <= today);
     }
-    catch(e) { return [...STATIC_POSTS]; }
+    catch(e) {
+      const today = new Date().toISOString().slice(0, 10);
+      return STATIC_POSTS.filter(p => p.date <= today);
+    }
   }
 
   function savePosts(posts) {
