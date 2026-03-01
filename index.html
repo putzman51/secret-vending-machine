@@ -261,6 +261,20 @@
     border-bottom: 2px solid #FF8C00;
   }
 
+  .nav-zine {
+    background: transparent;
+    color: #FF8C00;
+    border: 2px solid #FF8C00;
+    font-size: 0.85rem;
+    padding: 0.55rem 1.2rem;
+  }
+
+  .nav-zine:hover {
+    background: #FF8C00;
+    color: #fff;
+    box-shadow: none;
+  }
+
   .nav-vend {
     background: #FF8C00;
     color: #fff;
@@ -1003,6 +1017,16 @@
     }
 
     /* VEND — reduced 25%, flush right */
+    .nav-zine {
+      font-size: 0.975rem;
+      padding: 0.675rem 1.0rem;
+      border-radius: 0;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .nav-vend {
       font-size: 0.975rem;
       padding: 0.675rem 1.2rem;
@@ -1162,6 +1186,7 @@
       <button class="nav-regular" onclick="showPage('archive')">Archive</button>
       <button class="nav-regular" onclick="showPage('about')">About</button>
       <button class="nav-regular" onclick="showPage('submit')">Submit</button>
+      <button class="nav-zine" onclick="window.open('zine.html', '_blank')">Zine</button>
       <button class="nav-vend" onclick="vend()">Vend</button>
     </nav>
   </div>
