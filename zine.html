@@ -165,7 +165,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--mango);
+    color: #fff;
     margin-bottom: 1.2rem;
   }
 
@@ -188,7 +188,7 @@
     font-family: 'Space Mono', monospace;
     font-size: 0.6rem;
     letter-spacing: 0.12em;
-    color: var(--dim);
+    color: #fff;
     margin-top: 2rem;
     text-transform: uppercase;
   }
@@ -248,6 +248,57 @@
 
   .back-sq { width: 18px; height: 18px; }
 
+  /* ── SPECTRUM STRIPES ── */
+
+  /* Cover: full-height vertical stripe, left edge */
+  .stripe-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stripe-cover span {
+    flex: 1;
+    display: block;
+  }
+
+  /* "six of one" panel: thinner stripe, slightly muted on paper bg */
+  .stripe-light {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.7;
+  }
+
+  .stripe-light span {
+    flex: 1;
+    display: block;
+  }
+
+  /* "You are here" panel: wider stripe, reversed dark-to-light, glows on ink bg */
+  .stripe-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stripe-dark span {
+    flex: 1;
+    display: block;
+  }
+
   @media print {
     body { background: white; padding: 0; }
     .zine { width: 100%; }
@@ -260,6 +311,16 @@
 
   <!-- 01 COVER -->
   <div class="panel panel-cover">
+    <div class="stripe-cover">
+      <span style="background:#FFE0A0"></span>
+      <span style="background:#FFD070"></span>
+      <span style="background:#FFC040"></span>
+      <span style="background:#FFB020"></span>
+      <span style="background:#FF8C00"></span>
+      <span style="background:#E06800"></span>
+      <span style="background:#B84E00"></span>
+      <span style="background:#8C3800"></span>
+    </div>
     <div class="cover-corner"></div>
     <span class="cover-eyebrow">Secret Vending Machine &nbsp;/&nbsp; Q1 '26</span>
     <div class="cover-title">
@@ -309,6 +370,16 @@
 
   <!-- 07 ZEN TEXT — midpoint breath -->
   <div class="panel panel-text">
+    <div class="stripe-light">
+      <span style="background:#FFE0A0"></span>
+      <span style="background:#FFD070"></span>
+      <span style="background:#FFC040"></span>
+      <span style="background:#FFB020"></span>
+      <span style="background:#FF8C00"></span>
+      <span style="background:#E06800"></span>
+      <span style="background:#B84E00"></span>
+      <span style="background:#8C3800"></span>
+    </div>
     <span class="zen-mark"></span>
     <p class="zen-line">six of one,<br>half dozen<br>of the other</p>
   </div>
@@ -346,6 +417,16 @@
 
   <!-- 13 ZEN TEXT dark — second breath -->
   <div class="panel panel-text dark">
+    <div class="stripe-dark">
+      <span style="background:#8C3800"></span>
+      <span style="background:#B84E00"></span>
+      <span style="background:#E06800"></span>
+      <span style="background:#FF8C00"></span>
+      <span style="background:#FFB020"></span>
+      <span style="background:#FFC040"></span>
+      <span style="background:#FFD070"></span>
+      <span style="background:#FFE0A0"></span>
+    </div>
     <span class="zen-mark"></span>
     <p class="zen-line">You are here.</p>
   </div>
