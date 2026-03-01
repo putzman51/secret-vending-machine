@@ -9,12 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IM+Fell+English:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper:   #F2EDE4;
-    --ink:     #1A1410;
-    --mango:   #D4761E;
-    --rust:    #C4622D;
-    --cream:   #EDE7D9;
-    --dim:     #6B5F52;
+    --paper:  #F2EDE4;
+    --ink:    #1A1410;
+    --mango:  #D4761E;
+    --rust:   #C4622D;
+    --cream:  #EDE7D9;
+    --dim:    #6B5F52;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,11 +25,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0;
     padding: 3rem 1rem;
   }
 
-  /* ── ZINE WRAPPER ── */
   .zine {
     width: 680px;
     max-width: 100%;
@@ -37,18 +35,40 @@
     flex-direction: column;
   }
 
-  /* ── PANEL BASE ── */
+  /* ── ALL PANELS ── */
   .panel {
     width: 100%;
     aspect-ratio: 1 / 1;
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fadeUp 0.55s ease forwards;
+  }
+
+  .panel:nth-child(1)  { animation-delay: 0.04s; }
+  .panel:nth-child(2)  { animation-delay: 0.08s; }
+  .panel:nth-child(3)  { animation-delay: 0.12s; }
+  .panel:nth-child(4)  { animation-delay: 0.16s; }
+  .panel:nth-child(5)  { animation-delay: 0.20s; }
+  .panel:nth-child(6)  { animation-delay: 0.24s; }
+  .panel:nth-child(7)  { animation-delay: 0.28s; }
+  .panel:nth-child(8)  { animation-delay: 0.32s; }
+  .panel:nth-child(9)  { animation-delay: 0.36s; }
+  .panel:nth-child(10) { animation-delay: 0.40s; }
+  .panel:nth-child(11) { animation-delay: 0.44s; }
+  .panel:nth-child(12) { animation-delay: 0.48s; }
+  .panel:nth-child(13) { animation-delay: 0.52s; }
+  .panel:nth-child(14) { animation-delay: 0.56s; }
+  .panel:nth-child(15) { animation-delay: 0.60s; }
+  .panel:nth-child(16) { animation-delay: 0.64s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* ── PHOTO PANELS ── */
-  .panel-photo {
-    background: var(--ink);
-  }
+  .panel-photo { background: var(--ink); }
 
   .panel-photo img {
     width: 100%;
@@ -58,18 +78,34 @@
     filter: saturate(0.88) contrast(1.05);
   }
 
-  /* grain overlay on all photo panels */
   .panel-photo::after {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
     opacity: 0.06;
     mix-blend-mode: overlay;
     pointer-events: none;
   }
 
-  /* ── TEXT PANELS ── */
+  .caption-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3.5rem 2.2rem 1.8rem;
+    background: linear-gradient(to top, rgba(16,10,6,0.68) 0%, transparent 100%);
+  }
+
+  .caption-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(242,237,228,0.65);
+  }
+
+  /* ── ZEN TEXT PANELS ── */
   .panel-text {
     background: var(--paper);
     display: flex;
@@ -79,9 +115,17 @@
     padding: 3.5rem;
   }
 
-  .panel-text.dark {
-    background: var(--ink);
+  .panel-text.dark { background: var(--ink); }
+
+  .zen-mark {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--mango);
+    margin-bottom: 1.6rem;
   }
+
+  .panel-text.dark .zen-mark { background: var(--rust); }
 
   .zen-line {
     font-family: 'Fraunces', serif;
@@ -93,21 +137,7 @@
     letter-spacing: -0.01em;
   }
 
-  .panel-text.dark .zen-line {
-    color: var(--paper);
-  }
-
-  .zen-mark {
-    display: block;
-    width: 28px;
-    height: 2px;
-    background: var(--mango);
-    margin-bottom: 1.6rem;
-  }
-
-  .panel-text.dark .zen-mark {
-    background: var(--rust);
-  }
+  .panel-text.dark .zen-line { color: var(--paper); }
 
   /* ── COVER ── */
   .panel-cover {
@@ -117,7 +147,17 @@
     align-items: flex-start;
     justify-content: flex-end;
     padding: 3rem 3rem 3.5rem;
-    position: relative;
+  }
+
+  .cover-corner {
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    width: 40px;
+    height: 40px;
+    border-top: 2px solid var(--mango);
+    border-right: 2px solid var(--mango);
+    opacity: 0.5;
   }
 
   .cover-eyebrow {
@@ -153,18 +193,6 @@
     text-transform: uppercase;
   }
 
-  /* corner ornament */
-  .cover-corner {
-    position: absolute;
-    top: 2.5rem;
-    right: 2.5rem;
-    width: 40px;
-    height: 40px;
-    border-top: 2px solid var(--mango);
-    border-right: 2px solid var(--mango);
-    opacity: 0.5;
-  }
-
   /* ── BACK COVER ── */
   .panel-back {
     background: var(--cream);
@@ -174,7 +202,6 @@
     justify-content: center;
     gap: 1.5rem;
     padding: 3rem;
-    position: relative;
   }
 
   .back-logo {
@@ -183,14 +210,6 @@
     font-size: 1.1rem;
     letter-spacing: 0.04em;
     color: var(--ink);
-  }
-
-  .back-url {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.14em;
-    color: var(--mango);
-    text-transform: lowercase;
   }
 
   .back-rule {
@@ -210,6 +229,13 @@
     line-height: 1.6;
   }
 
+  .back-url {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--mango);
+  }
+
   .back-squares {
     position: absolute;
     bottom: 2rem;
@@ -218,70 +244,13 @@
     gap: 4px;
   }
 
-  .back-sq {
-    width: 8px;
-    height: 8px;
-  }
+  .back-sq { width: 8px; height: 8px; }
 
-  /* ── CAPTION OVERLAY (on select photo panels) ── */
-  .caption-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 3rem 2.5rem 2rem;
-    background: linear-gradient(to top, rgba(20,14,10,0.72) 0%, transparent 100%);
-  }
-
-  .caption-text {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(242,237,228,0.7);
-  }
-
-  /* ── DIVIDER PANEL (thin horizontal rhythm break) ── */
-  .panel-divider {
-    height: 3px;
-    background: var(--ink);
-  }
-
-  /* ── PRINT STYLES ── */
   @media print {
     body { background: white; padding: 0; }
     .zine { width: 100%; }
-    .panel { page-break-after: always; aspect-ratio: 1/1; }
+    .panel { page-break-after: always; }
   }
-
-  /* ── SUBTLE SCROLL FADE-IN ── */
-  .panel {
-    opacity: 0;
-    transform: translateY(12px);
-    animation: fadeUp 0.5s ease forwards;
-  }
-
-  .panel:nth-child(1)  { animation-delay: 0.05s; }
-  .panel:nth-child(2)  { animation-delay: 0.10s; }
-  .panel:nth-child(3)  { animation-delay: 0.15s; }
-  .panel:nth-child(4)  { animation-delay: 0.20s; }
-  .panel:nth-child(5)  { animation-delay: 0.25s; }
-  .panel:nth-child(6)  { animation-delay: 0.30s; }
-  .panel:nth-child(7)  { animation-delay: 0.35s; }
-  .panel:nth-child(8)  { animation-delay: 0.40s; }
-  .panel:nth-child(9)  { animation-delay: 0.45s; }
-  .panel:nth-child(10) { animation-delay: 0.50s; }
-  .panel:nth-child(11) { animation-delay: 0.55s; }
-  .panel:nth-child(12) { animation-delay: 0.60s; }
-  .panel:nth-child(13) { animation-delay: 0.65s; }
-  .panel:nth-child(14) { animation-delay: 0.70s; }
-  .panel:nth-child(15) { animation-delay: 0.75s; }
-  .panel:nth-child(16) { animation-delay: 0.80s; }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
 </style>
 </head>
 <body>
@@ -307,10 +276,12 @@
     </div>
   </div>
 
-  <!-- 03 ZEN TEXT -->
-  <div class="panel panel-text">
-    <span class="zen-mark"></span>
-    <p class="zen-line">slip through<br>without a sound</p>
+  <!-- 03 PHOTO — dancing down the stairs -->
+  <div class="panel panel-photo">
+    <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/c2.jpg" alt="dancing down the stairs">
+    <div class="caption-overlay">
+      <span class="caption-text">dancing down the stairs</span>
+    </div>
   </div>
 
   <!-- 04 PHOTO — see you through -->
@@ -321,10 +292,12 @@
     </div>
   </div>
 
-  <!-- 05 ZEN TEXT dark -->
-  <div class="panel panel-text dark">
-    <span class="zen-mark"></span>
-    <p class="zen-line">the light<br>stays on</p>
+  <!-- 05 PHOTO — ensconced -->
+  <div class="panel panel-photo">
+    <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/x4.jpg" alt="ensconced">
+    <div class="caption-overlay">
+      <span class="caption-text">ensconced</span>
+    </div>
   </div>
 
   <!-- 06 PHOTO — fleurs -->
@@ -335,13 +308,13 @@
     </div>
   </div>
 
-  <!-- 07 ZEN TEXT -->
+  <!-- 07 ZEN TEXT — midpoint breath -->
   <div class="panel panel-text">
     <span class="zen-mark"></span>
     <p class="zen-line">open<br>without asking</p>
   </div>
 
-  <!-- 08 PHOTO — rainbow staircase -->
+  <!-- 08 PHOTO — rainbow stairway -->
   <div class="panel panel-photo">
     <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/de73e2bc-be60-4ede-a44f-fb57c381e6c9.jpg" alt="rainbow stairway">
     <div class="caption-overlay">
@@ -349,10 +322,12 @@
     </div>
   </div>
 
-  <!-- 09 ZEN TEXT dark -->
-  <div class="panel panel-text dark">
-    <span class="zen-mark"></span>
-    <p class="zen-line">one step<br>is enough</p>
+  <!-- 09 PHOTO — floating in wait -->
+  <div class="panel panel-photo">
+    <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/c5.jpg" alt="floating in wait">
+    <div class="caption-overlay">
+      <span class="caption-text">floating in wait</span>
+    </div>
   </div>
 
   <!-- 10 PHOTO — lean on the scene -->
@@ -363,13 +338,15 @@
     </div>
   </div>
 
-  <!-- 11 ZEN TEXT -->
-  <div class="panel panel-text">
-    <span class="zen-mark"></span>
-    <p class="zen-line">find the wall<br>that holds you</p>
+  <!-- 11 PHOTO — blue coming through -->
+  <div class="panel panel-photo">
+    <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/x2.jpg" alt="blue coming through">
+    <div class="caption-overlay">
+      <span class="caption-text">blue coming through</span>
+    </div>
   </div>
 
-  <!-- 12 PHOTO — something borrowed something blue -->
+  <!-- 12 PHOTO — something borrowed, something blue -->
   <div class="panel panel-photo">
     <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/z4.jpg" alt="something borrowed, something blue">
     <div class="caption-overlay">
@@ -377,24 +354,26 @@
     </div>
   </div>
 
-  <!-- 13 ZEN TEXT dark -->
+  <!-- 13 ZEN TEXT dark — second breath -->
   <div class="panel panel-text dark">
     <span class="zen-mark"></span>
     <p class="zen-line">borrowed light<br>is still light</p>
   </div>
 
-  <!-- 14 PHOTO — tinged mango -->
+  <!-- 14 PHOTO — can anybody fly this thing -->
   <div class="panel panel-photo">
-    <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/x7.jpg" alt="tinged mango">
+    <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/x8.jpg" alt="can anybody fly this thing?">
     <div class="caption-overlay">
-      <span class="caption-text">tinged mango</span>
+      <span class="caption-text">can anybody fly this thing?</span>
     </div>
   </div>
 
-  <!-- 15 ZEN TEXT -->
-  <div class="panel panel-text">
-    <span class="zen-mark"></span>
-    <p class="zen-line">everything<br>ends gold</p>
+  <!-- 15 PHOTO — patina pristine -->
+  <div class="panel panel-photo">
+    <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/z1.jpg" alt="patina pristine">
+    <div class="caption-overlay">
+      <span class="caption-text">patina pristine</span>
+    </div>
   </div>
 
   <!-- 16 BACK COVER -->
