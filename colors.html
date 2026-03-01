@@ -108,11 +108,17 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--dim);
-    display: flex;
+    display: none;
     align-items: center;
     gap: 1rem;
     opacity: 0;
     animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  @media (min-width: 641px) {
+    .intro-scroll {
+      display: flex;
+    }
   }
 
   .intro-scroll::after {
@@ -452,7 +458,7 @@
 
 <!-- ══ INTERACTIVE SWATCHES ══ -->
 <section class="swatches-section">
-  <div class="swatches-label">hover each shade to open it</div>
+  <div class="swatches-label">Press to Open</div>
   <div class="swatches">
 
     <div class="swatch light" style="background:var(--c1)">
@@ -623,7 +629,7 @@
     </div>
 
     <div class="codex-footer">
-      <p class="codex-footer-text">The eight squares live in the top-right corner of every page — a press mark, a printer's registration, a signal that something warm was made here. You found them. Good.</p>
+      <p class="codex-footer-text">Warm in heart, all throughout the times of day.</p>
       <a href="javascript:window.close()" class="codex-footer-back" onclick="if(!window.close())window.history.back()">back to the machine</a>
     </div>
 
