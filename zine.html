@@ -240,11 +240,13 @@
     position: absolute;
     bottom: 2rem;
     right: 2rem;
-    display: flex;
-    gap: 4px;
+    display: grid;
+    grid-template-columns: repeat(4, 18px);
+    grid-template-rows: repeat(2, 18px);
+    gap: 0;
   }
 
-  .back-sq { width: 8px; height: 8px; }
+  .back-sq { width: 18px; height: 18px; }
 
   @media print {
     body { background: white; padding: 0; }
@@ -259,13 +261,13 @@
   <!-- 01 COVER -->
   <div class="panel panel-cover">
     <div class="cover-corner"></div>
-    <span class="cover-eyebrow">Secret Vending Machine &nbsp;/&nbsp; Q2 2026</span>
+    <span class="cover-eyebrow">Secret Vending Machine &nbsp;/&nbsp; Q1 '26</span>
     <div class="cover-title">
       feed<br>
       the<br>
       <em>machine.</em>
     </div>
-    <div class="cover-sub">a lofi zine &nbsp;·&nbsp; issue 01</div>
+    <div class="cover-sub">Lo-fi and Liberated &nbsp;·&nbsp; issue 01</div>
   </div>
 
   <!-- 02 PHOTO — sea inside -->
@@ -287,9 +289,6 @@
   <!-- 04 PHOTO — seen through -->
   <div class="panel panel-photo">
     <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/z8.jpg" alt="seen through">
-    <div class="caption-overlay">
-      <span class="caption-text">seen through</span>
-    </div>
   </div>
 
   <!-- 05 PHOTO — ensconced -->
@@ -311,15 +310,12 @@
   <!-- 07 ZEN TEXT — midpoint breath -->
   <div class="panel panel-text">
     <span class="zen-mark"></span>
-    <p class="zen-line">I am here.</p>
+    <p class="zen-line">six of one,<br>half dozen<br>of the other</p>
   </div>
 
   <!-- 08 PHOTO — rainbow stairway -->
   <div class="panel panel-photo">
     <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/de73e2bc-be60-4ede-a44f-fb57c381e6c9.jpg" alt="rainbow stairway">
-    <div class="caption-overlay">
-      <span class="caption-text">rainbow stairway</span>
-    </div>
   </div>
 
   <!-- 09 PHOTO — floating in wait -->
@@ -333,9 +329,6 @@
   <!-- 10 PHOTO — lean on the scene -->
   <div class="panel panel-photo">
     <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/z2.jpg" alt="lean on the scene">
-    <div class="caption-overlay">
-      <span class="caption-text">lean on the scene</span>
-    </div>
   </div>
 
   <!-- 11 PHOTO — blue coming through -->
@@ -349,9 +342,6 @@
   <!-- 12 PHOTO — something borrowed, something blue -->
   <div class="panel panel-photo">
     <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/z4.jpg" alt="something borrowed, something blue">
-    <div class="caption-overlay">
-      <span class="caption-text">something borrowed, something blue</span>
-    </div>
   </div>
 
   <!-- 13 ZEN TEXT dark — second breath -->
@@ -363,9 +353,6 @@
   <!-- 14 PHOTO — can anybody fly this thing -->
   <div class="panel panel-photo">
     <img src="https://raw.githubusercontent.com/putzman51/secret-vending-machine/main/images/x8.jpg" alt="can anybody fly this thing?">
-    <div class="caption-overlay">
-      <span class="caption-text">can anybody fly this thing?</span>
-    </div>
   </div>
 
   <!-- 15 PHOTO — patina pristine -->
@@ -380,7 +367,7 @@
   <div class="panel panel-back">
     <div class="back-logo">Secret Vending Machine</div>
     <div class="back-rule"></div>
-    <div class="back-tagline">Free Entry since 2026</div>
+    <div class="back-tagline">see you next quarter</div>
     <div class="back-url">secretvendingmachine.com</div>
     <div class="back-squares">
       <div class="back-sq" style="background:#FFE0A0"></div>
