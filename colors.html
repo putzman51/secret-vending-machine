@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mango Spectrum — Secret Vending Machine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IM+Fell+English:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:   #1A1410;
+    --paper: #F2EDE4;
+    --cream: #EDE7D9;
+    --dim:   #6B5F52;
+    --c1: #FFE0A0;
+    --c2: #FFD070;
+    --c3: #FFC040;
+    --c4: #FFB020;
+    --c5: #FF8C00;
+    --c6: #E06800;
+    --c7: #B84E00;
+    --c8: #8C3800;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'IM Fell English', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ══════════════════════════════════════
+     DARK INTRO SECTION
+  ══════════════════════════════════════ */
+  .intro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 4rem;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .intro-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c5);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+
+  .intro-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .intro-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--c5);
+    display: block;
+  }
+
+  .intro-body {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.75;
+    color: rgba(242,237,228,0.7);
+    max-width: 560px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.35s forwards;
+  }
+
+  .intro-body p + p {
+    margin-top: 1.2em;
+  }
+
+  .intro-scroll {
+    margin-top: 4rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  .intro-scroll::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--dim);
+  }
+
+  /* ── SPECTRUM BAND ── */
+  .spectrum-band {
+    display: flex;
+    height: 6px;
+    width: 100%;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.15s forwards;
+  }
+
+  .spectrum-band span {
+    flex: 1;
+    display: block;
+  }
+
+  /* top band */
+  .band-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+  }
+
+  /* ══════════════════════════════════════
+     SWATCH SECTION — dark bg still
+  ══════════════════════════════════════ */
+  .swatches-section {
+    background: var(--ink);
+    padding: 0 0 8rem;
+  }
+
+  .swatches-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 0 4rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* The 8 swatches as a horizontal strip, each expands on hover */
+  .swatches {
+    display: flex;
+    width: 100%;
+    height: 280px;
+    cursor: default;
+  }
+
+  .swatch {
+    flex: 1;
+    position: relative;
+    transition: flex 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .swatch:hover {
+    flex: 5;
+  }
+
+  .swatch-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem 1.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.15s;
+    white-space: nowrap;
+  }
+
+  .swatch:hover .swatch-inner {
+    opacity: 1;
+  }
+
+  .swatch-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: rgba(20,10,5,0.85);
+    margin-bottom: 0.3rem;
+  }
+
+  .swatch-meaning {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: rgba(20,10,5,0.65);
+    margin-bottom: 0.9rem;
+    line-height: 1.4;
+    white-space: normal;
+    max-width: 220px;
+  }
+
+  .swatch-hex {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: rgba(20,10,5,0.55);
+  }
+
+  /* Light swatches need dark text, dark swatches need light text */
+  .swatch.light .swatch-name  { color: rgba(20,10,5,0.85); }
+  .swatch.light .swatch-meaning { color: rgba(20,10,5,0.6); }
+  .swatch.light .swatch-hex   { color: rgba(20,10,5,0.5); }
+  .swatch.dark  .swatch-name  { color: rgba(242,237,228,0.9); }
+  .swatch.dark  .swatch-meaning { color: rgba(242,237,228,0.6); }
+  .swatch.dark  .swatch-hex   { color: rgba(242,237,228,0.45); }
+
+  /* ══════════════════════════════════════
+     LIGHT TECHNICAL SECTION
+  ══════════════════════════════════════ */
+  .codex {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 7rem 4rem 8rem;
+  }
+
+  .codex-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .codex-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c6);
+    margin-bottom: 1.5rem;
+  }
+
+  .codex-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+
+  .codex-intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--dim);
+    max-width: 520px;
+    margin-bottom: 5rem;
+  }
+
+  /* ── COLOR ROWS ── */
+  .color-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(26,20,16,0.12);
+  }
+
+  .color-row {
+    display: grid;
+    grid-template-columns: 56px 1fr 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(26,20,16,0.08);
+    transition: background 0.2s ease;
+  }
+
+  .color-row:hover {
+    background: rgba(26,20,16,0.03);
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .row-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .row-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .row-name small {
+    display: block;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--dim);
+    margin-top: 0.2rem;
+  }
+
+  .row-meaning {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--dim);
+    line-height: 1.5;
+  }
+
+  .row-specs {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--dim);
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+
+  .row-specs strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ── CODEX FOOTER ── */
+  .codex-footer {
+    margin-top: 5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(26,20,16,0.12);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .codex-footer-text {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--dim);
+    max-width: 360px;
+    line-height: 1.65;
+  }
+
+  .codex-footer-back {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c6);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+    align-self: center;
+  }
+
+  .codex-footer-back:hover { color: var(--c8); }
+  .codex-footer-back::before { content: '←'; font-size: 0.8rem; }
+
+  /* ── PRESS MARK repro ── */
+  .press-mark-repro {
+    display: grid;
+    grid-template-columns: repeat(4, 18px);
+    grid-template-rows: repeat(2, 18px);
+    gap: 0;
+    margin-top: 3rem;
+  }
+
+  /* ══════════════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .intro { padding: 5rem 1.5rem 3rem; }
+    .swatches { height: 180px; }
+    .swatch-meaning { font-size: 0.7rem; }
+    .codex { padding: 5rem 1.5rem 5rem; }
+    .color-row {
+      grid-template-columns: 36px 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.75rem 1rem;
+    }
+    .row-meaning { grid-column: 2; }
+    .row-specs   { grid-column: 1 / -1; padding-left: 48px; }
+    .swatches-label { padding: 0 1.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Fixed spectrum bar at top -->
+<div class="spectrum-band band-top">
+  <span style="background:var(--c1)"></span>
+  <span style="background:var(--c2)"></span>
+  <span style="background:var(--c3)"></span>
+  <span style="background:var(--c4)"></span>
+  <span style="background:var(--c5)"></span>
+  <span style="background:var(--c6)"></span>
+  <span style="background:var(--c7)"></span>
+  <span style="background:var(--c8)"></span>
+</div>
+
+<!-- ══ DARK INTRO ══ -->
+<section class="intro">
+  <div class="intro-eyebrow">Secret Vending Machine &nbsp;/&nbsp; Color System</div>
+  <h1 class="intro-title">
+    The<br>
+    Mango<br>
+    <em>Spectrum.</em>
+  </h1>
+  <div class="intro-body">
+    <p>Color is connection. Musical notes, plain on a page or screen, screaming to be felt.</p>
+    <p>These colors are a way of showing what life is like here in the machine. There's a golden hour almost every day.</p>
+  </div>
+  <div class="intro-scroll">scroll for the codex</div>
+</section>
+
+<!-- ══ INTERACTIVE SWATCHES ══ -->
+<section class="swatches-section">
+  <div class="swatches-label">hover each shade to open it</div>
+  <div class="swatches">
+
+    <div class="swatch light" style="background:var(--c1)">
+      <div class="swatch-inner">
+        <div class="swatch-name">Mango Cream</div>
+        <div class="swatch-meaning">the first light, barely color at all — almost white, almost warm</div>
+        <div class="swatch-hex">#FFE0A0 &nbsp;·&nbsp; 40° 100% 81%</div>
+      </div>
+    </div>
+
+    <div class="swatch light" style="background:var(--c2)">
+      <div class="swatch-inner">
+        <div class="swatch-name">Pale Mango</div>
+        <div class="swatch-meaning">a Sunday morning, the color of not yet</div>
+        <div class="swatch-hex">#FFD070 &nbsp;·&nbsp; 43° 100% 72%</div>
+      </div>
+    </div>
+
+    <div class="swatch light" style="background:var(--c3)">
+      <div class="swatch-inner">
+        <div class="swatch-name">Light Mango</div>
+        <div class="swatch-meaning">noon in a foreign city — bright, slightly reckless</div>
+        <div class="swatch-hex">#FFC040 &nbsp;·&nbsp; 45° 100% 63%</div>
+      </div>
+    </div>
+
+    <div class="swatch light" style="background:var(--c4)">
+      <div class="swatch-inner">
+        <div class="swatch-name">Mango</div>
+        <div class="swatch-meaning">the true one — the whole fruit in one color</div>
+        <div class="swatch-hex">#FFB020 &nbsp;·&nbsp; 41° 100% 56%</div>
+      </div>
+    </div>
+
+    <div class="swatch light" style="background:var(--c5)">
+      <div class="swatch-inner">
+        <div class="swatch-name">Pure Mango</div>
+        <div class="swatch-meaning">the vend button. the accent. the one that means go.</div>
+        <div class="swatch-hex">#FF8C00 &nbsp;·&nbsp; 33° 100% 50%</div>
+      </div>
+    </div>
+
+    <div class="swatch dark" style="background:var(--c6)">
+      <div class="swatch-inner">
+        <div class="swatch-name">Deep Mango</div>
+        <div class="swatch-meaning">late afternoon, things getting serious, the day not done</div>
+        <div class="swatch-hex">#E06800 &nbsp;·&nbsp; 28° 100% 44%</div>
+      </div>
+    </div>
+
+    <div class="swatch dark" style="background:var(--c7)">
+      <div class="swatch-inner">
+        <div class="swatch-name">Burnt Mango</div>
+        <div class="swatch-meaning">the edge of the fire, where warmth becomes weight</div>
+        <div class="swatch-hex">#B84E00 &nbsp;·&nbsp; 25° 100% 36%</div>
+      </div>
+    </div>
+
+    <div class="swatch dark" style="background:var(--c8)">
+      <div class="swatch-inner">
+        <div class="swatch-name">Mango Bark</div>
+        <div class="swatch-meaning">the root of it — dark, patient, still carrying heat</div>
+        <div class="swatch-hex">#8C3800 &nbsp;·&nbsp; 24° 100% 27%</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ LIGHT CODEX ══ -->
+<section class="codex">
+  <div class="codex-inner">
+
+    <div class="codex-eyebrow">Technical Reference &nbsp;·&nbsp; The Color Codex</div>
+    <h2 class="codex-title">Eight stops.<br>One continuous light.</h2>
+    <p class="codex-intro">The spectrum runs from 40° hue (cream-yellow) down to 24° (amber-brown), dropping roughly 7° per step. Saturation stays pinned at 100% throughout — what changes is luminosity, from 81% at the top to 27% at the base.</p>
+
+    <div class="color-rows">
+
+      <div class="color-row">
+        <div class="row-swatch" style="background:#FFE0A0"></div>
+        <div class="row-name">Mango Cream <small>pm-1</small></div>
+        <div class="row-meaning">The threshold. The lightest touch before color becomes intention.</div>
+        <div class="row-specs">
+          <strong>HEX</strong> #FFE0A0<br>
+          <strong>HSL</strong> 40° 100% 81%<br>
+          <strong>RGB</strong> 255 · 224 · 160
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="row-swatch" style="background:#FFD070"></div>
+        <div class="row-name">Pale Mango <small>pm-2</small></div>
+        <div class="row-meaning">Warmth arriving. The color of anticipation, unhurried.</div>
+        <div class="row-specs">
+          <strong>HEX</strong> #FFD070<br>
+          <strong>HSL</strong> 43° 100% 72%<br>
+          <strong>RGB</strong> 255 · 208 · 112
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="row-swatch" style="background:#FFC040"></div>
+        <div class="row-name">Light Mango <small>pm-3</small></div>
+        <div class="row-meaning">High noon. Confident. The color that doesn't apologize.</div>
+        <div class="row-specs">
+          <strong>HEX</strong> #FFC040<br>
+          <strong>HSL</strong> 45° 100% 63%<br>
+          <strong>RGB</strong> 255 · 192 · 64
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="row-swatch" style="background:#FFB020"></div>
+        <div class="row-name">Mango <small>pm-4</small></div>
+        <div class="row-meaning">The fruit itself. Peak. Everything the palette is built around.</div>
+        <div class="row-specs">
+          <strong>HEX</strong> #FFB020<br>
+          <strong>HSL</strong> 41° 100% 56%<br>
+          <strong>RGB</strong> 255 · 176 · 32
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="row-swatch" style="background:#FF8C00"></div>
+        <div class="row-name">Pure Mango <small>pm-5</small></div>
+        <div class="row-meaning">The action color. Used for the Vend button, links that matter, the thing you press.</div>
+        <div class="row-specs">
+          <strong>HEX</strong> #FF8C00<br>
+          <strong>HSL</strong> 33° 100% 50%<br>
+          <strong>RGB</strong> 255 · 140 · 0
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="row-swatch" style="background:#E06800"></div>
+        <div class="row-name">Deep Mango <small>pm-6</small></div>
+        <div class="row-meaning">Late sun. The hour when things get honest. Used for accents on light backgrounds.</div>
+        <div class="row-specs">
+          <strong>HEX</strong> #E06800<br>
+          <strong>HSL</strong> 28° 100% 44%<br>
+          <strong>RGB</strong> 224 · 104 · 0
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="row-swatch" style="background:#B84E00"></div>
+        <div class="row-name">Burnt Mango <small>pm-7</small></div>
+        <div class="row-meaning">The edge of the fire. Where fruit becomes earth. The zine uses this as rust.</div>
+        <div class="row-specs">
+          <strong>HEX</strong> #B84E00<br>
+          <strong>HSL</strong> 25° 100% 36%<br>
+          <strong>RGB</strong> 184 · 78 · 0
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="row-swatch" style="background:#8C3800"></div>
+        <div class="row-name">Mango Bark <small>pm-8</small></div>
+        <div class="row-meaning">The root. Dark, warm, structural. The anchor the whole spectrum rests on.</div>
+        <div class="row-specs">
+          <strong>HEX</strong> #8C3800<br>
+          <strong>HSL</strong> 24° 100% 27%<br>
+          <strong>RGB</strong> 140 · 56 · 0
+        </div>
+      </div>
+
+    </div>
+
+    <div class="codex-footer">
+      <p class="codex-footer-text">The eight squares live in the top-right corner of every page — a press mark, a printer's registration, a signal that something warm was made here. You found them. Good.</p>
+      <a href="javascript:window.close()" class="codex-footer-back" onclick="if(!window.close())window.history.back()">back to the machine</a>
+    </div>
+
+    <div class="press-mark-repro">
+      <div style="background:#FFE0A0;width:18px;height:18px"></div>
+      <div style="background:#FFD070;width:18px;height:18px"></div>
+      <div style="background:#FFC040;width:18px;height:18px"></div>
+      <div style="background:#FFB020;width:18px;height:18px"></div>
+      <div style="background:#FF8C00;width:18px;height:18px"></div>
+      <div style="background:#E06800;width:18px;height:18px"></div>
+      <div style="background:#B84E00;width:18px;height:18px"></div>
+      <div style="background:#8C3800;width:18px;height:18px"></div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
