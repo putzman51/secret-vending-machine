@@ -1400,7 +1400,7 @@
   }
 
   function renderHome() {
-    const posts = getPosts().sort((a,b) => b.id - a.id);
+    const posts = getPosts().sort((a,b) => b.date.localeCompare(a.date));
     const el = document.getElementById('home-content');
     if (!posts.length) {
       el.innerHTML = '<div class="no-posts">Nothing yet.<div class="hint">Posts appear here once published.</div></div>';
