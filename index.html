@@ -404,10 +404,10 @@ body::after {
 
 const EDITIONS = [
   {
-    id: "004", title: "Sweet Seaside Sun", photographer: "Robert Corrigan",
-    location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-05",
-    pullQuote: "I don\u2019t go looking for the shot. I go outside and let the weather write the poem. The camera just takes notes.",
-    intro: "Corrigan sees the Pacific Northwest the way most people hear music \u2014 as something that moves through you before you can name it. His Olympus Trip 35, loaded with revolog\u2019s unpredictable color shifts, turns Redmond\u2019s rain-soaked trails and quiet architecture into something between a landscape and a feeling. These five images were shot across three weekends in spring, each one a different kind of wet.",
+    id: "004", title: "Poems in the Rain", photographer: "Robert Corrigan",
+    location: "Redmond, WA", camera: "Olympus Trip 35", film: "Revlog", date: "2026-05",
+    pullQuote: "the weather writes the poem. the camera just takes notes.",
+    intro: "three weekends in spring. each one a different kind of wet. the revlog doesn\u2019t know what color it wants to be yet + the rain doesn\u2019t care. trails, bridges, bark, ferns. the light runs through water first, then finds somewhere to land.",
     images: [
       { src: "/images/x7.jpg", caption: "tinged mango" },
       { src: "/images/q8.jpg", caption: "sun pocket grazing the field" },
@@ -418,9 +418,9 @@ const EDITIONS = [
   },
   {
     id: "003", title: "Quiet Structures", photographer: "Robert Corrigan",
-    location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-04",
-    pullQuote: "Architecture is just a building until the light decides to show up. Then it\u2019s a conversation.",
-    intro: "In this series, Corrigan turns his lens on the overlooked geometry of the suburban Pacific Northwest \u2014 the way a campus corner becomes brutalist sculpture, how stacked forms catch afternoon light, the quiet drama of a stairwell when nobody\u2019s using it. revolog\u2019s chemical lottery adds a layer of color that no one planned, and that\u2019s the point.",
+    location: "Redmond, WA", camera: "Olympus Trip 35", film: "Revlog", date: "2026-04",
+    pullQuote: "a building is just a building until the light shows up. then it\u2019s a conversation.",
+    intro: "corners, stairwells, stacked things catching afternoon light. the geometry of places nobody pauses at. revlog adds a color that no one planned + that\u2019s the point.",
     images: [
       { src: "/images/c4.jpg", caption: "brutal corner of campus" },
       { src: "/images/w4.jpg", caption: "stacked for success" },
@@ -431,9 +431,9 @@ const EDITIONS = [
   },
   {
     id: "002", title: "What the Trail Knows", photographer: "Robert Corrigan",
-    location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-03",
-    pullQuote: "The trail doesn\u2019t care about your composition rules. It gives you what it gives you. Your job is to be grateful.",
-    intro: "A walk through the trail system east of Redmond, shot over three rainy weekends in winter. Corrigan\u2019s patience with weather \u2014 and his willingness to let revolog\u2019s color palette surprise him \u2014 produces images where nature feels less like a subject and more like a collaborator. The rocks don\u2019t pose. The light doesn\u2019t wait. You take what you\u2019re given.",
+    location: "Redmond, WA", camera: "Olympus Trip 35", film: "Revlog", date: "2026-03",
+    pullQuote: "the trail gives you what it gives you. your job is to be grateful.",
+    intro: "three rainy weekends east of redmond. the rocks don\u2019t pose. the light doesn\u2019t wait. you walk in + the trail decides what you\u2019re allowed to see.",
     images: [
       { src: "/images/e4.jpg", caption: "took a hike" },
       { src: "/images/e6.jpg", caption: "high point" },
@@ -444,9 +444,9 @@ const EDITIONS = [
   },
   {
     id: "001", title: "First Roll", photographer: "Robert Corrigan",
-    location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2025-08",
-    pullQuote: "This is where it started. One camera from a thrift store, one roll of film I didn\u2019t understand yet, and the rain.",
-    intro: "The inaugural edition of Secret Vending Machine. These are the photographs that started it all \u2014 Corrigan\u2019s first rolls of revolog through an Olympus Trip 35. There\u2019s a rawness here that later work refines but never fully replaces. The colors are wilder, the framing less certain, and that\u2019s what makes them honest. The machine had to start somewhere.",
+    location: "Redmond, WA", camera: "Olympus Trip 35", film: "Revlog", date: "2025-08",
+    pullQuote: "one camera from a thrift store. one roll of film i didn\u2019t understand yet. and the rain.",
+    intro: "where the machine started. twelve dollar olympus, first roll of revlog. the colors are wilder here, the framing less certain. complete. it sits. complete, it is.",
     images: [
       { src: "/images/doorsagain.jpg", caption: "2 2" },
       { src: "/images/gaolagainagain.jpg", caption: "a dream within" },
@@ -552,7 +552,7 @@ function filmWrap(src, alt) {
   return '<div class="film-wrap"><img src="'+esc(src)+'" alt="'+esc(alt)+'" loading="lazy"><div class="light-leak"></div><div class="img-grain"></div></div>';
 }
 function newsletterHTML() {
-  return '<div class="newsletter-bar"><div class="newsletter-label">The Monthly Dispatch</div><p class="newsletter-desc">One email a month. New selections, a short essay, and one pick from the archive. Designed to be worth forwarding.</p><div class="newsletter-row"><input class="newsletter-input" type="email" placeholder="your@email.com"><button class="newsletter-btn">Subscribe</button></div></div>';
+  return '<div class="newsletter-bar"><div class="newsletter-label">the monthly dispatch</div><p class="newsletter-desc">one email a month. new selections, a short essay + one pick from the archive. worth forwarding.</p><div class="newsletter-row"><input class="newsletter-input" type="email" placeholder="your@email.com"><button class="newsletter-btn">Subscribe</button></div></div>';
 }
 
 // ═══════════════════════════════════════
@@ -614,9 +614,9 @@ function showDrop(id) {
 function renderHome() {
   const e = EDITIONS[0];
   document.getElementById('page-home').innerHTML = '<div class="home">'
-    +'<div class="home-label"><span>&#9679;</span> Latest Selection &mdash; Edition '+e.id+'</div>'
+    +'<div class="home-label"><span>&#9679;</span> latest selection &mdash; edition '+e.id+'</div>'
     +'<h1 class="home-title">'+esc(e.title)+'</h1>'
-    +'<div class="home-byline">Selected work by <strong>'+esc(e.photographer)+'</strong> &middot; '+esc(e.location)+'</div>'
+    +'<div class="home-byline">by <strong>'+esc(e.photographer)+'</strong> &middot; '+esc(e.location)+'</div>'
     +'<div class="home-hero">'+filmWrap(e.images[0].src, e.images[0].caption)+'</div>'
     +'<div class="home-caption">'+esc(e.images[0].caption)+'</div>'
     +'<p class="home-intro">'+esc(e.intro)+'</p>'
@@ -625,7 +625,7 @@ function renderHome() {
       +'<div class="meta-item"><span class="meta-label">Film</span><span class="meta-value">'+esc(e.film)+'</span></div>'
       +'<div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">'+esc(e.location)+'</span></div>'
     +'</div>'
-    +'<button class="enter-btn" onclick="showEdition(\''+e.id+'\')">View the full selection <span class="enter-arrow"></span></button>'
+    +'<button class="enter-btn" onclick="showEdition(\''+e.id+'\')">see the full selection <span class="enter-arrow"></span></button>'
     +'</div>';
 }
 
@@ -673,8 +673,8 @@ function renderEditions() {
       +'<div class="ed-card-images">'+e.images.length+' photographs &middot; '+esc(e.film)+'</div></div></div>';
   });
   document.getElementById('page-editions').innerHTML = '<div class="editions-index">'
-    +'<h1 class="editions-h">Editions</h1>'
-    +'<p class="editions-sub">Curated selections, 001 &ndash; present. Each edition is a body of work, editorially presented. Not posts &mdash; exhibitions.</p>'
+    +'<h1 class="editions-h">editions</h1>'
+    +'<p class="editions-sub">selections, 001 &ndash; present. each one a body of work. not posts. exhibitions.</p>'
     +cards+'</div>';
 }
 
@@ -686,8 +686,8 @@ function renderArchive() {
       +'<span class="arc-date">'+fmtShort(p.date)+'</span></div>';
   });
   document.getElementById('page-archive').innerHTML = '<div class="archive">'
-    +'<h1 class="archive-h">Archive</h1>'
-    +'<p class="archive-sub">Every drop, stocked with care.</p>'
+    +'<h1 class="archive-h">archive</h1>'
+    +'<p class="archive-sub">every drop, stocked with care.</p>'
     +'<div class="archive-count">'+ARCHIVE.length+' drops in the machine</div>'
     +items+'</div>';
 }
@@ -700,28 +700,27 @@ function renderDrop(id) {
     +'<div class="single-date">'+fmtDate(p.date)+'</div>'
     +'<h1 class="single-title">'+esc(p.title)+'</h1>'
     +filmWrap(p.img, p.title)
-    +'<div class="single-byline">Robert Corrigan &middot; Olympus Trip 35 &middot; revolog</div>'
+    +'<div class="single-byline">Robert Corrigan &middot; Olympus Trip 35 &middot; Revlog</div>'
     +'</div>';
 }
 
 function renderAbout() {
   document.getElementById('page-about').innerHTML = '<div class="about">'
-    +'<h1 class="about-h">About</h1>'
-    +'<p class="about-p">A secret machine that lives on the internet. You put in quarters of attention. It gives back film photographs of the world.</p>'
-    +'<p class="about-p">Secret Vending Machine started the way most film photographers start &mdash; with one person, one camera, and the belief that this work deserves a better home than a feed. The first editions are mine. <em>The rest will be yours.</em></p>'
-    +'<p class="about-p">Every selection is a deliberate editorial act &mdash; not a post, but an exhibition. Being selected means your work has been chosen by a human eye, not surfaced by a machine. There is no algorithm here. Just vibes, scenery, and composition with a flair for the mango palate.</p>'
-    +'<div class="manifesto"><div class="manifesto-label">What We Believe</div>'
-      +'<div class="m-item">No followers. No likes. No algorithm. Just the work.</div>'
-      +'<div class="m-item">The grain is real. The light leaks are earned. The colors come from chemistry, not presets.</div>'
-      +'<div class="m-item">Curation is a creative act, not a gatekeeping function.</div>'
-      +'<div class="m-item">The work should speak louder than the platform showing it.</div>'
-      +'<div class="m-item">A photograph shot on film is an act of patience. Presenting it should be, too.</div>'
-      +'<div class="m-item">The open web still matters. This is a website, not an app.</div>'
+    +'<h1 class="about-h">about</h1>'
+    +'<p class="about-p">a secret machine that lives on the internet. you put in quarters of attention. it gives back film photographs of the world.</p>'
+    +'<p class="about-p">one person, one camera, and the belief that this work deserves a better home than a feed. the first editions are mine. <em>the rest will be yours.</em></p>'
+    +'<p class="about-p">no algorithm. just a human eye, looking carefully. vibes, scenery + composition with a flair for the mango palate.</p>'
+    +'<div class="manifesto"><div class="manifesto-label">what this place is</div>'
+      +'<div class="m-item">no followers. no likes. no algorithm. just the work.</div>'
+      +'<div class="m-item">the grain is real. the light leaks are earned.</div>'
+      +'<div class="m-item">colors come from chemistry, not presets.</div>'
+      +'<div class="m-item">the work speaks louder than the place showing it.</div>'
+      +'<div class="m-item">the open web still matters. this is a website, not an app.</div>'
     +'</div>'
-    +'<div class="about-section"><div class="about-section-label">Vend</div><p class="about-section-body">Hit the mango button. You get a random drop from the archive. No feed. No scroll. Just one photograph, delivered like a candy bar falling off the rack. The machine decides. You receive.</p></div>'
-    +'<div class="about-section"><div class="about-section-label">Submit</div><p class="about-section-body">Feed the machine. If you shoot film and capture something that\'s all vibes &mdash; a corner, a sky, a moment with no people needed &mdash; drop it in. The machine is hungry and cozy inside.</p></div>'
-    +'<div class="about-section"><div class="about-section-label">Film Only</div><p class="about-section-body">This is a film camera zone. The grain is real. The light leaks are earned. The colors come from chemistry, not presets. If you know, you know.</p></div>'
-    +'<p class="about-p" style="font-size:16px;color:var(--fg-2);margin-top:48px">Built by Robert Corrigan from Redmond, WA. Shot on an Olympus Trip 35. Submissions are open and free. Come live in the machine. It\'s cozy in here.</p>'
+    +'<div class="about-section"><div class="about-section-label">vend</div><p class="about-section-body">hit the mango button. you get a random drop. no feed, no scroll. one photograph, delivered like a candy bar falling off the rack. the machine decides. you receive.</p></div>'
+    +'<div class="about-section"><div class="about-section-label">submit</div><p class="about-section-body">feed the machine. if you shoot film + capture something that\\'s all vibes, drop it in. the machine is hungry + cozy inside.</p></div>'
+    +'<div class="about-section"><div class="about-section-label">film only</div><p class="about-section-body">this is a film camera zone. if you know, you know.</p></div>'
+    +'<p class="about-p" style="font-size:16px;color:var(--fg-2);margin-top:48px">built by robert corrigan. redmond, wa. olympus trip 35. submissions are open + free. come live in the machine. it\\'s cozy in here.</p>'
     +newsletterHTML()
     +'</div>';
 }
@@ -730,16 +729,16 @@ function renderSubmit() {
   document.getElementById('page-submit').innerHTML = '<div class="submit">'
     +'<div class="success-msg" id="success-msg">THNX!</div>'
     +'<div class="error-msg" id="error-msg">&#10007; Something went wrong. Try again.</div>'
-    +'<h1 class="submit-h">Feed the Machine</h1>'
-    +'<p class="submit-sub">The machine is hungry and cozy inside. If you shoot film and see poems in the world &mdash; a corner, a sky, a moment with no people needed &mdash; drop it in.</p>'
-    +'<div class="submit-invite"><p>Secret Vending Machine started with one person, one camera, and the belief that film photography deserves a better home than a feed. The first editions are mine. The rest will be yours.</p></div>'
+    +'<h1 class="submit-h">feed the machine</h1>'
+    +'<p class="submit-sub">film only. a corner, a sky, a moment. if you see poems in the world, drop one in.</p>'
+    +'<div class="submit-invite"><p>this started with one person + one camera. the first editions are mine. the rest will be yours.</p></div>'
     +'<div class="form-g"><span class="form-num">01</span><label class="form-l">Title</label><input id="sf-title" class="form-i" placeholder="what are we looking at"></div>'
     +'<div class="form-g"><span class="form-num">02</span><label class="form-l">Body</label><textarea id="sf-body" class="form-ta" placeholder="tell us about the vibe (optional but encouraged)" rows="5"></textarea></div>'
     +'<div class="form-g"><span class="form-num">03</span><label class="form-l">Image Link</label><input id="sf-img" class="form-i" placeholder="https://i.imgur.com/..."><div class="form-hint">imgur.com works best &mdash; paste the direct image link</div></div>'
     +'<div class="form-g"><span class="form-num">04</span><label class="form-l">Your Name (optional)</label><input id="sf-name" class="form-i" placeholder="anonymous is fine"></div>'
     +'<div class="form-g"><span class="form-num">05</span><label class="form-l">Email (optional)</label><input id="sf-email" class="form-i" placeholder="only if you want to hear back"></div>'
     +'<button class="submit-btn" id="submit-btn" onclick="submitForm()">drop it in the machine</button>'
-    +'<p class="form-note">Film only &mdash; the grain is real. The light leaks are earned. The colors come from chemistry, not presets. If you know, you know.</p>'
+    +'<p class="form-note">the grain is real. the light leaks are earned. colors from chemistry, not presets. if you know, you know.</p>'
     +'</div>';
 }
 
