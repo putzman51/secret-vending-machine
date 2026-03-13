@@ -380,7 +380,7 @@ body::after {
 <div class="vend-overlay" id="vend-overlay">
   <button class="vend-close" onclick="closeVend()">&#10005; close</button>
   <div class="vend-card" id="vend-card">
-    <div class="vend-label"><div class="vend-dot"></div> Random Drop</div>
+    <div class="vend-label"><div class="vend-dot"></div> random drop</div>
     <div id="vend-content"></div>
     <div style="text-align:center"><button class="vend-again" onclick="doVend()">Vend Again</button></div>
   </div>
@@ -406,7 +406,7 @@ const EDITIONS = [
   {
     id: "004", title: "Poems in the Rain", photographer: "Robert Corrigan",
     location: "Redmond, WA", camera: "Olympus Trip 35", film: "Revlog", date: "2026-05",
-    pullQuote: "the weather writes the poem. the camera just takes notes.",
+    pullQuote: "i go outside + let the weather write the poem. the camera just takes notes.",
     intro: "three weekends in spring. each one a different kind of wet. the revlog doesn\u2019t know what color it wants to be yet + the rain doesn\u2019t care. trails, bridges, bark, ferns. the light runs through water first, then finds somewhere to land.",
     images: [
       { src: "/images/x7.jpg", caption: "tinged mango" },
@@ -420,7 +420,7 @@ const EDITIONS = [
     id: "003", title: "Quiet Structures", photographer: "Robert Corrigan",
     location: "Redmond, WA", camera: "Olympus Trip 35", film: "Revlog", date: "2026-04",
     pullQuote: "a building is just a building until the light shows up. then it\u2019s a conversation.",
-    intro: "corners, stairwells, stacked things catching afternoon light. the geometry of places nobody pauses at. revlog adds a color that no one planned + that\u2019s the point.",
+    intro: "corners + stairwells + stacked things. the geometry of places nobody pauses at. the sun sits angled, it only comes in a little; revlog adds a color no one planned + that\u2019s the point.",
     images: [
       { src: "/images/c4.jpg", caption: "brutal corner of campus" },
       { src: "/images/w4.jpg", caption: "stacked for success" },
@@ -433,7 +433,7 @@ const EDITIONS = [
     id: "002", title: "What the Trail Knows", photographer: "Robert Corrigan",
     location: "Redmond, WA", camera: "Olympus Trip 35", film: "Revlog", date: "2026-03",
     pullQuote: "the trail gives you what it gives you. your job is to be grateful.",
-    intro: "three rainy weekends east of redmond. the rocks don\u2019t pose. the light doesn\u2019t wait. you walk in + the trail decides what you\u2019re allowed to see.",
+    intro: "three rainy weekends east of redmond. the rocks don\u2019t pose. the light doesn\u2019t wait. you walk in + the trail decides what you\u2019re allowed to see. settling + softening. you\u2019d have to get low to really see the dirt.",
     images: [
       { src: "/images/e4.jpg", caption: "took a hike" },
       { src: "/images/e6.jpg", caption: "high point" },
@@ -445,8 +445,8 @@ const EDITIONS = [
   {
     id: "001", title: "First Roll", photographer: "Robert Corrigan",
     location: "Redmond, WA", camera: "Olympus Trip 35", film: "Revlog", date: "2025-08",
-    pullQuote: "one camera from a thrift store. one roll of film i didn\u2019t understand yet. and the rain.",
-    intro: "where the machine started. twelve dollar olympus, first roll of revlog. the colors are wilder here, the framing less certain. complete. it sits. complete, it is.",
+    pullQuote: "one camera from a thrift store. one roll of film i didn\u2019t understand yet. + the rain.",
+    intro: "where the machine started. twelve dollar olympus, first roll of revlog. the colors are wilder here, the framing less certain. i didn\u2019t know what i was doing yet + that\u2019s what makes it honest. it\u2019s always today, the way it seems anyway.",
     images: [
       { src: "/images/doorsagain.jpg", caption: "2 2" },
       { src: "/images/gaolagainagain.jpg", caption: "a dream within" },
@@ -552,7 +552,7 @@ function filmWrap(src, alt) {
   return '<div class="film-wrap"><img src="'+esc(src)+'" alt="'+esc(alt)+'" loading="lazy"><div class="light-leak"></div><div class="img-grain"></div></div>';
 }
 function newsletterHTML() {
-  return '<div class="newsletter-bar"><div class="newsletter-label">the monthly dispatch</div><p class="newsletter-desc">one email a month. new selections, a short essay + one pick from the archive. worth forwarding.</p><div class="newsletter-row"><input class="newsletter-input" type="email" placeholder="your@email.com"><button class="newsletter-btn">Subscribe</button></div></div>';
+  return '<div class="newsletter-bar"><div class="newsletter-label">the monthly dispatch</div><p class="newsletter-desc">one email a month. new selections, a short essay + one from the archive. worth forwarding.</p><div class="newsletter-row"><input class="newsletter-input" type="email" placeholder="your@email.com"><button class="newsletter-btn">subscribe</button></div></div>';
 }
 
 // ═══════════════════════════════════════
@@ -614,18 +614,18 @@ function showDrop(id) {
 function renderHome() {
   const e = EDITIONS[0];
   document.getElementById('page-home').innerHTML = '<div class="home">'
-    +'<div class="home-label"><span>&#9679;</span> latest selection &mdash; edition '+e.id+'</div>'
+    +'<div class="home-label"><span>&#9679;</span> latest drop &mdash; edition '+e.id+'</div>'
     +'<h1 class="home-title">'+esc(e.title)+'</h1>'
-    +'<div class="home-byline">by <strong>'+esc(e.photographer)+'</strong> &middot; '+esc(e.location)+'</div>'
+    +'<div class="home-byline">'+esc(e.photographer)+' &middot; '+esc(e.location)+'</div>'
     +'<div class="home-hero">'+filmWrap(e.images[0].src, e.images[0].caption)+'</div>'
     +'<div class="home-caption">'+esc(e.images[0].caption)+'</div>'
     +'<p class="home-intro">'+esc(e.intro)+'</p>'
     +'<div class="home-meta">'
-      +'<div class="meta-item"><span class="meta-label">Camera</span><span class="meta-value">'+esc(e.camera)+'</span></div>'
-      +'<div class="meta-item"><span class="meta-label">Film</span><span class="meta-value">'+esc(e.film)+'</span></div>'
-      +'<div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">'+esc(e.location)+'</span></div>'
+      +'<div class="meta-item"><span class="meta-label">camera</span><span class="meta-value">'+esc(e.camera)+'</span></div>'
+      +'<div class="meta-item"><span class="meta-label">film</span><span class="meta-value">'+esc(e.film)+'</span></div>'
+      +'<div class="meta-item"><span class="meta-label">location</span><span class="meta-value">'+esc(e.location)+'</span></div>'
     +'</div>'
-    +'<button class="enter-btn" onclick="showEdition(\''+e.id+'\')">see the full selection <span class="enter-arrow"></span></button>'
+    +'<button class="enter-btn" onclick="showEdition(\''+e.id+'\')">see the rest <span class="enter-arrow"></span></button>'
     +'</div>';
 }
 
@@ -641,18 +641,18 @@ function renderEdition(id) {
   e.images.slice(half).forEach((img, i) => {
     imgs2 += '<div class="edition-img-item" style="transition-delay:'+i*0.06+'s">'+filmWrap(img.src, img.caption)+'<div class="edition-img-caption">'+esc(img.caption)+'</div></div>';
   });
-  const prevBtn = idx < EDITIONS.length-1 ? '<button class="edition-nav-btn" onclick="showEdition(\''+EDITIONS[idx+1].id+'\')">&larr; Previous Edition</button>' : '<button class="edition-nav-btn" disabled>&larr; Previous Edition</button>';
-  const nextBtn = idx > 0 ? '<button class="edition-nav-btn" onclick="showEdition(\''+EDITIONS[idx-1].id+'\')">Next Edition &rarr;</button>' : '<button class="edition-nav-btn" disabled>Next Edition &rarr;</button>';
+  const prevBtn = idx < EDITIONS.length-1 ? '<button class="edition-nav-btn" onclick="showEdition(\''+EDITIONS[idx+1].id+'\')">&larr; previous</button>' : '<button class="edition-nav-btn" disabled>&larr; previous</button>';
+  const nextBtn = idx > 0 ? '<button class="edition-nav-btn" onclick="showEdition(\''+EDITIONS[idx-1].id+'\')">next &rarr;</button>' : '<button class="edition-nav-btn" disabled>next &rarr;</button>';
 
   document.getElementById('page-edition').innerHTML = '<div class="edition">'
     +'<div class="edition-header">'
-      +'<div class="edition-num">Edition '+e.id+'</div>'
+      +'<div class="edition-num">edition '+e.id+'</div>'
       +'<h1 class="edition-title">'+esc(e.title)+'</h1>'
       +'<div class="edition-byline">'+esc(e.photographer)+' &middot; '+esc(e.location)+'</div>'
       +'<p class="edition-intro">'+esc(e.intro)+'</p>'
       +'<div class="home-meta">'
-        +'<div class="meta-item"><span class="meta-label">Camera</span><span class="meta-value">'+esc(e.camera)+'</span></div>'
-        +'<div class="meta-item"><span class="meta-label">Film</span><span class="meta-value">'+esc(e.film)+'</span></div>'
+        +'<div class="meta-item"><span class="meta-label">camera</span><span class="meta-value">'+esc(e.camera)+'</span></div>'
+        +'<div class="meta-item"><span class="meta-label">film</span><span class="meta-value">'+esc(e.film)+'</span></div>'
       +'</div>'
     +'</div>'
     +'<div class="edition-imgs">'+imgs1+'</div>'
@@ -674,7 +674,7 @@ function renderEditions() {
   });
   document.getElementById('page-editions').innerHTML = '<div class="editions-index">'
     +'<h1 class="editions-h">editions</h1>'
-    +'<p class="editions-sub">selections, 001 &ndash; present. each one a body of work. not posts. exhibitions.</p>'
+    +'<p class="editions-sub">001 &ndash; present. bodies of work. not posts.</p>'
     +cards+'</div>';
 }
 
@@ -696,7 +696,7 @@ function renderDrop(id) {
   const p = ARCHIVE.find(x => x.id === id);
   if (!p) return;
   document.getElementById('page-drop').innerHTML = '<div class="single">'
-    +'<button class="single-back" onclick="showPage(\'archive\')">&larr; Back to archive</button>'
+    +'<button class="single-back" onclick="showPage(\'archive\')">&larr; back</button>'
     +'<div class="single-date">'+fmtDate(p.date)+'</div>'
     +'<h1 class="single-title">'+esc(p.title)+'</h1>'
     +filmWrap(p.img, p.title)
@@ -708,19 +708,20 @@ function renderAbout() {
   document.getElementById('page-about').innerHTML = '<div class="about">'
     +'<h1 class="about-h">about</h1>'
     +'<p class="about-p">a secret machine that lives on the internet. you put in quarters of attention. it gives back film photographs of the world.</p>'
-    +'<p class="about-p">one person, one camera, and the belief that this work deserves a better home than a feed. the first editions are mine. <em>the rest will be yours.</em></p>'
+    +'<p class="about-p">one person, one camera + the belief that this work deserves somewhere better than a feed. i started it because i needed a place where the light could land. the first editions are mine. <em>the rest will be yours.</em></p>'
     +'<p class="about-p">no algorithm. just a human eye, looking carefully. vibes, scenery + composition with a flair for the mango palate.</p>'
     +'<div class="manifesto"><div class="manifesto-label">what this place is</div>'
-      +'<div class="m-item">no followers. no likes. no algorithm. just the work.</div>'
+      +'<div class="m-item">no followers. no likes. no algorithm.</div>'
       +'<div class="m-item">the grain is real. the light leaks are earned.</div>'
-      +'<div class="m-item">colors come from chemistry, not presets.</div>'
+      +'<div class="m-item">colors from chemistry, not presets.</div>'
       +'<div class="m-item">the work speaks louder than the place showing it.</div>'
       +'<div class="m-item">the open web still matters. this is a website, not an app.</div>'
+      +'<div class="m-item">if you know, you know.</div>'
     +'</div>'
-    +'<div class="about-section"><div class="about-section-label">vend</div><p class="about-section-body">hit the mango button. you get a random drop. no feed, no scroll. one photograph, delivered like a candy bar falling off the rack. the machine decides. you receive.</p></div>'
-    +'<div class="about-section"><div class="about-section-label">submit</div><p class="about-section-body">feed the machine. if you shoot film + capture something that\\'s all vibes, drop it in. the machine is hungry + cozy inside.</p></div>'
-    +'<div class="about-section"><div class="about-section-label">film only</div><p class="about-section-body">this is a film camera zone. if you know, you know.</p></div>'
-    +'<p class="about-p" style="font-size:16px;color:var(--fg-2);margin-top:48px">built by robert corrigan. redmond, wa. olympus trip 35. submissions are open + free. come live in the machine. it\\'s cozy in here.</p>'
+    +'<div class="about-section"><div class="about-section-label">vend</div><p class="about-section-body">hit the mango button. one photograph falls off the rack like a candy bar. no feed. no scroll. the machine decides. you receive.</p></div>'
+    +'<div class="about-section"><div class="about-section-label">submit</div><p class="about-section-body">feed the machine. film only. a corner, a sky, a moment that sits quietly + hums. the machine is hungry + cozy inside.</p></div>'
+    +'<div class="about-section"><div class="about-section-label">film only</div><p class="about-section-body">this is a film camera zone. the colors come from chemistry. the grain is a gift. if you know, you know.</p></div>'
+    +'<p class="about-p" style="font-size:16px;color:var(--fg-2);margin-top:48px">built by robert corrigan. redmond, wa. olympus trip 35. come live in the machine. it&rsquo;s cozy in here.</p>'
     +newsletterHTML()
     +'</div>';
 }
@@ -728,17 +729,17 @@ function renderAbout() {
 function renderSubmit() {
   document.getElementById('page-submit').innerHTML = '<div class="submit">'
     +'<div class="success-msg" id="success-msg">THNX!</div>'
-    +'<div class="error-msg" id="error-msg">&#10007; Something went wrong. Try again.</div>'
+    +'<div class="error-msg" id="error-msg">&#10007; something went wrong. try again.</div>'
     +'<h1 class="submit-h">feed the machine</h1>'
     +'<p class="submit-sub">film only. a corner, a sky, a moment. if you see poems in the world, drop one in.</p>'
-    +'<div class="submit-invite"><p>this started with one person + one camera. the first editions are mine. the rest will be yours.</p></div>'
-    +'<div class="form-g"><span class="form-num">01</span><label class="form-l">Title</label><input id="sf-title" class="form-i" placeholder="what are we looking at"></div>'
-    +'<div class="form-g"><span class="form-num">02</span><label class="form-l">Body</label><textarea id="sf-body" class="form-ta" placeholder="tell us about the vibe (optional but encouraged)" rows="5"></textarea></div>'
-    +'<div class="form-g"><span class="form-num">03</span><label class="form-l">Image Link</label><input id="sf-img" class="form-i" placeholder="https://i.imgur.com/..."><div class="form-hint">imgur.com works best &mdash; paste the direct image link</div></div>'
-    +'<div class="form-g"><span class="form-num">04</span><label class="form-l">Your Name (optional)</label><input id="sf-name" class="form-i" placeholder="anonymous is fine"></div>'
-    +'<div class="form-g"><span class="form-num">05</span><label class="form-l">Email (optional)</label><input id="sf-email" class="form-i" placeholder="only if you want to hear back"></div>'
+    +'<div class="submit-invite"><p>one person + one camera started this. the first editions are mine. the rest will be yours.</p></div>'
+    +'<div class="form-g"><span class="form-num">01</span><label class="form-l">title</label><input id="sf-title" class="form-i" placeholder="what are we looking at"></div>'
+    +'<div class="form-g"><span class="form-num">02</span><label class="form-l">body</label><textarea id="sf-body" class="form-ta" placeholder="tell us about the vibe (optional but encouraged)" rows="5"></textarea></div>'
+    +'<div class="form-g"><span class="form-num">03</span><label class="form-l">image link</label><input id="sf-img" class="form-i" placeholder="https://i.imgur.com/..."><div class="form-hint">imgur works best. paste the direct link.</div></div>'
+    +'<div class="form-g"><span class="form-num">04</span><label class="form-l">your name (optional)</label><input id="sf-name" class="form-i" placeholder="anonymous is fine"></div>'
+    +'<div class="form-g"><span class="form-num">05</span><label class="form-l">email (optional)</label><input id="sf-email" class="form-i" placeholder="only if you want to hear back"></div>'
     +'<button class="submit-btn" id="submit-btn" onclick="submitForm()">drop it in the machine</button>'
-    +'<p class="form-note">the grain is real. the light leaks are earned. colors from chemistry, not presets. if you know, you know.</p>'
+    +'<p class="form-note">the grain is real. the light leaks are earned. colors from chemistry. if you know, you know.</p>'
     +'</div>';
 }
 
