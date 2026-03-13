@@ -404,10 +404,10 @@ body::after {
 
 const EDITIONS = [
   {
-    id: "004", title: "Seaside Sunshine, Mist, & More", photographer: "Robert Corrigan",
-    location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-05",
-    pullQuote: "i go outside + let the weather write the poem. the camera just takes notes.",
-    intro: "three weekends in spring. each one a different kind of wet. the revolog doesn\u2019t know what color it wants to be yet + the rain doesn\u2019t care. trails, bridges, bark, ferns. the light runs through water first, then finds somewhere to land.",
+    id: "004", title: "Seaside Sun", photographer: "Robert Corrigan",
+    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-05",
+    pullQuote: "i will get outside in all of it. there\u2019s very few days i\u2019m scared of.",
+    intro: "a long lingering road leading to sunshine + sea. going where the trails are and wandering slightly off center. rain, shine, it\u2019s all going to work out fine. having film on hand makes any little boondoggle a worthy experience. chasing light and charming hearts. point + shoot to win warmth on film.",
     images: [
       { src: "/images/x7.jpg", caption: "tinged mango" },
       { src: "/images/q8.jpg", caption: "sun pocket grazing the field" },
@@ -416,10 +416,10 @@ const EDITIONS = [
     ]
   },
   {
-    id: "003", title: "Quiet Structures", photographer: "Robert Corrigan",
-    location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-04",
-    pullQuote: "a building is just a building until the light shows up. then it\u2019s a conversation.",
-    intro: "corners + stairwells + stacked things. the geometry of places nobody pauses at. the sun sits angled, it only comes in a little; revolog adds a color no one planned + that\u2019s the point.",
+    id: "003", title: "A Touch of Structure", photographer: "Robert Corrigan",
+    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-04",
+    pullQuote: "even demure light gives so much to our world.",
+    intro: "letting imperfection take over is freeing. letting lo-fi mean fun and a picture be simple. subtle and free. why not enjoy something simple? letting the experience live on, letting the color come back on film stronger than the image in memory. finding these soft moments is such a joy.",
     images: [
       { src: "/images/c4.jpg", caption: "brutal corner of campus" },
       { src: "/images/w4.jpg", caption: "stacked for success" },
@@ -429,9 +429,10 @@ const EDITIONS = [
     ]
   },
   {
-    id: "002", title: "What the Trail Knows", photographer: "Robert Corrigan",
-    location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-03",
-    intro: "three rainy weekends east of redmond. the rocks don\u2019t pose. the light doesn\u2019t wait. you walk in + the trail decides what you\u2019re allowed to see. settling + softening. you\u2019d have to get low to really see the dirt.",
+    id: "002", title: "Tucked in Corners", photographer: "Robert Corrigan",
+    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-03",
+    pullQuote: "Hi. I\u2019m Robert.",
+    intro: "running far and away, around the world with just simple mechanics, letting light hit film for a fraction of a second. searing the image to be seen again. there\u2019s almost nothing more poetic than grabbing a masterpiece from your life.",
     images: [
       { src: "/images/e4.jpg", caption: "took a hike" },
       { src: "/images/e6.jpg", caption: "high point" },
@@ -441,10 +442,10 @@ const EDITIONS = [
     ]
   },
   {
-    id: "001", title: "First Roll", photographer: "Robert Corrigan",
-    location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2025-08",
-    pullQuote: "one camera from a thrift store. one roll of film i didn\u2019t understand yet. + the rain.",
-    intro: "where the machine started. twelve dollar olympus, first roll of revolog. the colors are wilder here, the framing less certain. i didn\u2019t know what i was doing yet + that\u2019s what makes it honest. it\u2019s always today, the way it seems anyway.",
+    id: "001", title: "Plugged In", photographer: "Robert Corrigan",
+    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2025-08",
+    pullQuote: "even a disposable 35mm can give an amazing picture if you let the light shine over you well enough.",
+    intro: "press start. fired up. lights on. the machine runs. welcome.",
     images: [
       { src: "/images/doorsagain.jpg", caption: "2 2" },
       { src: "/images/gaolagainagain.jpg", caption: "a dream within" },
@@ -673,7 +674,7 @@ function renderArchive() {
   });
   document.getElementById('page-archive').innerHTML = '<div class="archive">'
     +'<h1 class="archive-h">archive</h1>'
-    +'<p class="archive-sub">every drop, stocked with care.</p>'
+    +'<p class="archive-sub">feel free to peruse. hand-selected.</p>'
     +'<div class="archive-count">'+ARCHIVE.length+' drops in the machine</div>'
     +items+'</div>';
 }
@@ -693,21 +694,18 @@ function renderDrop(id) {
 function renderAbout() {
   document.getElementById('page-about').innerHTML = '<div class="about">'
     +'<h1 class="about-h">about</h1>'
-    +'<p class="about-p">a secret machine that lives on the internet. you put in quarters of attention. it gives back film photographs of the world.</p>'
-    +'<p class="about-p">one person, one camera + the belief that this work deserves somewhere better than a feed. i started it because i needed a place where the light could land. the first editions are mine. <em>the rest will be yours.</em></p>'
-    +'<p class="about-p">no algorithm. just a human eye, looking carefully. vibes, scenery + composition with a flair for the mango palate.</p>'
+    +'<p class="about-p">you take pictures and have fun doing it. every once in a while you find gold. here we select and showcase your work with care. submit to be selected.</p>'
     +'<div class="manifesto"><div class="manifesto-label">what this place is</div>'
       +'<div class="m-item">no followers. no likes. no algorithm.</div>'
       +'<div class="m-item">the grain is real. the light leaks are earned.</div>'
       +'<div class="m-item">colors from chemistry, not presets.</div>'
       +'<div class="m-item">the work speaks louder than the place showing it.</div>'
       +'<div class="m-item">the open web still matters. this is a website, not an app.</div>'
-      +'<div class="m-item">if you know, you know.</div>'
     +'</div>'
     +'<div class="about-section"><div class="about-section-label">vend</div><p class="about-section-body">hit the mango button. one photograph falls off the rack like a candy bar. no feed. no scroll. the machine decides. you receive.</p></div>'
-    +'<div class="about-section"><div class="about-section-label">submit</div><p class="about-section-body">feed the machine. film only. a corner, a sky, a moment that sits quietly + hums. the machine is hungry + cozy inside.</p></div>'
-    +'<div class="about-section"><div class="about-section-label">film only</div><p class="about-section-body">this is a film camera zone. the colors come from chemistry. the grain is a gift. if you know, you know.</p></div>'
-    +'<p class="about-p" style="font-size:16px;color:var(--fg-2);margin-top:48px">built by robert corrigan. redmond, wa. olympus trip 35. come live in the machine. it&rsquo;s cozy in here.</p>'
+    +'<div class="about-section"><div class="about-section-label">submit</div><p class="about-section-body">share your work. the machine selects good vibes and great composition. let the light do the heavy lifting.</p></div>'
+    +'<div class="about-section"><div class="about-section-label">film only</div><p class="about-section-body">this is a film camera zone. the colors come from chemistry. the grain is a gift.</p></div>'
+    +'<p class="about-p" style="font-size:16px;color:var(--fg-2);margin-top:48px">built by robert corrigan. seattle, wa. olympus trip 35. come live in the machine. it&rsquo;s cozy in here.</p>'
     +newsletterHTML()
     +'</div>';
 }
@@ -716,16 +714,16 @@ function renderSubmit() {
   document.getElementById('page-submit').innerHTML = '<div class="submit">'
     +'<div class="success-msg" id="success-msg">THNX!</div>'
     +'<div class="error-msg" id="error-msg">&#10007; something went wrong. try again.</div>'
-    +'<h1 class="submit-h">feed the machine</h1>'
-    +'<p class="submit-sub">film only. a corner, a sky, a moment. if you see poems in the world, drop one in.</p>'
-    +'<div class="submit-invite"><p>work that makes it into the machine is <em>selected</em> &mdash; chosen by a human eye, not surfaced by an algorithm. if your work is selected, we&rsquo;ll reach out + figure out how to show it together.</p></div>'
+    +'<h1 class="submit-h">don&rsquo;t keep the secret</h1>'
+    +'<p class="submit-sub">share your work. the machine selects good vibes and great composition. let the light do the heavy lifting.</p>'
+    +'<div class="submit-invite"><p>all work will be reviewed thoughtfully and carefully. please use the form below to submit or ask questions. all skill levels are welcome.</p></div>'
     +'<div class="form-g"><span class="form-num">01</span><label class="form-l">title</label><input id="sf-title" class="form-i" placeholder="what are we looking at"></div>'
     +'<div class="form-g"><span class="form-num">02</span><label class="form-l">body</label><textarea id="sf-body" class="form-ta" placeholder="tell us about the vibe (optional but encouraged)" rows="5"></textarea></div>'
     +'<div class="form-g"><span class="form-num">03</span><label class="form-l">image link or portfolio</label><input id="sf-img" class="form-i" placeholder="imgur, instagram, flickr, portfolio site, etc."><div class="form-hint">drop a direct image link, your instagram, your portfolio &mdash; wherever your work lives.</div></div>'
     +'<div class="form-g"><span class="form-num">04</span><label class="form-l">your name (optional)</label><input id="sf-name" class="form-i" placeholder="anonymous is fine"></div>'
-    +'<div class="form-g"><span class="form-num">05</span><label class="form-l">email (optional)</label><input id="sf-email" class="form-i" placeholder="only if you want to hear back"></div>'
-    +'<button class="submit-btn" id="submit-btn" onclick="submitForm()">drop it in the machine</button>'
-    +'<p class="form-note">the grain is real. the light leaks are earned. colors from chemistry. if you know, you know.</p>'
+    +'<div class="form-g"><span class="form-num">05</span><label class="form-l">email</label><input id="sf-email" class="form-i" type="email" placeholder="so we can reach you" required></div>'
+    +'<button class="submit-btn" id="submit-btn" onclick="submitForm()">submit work</button>'
+    +'<p class="form-note">the grain is real. the light leaks are earned. colors from chemistry.</p>'
     +'</div>';
 }
 
@@ -735,7 +733,9 @@ function renderSubmit() {
 
 async function submitForm() {
   const title = document.getElementById('sf-title').value.trim();
-  if (!title) { alert('At least give it a title.'); return; }
+  const email = document.getElementById('sf-email').value.trim();
+  if (!title) { alert('give it a title.'); return; }
+  if (!email) { alert('email is required so we can reach you.'); return; }
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'sending...';
   const fd = new FormData();
@@ -757,7 +757,7 @@ async function submitForm() {
     document.getElementById('error-msg').style.display = 'block';
     document.getElementById('success-msg').style.display = 'none';
   }
-  btn.disabled = false; btn.textContent = 'drop it in the machine';
+  btn.disabled = false; btn.textContent = 'submit work';
 }
 
 // ═══════════════════════════════════════
