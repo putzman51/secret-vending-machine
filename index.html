@@ -694,7 +694,7 @@ function renderDrop(id) {
 function renderAbout() {
   document.getElementById('page-about').innerHTML = '<div class="about">'
     +'<h1 class="about-h">about</h1>'
-    +'<p class="about-p">you take pictures and have fun doing it. every once in a while you find gold. here we select and showcase your work with care. submit to be selected.</p>'
+    +'<p class="about-p">you take pictures and have fun doing it. every once in a while you find gold. here we select and showcase your work with care. <a href="#" onclick="showPage(\'submit\');return false" style="color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px;cursor:pointer">submit</a> to be selected.</p>'
     +'<div class="manifesto"><div class="manifesto-label">what this place is</div>'
       +'<div class="m-item">no followers. no likes. no algorithm.</div>'
       +'<div class="m-item">the grain is real. the light leaks are earned.</div>'
