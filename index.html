@@ -404,7 +404,7 @@ body::after {
 
 const EDITIONS = [
   {
-    id: "004", title: "Poems in the Rain", photographer: "Robert Corrigan",
+    id: "004", title: "Seaside Sunshine, Mist, & More", photographer: "Robert Corrigan",
     location: "Redmond, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-05",
     pullQuote: "i go outside + let the weather write the poem. the camera just takes notes.",
     intro: "three weekends in spring. each one a different kind of wet. the revolog doesn\u2019t know what color it wants to be yet + the rain doesn\u2019t care. trails, bridges, bark, ferns. the light runs through water first, then finds somewhere to land.",
@@ -499,7 +499,6 @@ const ARCHIVE = [
   { id:501, title:"see the breeze", date:"2026-04-11", img:"/images/t4.jpg" },
   { id:500, title:"shorn", date:"2026-04-10", img:"/images/t5.jpg" },
   { id:401, title:"dancing down the stairs", date:"2026-04-07", img:"/images/c2.jpg" },
-  { id:308, title:"tucked away in paradise", date:"2026-04-04", img:"/images/2.jpg" },
   { id:411, title:"safe and sound", date:"2026-04-01", img:"/images/x6.jpg" },
   { id:422, title:"see you through", date:"2026-03-31", img:"/images/z8.jpg" },
   { id:417, title:"not sure. is cool. 2.", date:"2026-03-28", img:"/images/z3.jpg" },
@@ -511,7 +510,6 @@ const ARCHIVE = [
   { id:415, title:"patina pristine", date:"2026-03-22", img:"/images/z1.jpg" },
   { id:404, title:"floating in wait", date:"2026-03-21", img:"/images/c5.jpg" },
   { id:406, title:"soft cross", date:"2026-03-20", img:"/images/x1.jpg" },
-  { id:313, title:"wise warrior", date:"2026-03-19", img:"/images/12.jpg" },
   { id:410, title:"rocks plotting escape", date:"2026-03-18", img:"/images/x5.jpg" },
   { id:419, title:"whip it round", date:"2026-03-17", img:"/images/z5.jpg" },
   { id:418, title:"something borrowed, something blue", date:"2026-03-16", img:"/images/z4.jpg" },
@@ -602,7 +600,7 @@ function showDrop(id) {
 function renderHome() {
   const e = EDITIONS[0];
   document.getElementById('page-home').innerHTML = '<div class="home">'
-    +'<div class="home-label"><span>&#9679;</span> latest drop &mdash; edition '+e.id+'</div>'
+    +'<div class="home-label"><span>&#9679;</span> new &mdash; edition '+e.id+'</div>'
     +'<h1 class="home-title">'+esc(e.title)+'</h1>'
     +'<div class="home-byline">'+esc(e.photographer)+' &middot; '+esc(e.location)+'</div>'
     +'<div class="home-hero">'+filmWrap(e.images[0].src, e.images[0].caption)+'</div>'
@@ -613,7 +611,7 @@ function renderHome() {
       +'<div class="meta-item"><span class="meta-label">film</span><span class="meta-value">'+esc(e.film)+'</span></div>'
       +'<div class="meta-item"><span class="meta-label">location</span><span class="meta-value">'+esc(e.location)+'</span></div>'
     +'</div>'
-    +'<button class="enter-btn" onclick="showEdition(\''+e.id+'\')">see the rest <span class="enter-arrow"></span></button>'
+    +'<button class="enter-btn" onclick="showEdition(\''+e.id+'\')">collection <span class="enter-arrow"></span></button>'
     +'</div>';
 }
 
@@ -720,10 +718,10 @@ function renderSubmit() {
     +'<div class="error-msg" id="error-msg">&#10007; something went wrong. try again.</div>'
     +'<h1 class="submit-h">feed the machine</h1>'
     +'<p class="submit-sub">film only. a corner, a sky, a moment. if you see poems in the world, drop one in.</p>'
-    +'<div class="submit-invite"><p>one person + one camera started this. the first editions are mine. the rest will be yours.</p></div>'
+    +'<div class="submit-invite"><p>work that makes it into the machine is <em>selected</em> &mdash; chosen by a human eye, not surfaced by an algorithm. if your work is selected, we&rsquo;ll reach out + figure out how to show it together.</p></div>'
     +'<div class="form-g"><span class="form-num">01</span><label class="form-l">title</label><input id="sf-title" class="form-i" placeholder="what are we looking at"></div>'
     +'<div class="form-g"><span class="form-num">02</span><label class="form-l">body</label><textarea id="sf-body" class="form-ta" placeholder="tell us about the vibe (optional but encouraged)" rows="5"></textarea></div>'
-    +'<div class="form-g"><span class="form-num">03</span><label class="form-l">image link</label><input id="sf-img" class="form-i" placeholder="https://i.imgur.com/..."><div class="form-hint">imgur works best. paste the direct link.</div></div>'
+    +'<div class="form-g"><span class="form-num">03</span><label class="form-l">image link or portfolio</label><input id="sf-img" class="form-i" placeholder="imgur, instagram, flickr, portfolio site, etc."><div class="form-hint">drop a direct image link, your instagram, your portfolio &mdash; wherever your work lives.</div></div>'
     +'<div class="form-g"><span class="form-num">04</span><label class="form-l">your name (optional)</label><input id="sf-name" class="form-i" placeholder="anonymous is fine"></div>'
     +'<div class="form-g"><span class="form-num">05</span><label class="form-l">email (optional)</label><input id="sf-email" class="form-i" placeholder="only if you want to hear back"></div>'
     +'<button class="submit-btn" id="submit-btn" onclick="submitForm()">drop it in the machine</button>'
