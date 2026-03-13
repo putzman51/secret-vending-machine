@@ -42,7 +42,8 @@ body::after {
 /* ── NAV ── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center; padding: 22px 40px;
+  display: flex; justify-content: flex-start; align-items: center; padding: 22px 40px;
+  gap: 28px;
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .nav.scrolled {
@@ -54,6 +55,7 @@ body::after {
   font-family: var(--mono); font-size: 10px; font-weight: 400;
   letter-spacing: 3.5px; text-transform: uppercase; color: var(--fg);
   cursor: pointer; background: none; border: none; transition: color 0.3s;
+  margin-right: auto;
 }
 .nav-logo:hover { color: var(--accent); }
 .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
@@ -254,20 +256,88 @@ body::after {
 
 @media (max-width: 680px) {
   .mango-strip { display: none; }
-  .nav { padding: 16px 20px; } .nav.scrolled { padding: 12px 20px; }
-  .nav-links { gap: 12px; } .nav-link { font-size: 10px; }
-  .nav-vend { padding: 5px 12px; font-size: 9px; }
-  .home,.archive,.submit,.about,.single,.editions-index { padding-left: 20px; padding-right: 20px; }
-  .edition-header { padding: 0 20px 52px; }
-  .edition-img-item { padding: 16px 0 36px; }
-  .home-meta { flex-wrap: wrap; gap: 24px; }
+
+  /* ── MOBILE NAV: two rows ── */
+  .nav {
+    padding: 14px 16px 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .nav.scrolled { padding: 10px 16px 8px; }
+  .nav-logo {
+    font-size: 9px; letter-spacing: 2.5px;
+    order: 1;
+  }
+  .nav-vend {
+    order: 2;
+    margin-left: auto;
+    padding: 5px 14px;
+    font-size: 9px;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    gap: 0;
+    justify-content: space-between;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+  }
+  .nav-link {
+    font-size: 9.5px;
+    letter-spacing: 0.8px;
+    padding: 4px 0;
+  }
+
+  /* ── MOBILE CONTENT ── */
+  .home,.archive,.submit,.about,.single,.editions-index { padding: 110px 20px 60px; }
+  .home { padding-top: 120px; }
+  .home-title { font-size: clamp(28px, 8vw, 42px); margin-bottom: 10px; }
+  .home-byline { font-size: 13px; margin-bottom: 28px; }
+  .home-intro { font-size: 17px; margin-bottom: 32px; }
+  .home-meta { flex-wrap: wrap; gap: 20px; }
+  .enter-btn { margin-top: 32px; font-size: 10px; }
+
+  .edition-header { padding: 0 20px 44px; }
+  .edition-title { font-size: clamp(26px, 7vw, 38px); }
+  .edition-intro { font-size: 16px; }
+  .edition-img-item { padding: 12px 0 32px; }
+  .edition-nav { padding: 28px 20px; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+  .pq { padding: 24px 20px; }
+  .pq-mark { font-size: 64px; top: 8px; left: 12px; }
+  .pq-text { font-size: 18px; }
+
+  .editions-h, .archive-h, .about-h, .submit-h { font-size: clamp(24px, 7vw, 36px); }
+
+  .ed-card { grid-template-columns: 40px 1fr; gap: 14px; padding: 20px 0; }
+  .ed-card-title { font-size: 19px; }
+  .ed-card-detail { font-size: 12px; }
+
+  .arc-item { padding: 12px 0; }
+  .arc-name { font-size: 15px; }
   .arc-date { display: none; }
-  .newsletter-bar { padding: 36px 20px; }
+
+  .single-title { font-size: clamp(24px, 7vw, 36px); margin-bottom: 28px; }
+
+  .about-p { font-size: 16px; }
+  .m-item { font-size: 15px; }
+  .about-section-body { font-size: 15px; }
+
+  .newsletter-bar { padding: 32px 20px; }
+  .newsletter-desc { font-size: 15px; }
   .newsletter-row { flex-direction: column; gap: 8px; }
+  .newsletter-input { border-right: 1px solid var(--border); }
   .newsletter-btn { width: 100%; }
-  .pq { padding: 28px 20px; }
-  .edition-nav { padding: 32px 20px; }
-  .foot { flex-direction: column; gap: 14px; text-align: center; }
+
+  .submit-invite { padding: 24px 20px; }
+  .submit-invite p { font-size: 15px; }
+
+  .foot { flex-direction: column; gap: 14px; text-align: center; padding: 32px 20px; }
+
+  /* ── MOBILE VEND OVERLAY ── */
+  .vend-overlay { padding: 20px; }
+  .vend-close { top: 14px; right: 16px; }
+  .vend-info-title { font-size: 17px; }
 }
 </style>
 </head>
@@ -285,13 +355,13 @@ body::after {
 <!-- NAV -->
 <nav class="nav" id="main-nav">
   <button class="nav-logo" onclick="showPage('home')">Secret Vending Machine</button>
+  <button class="nav-vend" onclick="openVend()">Vend</button>
   <ul class="nav-links">
     <li><button class="nav-link active" data-page="home" onclick="showPage('home')">Current</button></li>
     <li><button class="nav-link" data-page="editions" onclick="showPage('editions')">Editions</button></li>
     <li><button class="nav-link" data-page="archive" onclick="showPage('archive')">Archive</button></li>
     <li><button class="nav-link" data-page="about" onclick="showPage('about')">About</button></li>
     <li><button class="nav-link" data-page="submit" onclick="showPage('submit')">Submit</button></li>
-    <li><button class="nav-vend" onclick="openVend()">Vend</button></li>
   </ul>
 </nav>
 
