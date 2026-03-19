@@ -169,7 +169,7 @@ body::after {
 .archive-sub { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--fg-2); margin-bottom: 16px; }
 .archive-count { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--fg-3); margin-bottom: 40px; display: flex; align-items: center; gap: 12px; }
 .archive-count::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.arc-item { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: all 0.3s; }
+.arc-item { display: block; padding: 14px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: all 0.3s; }
 .arc-item:first-child { border-top: 1px solid var(--border); }
 .arc-item:hover { padding-left: 10px; }
 .arc-item:hover .arc-name { color: var(--accent-deep); }
@@ -315,7 +315,6 @@ body::after {
 
   .arc-item { padding: 12px 0; }
   .arc-name { font-size: 15px; }
-  .arc-date { display: none; }
 
   .single-title { font-size: clamp(24px, 7vw, 36px); margin-bottom: 28px; }
 
@@ -380,7 +379,7 @@ body::after {
 <div class="vend-overlay" id="vend-overlay">
   <button class="vend-close" onclick="closeVend()">&#10005; close</button>
   <div class="vend-card" id="vend-card">
-    <div class="vend-label"><div class="vend-dot"></div> random pic</div>
+    <div class="vend-label"><div class="vend-dot"></div> random picture</div>
     <div id="vend-content"></div>
     <div style="text-align:center"><button class="vend-again" onclick="doVend()">Vend Again</button></div>
   </div>
@@ -406,7 +405,7 @@ const EDITIONS = [
   {
     id: "006", title: "boots & hat", photographer: "Robert Corrigan",
     location: "Seattle, WA", camera: "Olympus Trip 35", film: "Kodak 400", date: "2026-06",
-    pullQuote: "light breeze + one of those days where the moodiness shines through.",
+    pullQuote: "light breeze & one of those days where the moodiness shines through.",
     intro: "it\u2019s good to poke around town. finding old things, that are new for you. find yourself hiding in plain sight. take some shots if the light is right. maybe walk away with something golden being held in the camera body.",
     images: [
       { src: "/images/hatboots.jpg", caption: "hat and boots" },
@@ -585,7 +584,7 @@ function filmWrap(src, alt) {
   return '<div class="film-wrap"><img src="'+esc(src)+'" alt="'+esc(alt)+'" loading="lazy"><div class="light-leak"></div><div class="img-grain"></div></div>';
 }
 function newsletterHTML() {
-  return '<div class="newsletter-bar"><div class="newsletter-label">the SVM email</div><p class="newsletter-desc">monthly email, a short essay + one pic from the archive. worth forwarding.</p><div class="newsletter-row"><input class="newsletter-input" type="email" placeholder="your@email.com"><button class="newsletter-btn">subscribe</button></div></div>';
+  return '<div class="newsletter-bar"><div class="newsletter-label">the SVM email</div><p class="newsletter-desc">monthly email, a short essay & one picture from the archive. worth forwarding.</p><div class="newsletter-row"><input class="newsletter-input" type="email" placeholder="your@email.com"><button class="newsletter-btn">subscribe</button></div></div>';
 }
 
 // ═══════════════════════════════════════
@@ -715,13 +714,12 @@ function renderArchive() {
   let items = '';
   ARCHIVE.forEach(p => {
     items += '<div class="arc-item" onclick="showDrop('+p.id+')">'
-      +'<span class="arc-name">'+esc(p.title)+'</span>'
-      +'<span class="arc-date">'+fmtShort(p.date)+'</span></div>';
+      +'<span class="arc-name">'+esc(p.title)+'</span></div>';
   });
   document.getElementById('page-archive').innerHTML = '<div class="archive">'
     +'<h1 class="archive-h">archive</h1>'
     +'<p class="archive-sub">curated for your review</p>'
-    +'<div class="archive-count">'+ARCHIVE.length+' pics in the machine</div>'
+    +'<div class="archive-count">'+ARCHIVE.length+' pictures in the machine</div>'
     +items+'</div>';
 }
 
@@ -730,7 +728,6 @@ function renderDrop(id) {
   if (!p) return;
   document.getElementById('page-drop').innerHTML = '<div class="single">'
     +'<button class="single-back" onclick="showPage(\'archive\')">&larr; back</button>'
-    +'<div class="single-date">'+fmtDate(p.date)+'</div>'
     +'<h1 class="single-title">'+esc(p.title)+'</h1>'
     +filmWrap(p.img, p.title)
     +'<div class="single-byline">Robert Corrigan &middot; Olympus Trip 35 &middot; Revolog</div>'
@@ -815,7 +812,7 @@ function doVend() {
   document.getElementById('vend-content').innerHTML =
     filmWrap(p.img, p.title)
     +'<div class="vend-info"><div class="vend-info-title">'+esc(p.title)+'</div>'
-    +'<div class="vend-info-date">'+fmtShort(p.date)+' &middot; Robert Corrigan</div></div>';
+    +'<div class="vend-info-date">Robert Corrigan</div></div>';
 }
 
 function openVend() {
