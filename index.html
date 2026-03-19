@@ -358,7 +358,7 @@ body::after {
   <button class="nav-vend" onclick="openVend()">Vend</button>
   <ul class="nav-links">
     <li><button class="nav-link active" data-page="home" onclick="showPage('home')">Current</button></li>
-    <li><button class="nav-link" data-page="editions" onclick="showPage('editions')">Editions</button></li>
+    <li><button class="nav-link" data-page="editions" onclick="showPage('editions')">Edition</button></li>
     <li><button class="nav-link" data-page="archive" onclick="showPage('archive')">Archive</button></li>
     <li><button class="nav-link" data-page="about" onclick="showPage('about')">About</button></li>
     <li><button class="nav-link" data-page="submit" onclick="showPage('submit')">Submit</button></li>
@@ -380,7 +380,7 @@ body::after {
 <div class="vend-overlay" id="vend-overlay">
   <button class="vend-close" onclick="closeVend()">&#10005; close</button>
   <div class="vend-card" id="vend-card">
-    <div class="vend-label"><div class="vend-dot"></div> random drop</div>
+    <div class="vend-label"><div class="vend-dot"></div> random pic</div>
     <div id="vend-content"></div>
     <div style="text-align:center"><button class="vend-again" onclick="doVend()">Vend Again</button></div>
   </div>
@@ -404,66 +404,66 @@ body::after {
 
 const EDITIONS = [
   {
-    id: "006", title: "Boots & Hat", photographer: "Robert Corrigan",
-    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-06",
-    pullQuote: "the wind picks up + everything just sort of agrees with it.",
-    intro: "spring finally showing up with its whole chest. good sun, lo-fi vibes, a giant boot + a pink hat just sitting in the park like they belong there. the wind pushes gently + the film catches what the eye already forgot. point + shoot + let the afternoon do its thing.",
+    id: "006", title: "boots & hat", photographer: "Robert Corrigan",
+    location: "Seattle, WA", camera: "Olympus Trip 35", film: "Kodak 400", date: "2026-06",
+    pullQuote: "light breeze + one of those days where the moodiness shines through.",
+    intro: "it\u2019s good to poke around town. finding old things, that are new for you. find yourself hiding in plain sight. take some shots if the light is right. maybe walk away with something golden being held in the camera body.",
     images: [
-      { src: "/images/hatboots.jpg", caption: "hatboots" },
-      { src: "/images/fullhat.jpg", caption: "fullhat" },
-      { src: "/images/tallboot.jpg", caption: "tallboot" },
-      { src: "/images/bootsign.jpg", caption: "bootsign" },
-      { src: "/images/skyboot.jpg", caption: "skyboot" },
-      { src: "/images/pichat.jpg", caption: "pichat" },
-      { src: "/images/bigboot.jpg", caption: "bigboot" },
-      { src: "/images/treehat.jpg", caption: "treehat" },
-      { src: "/images/parkhat.jpg", caption: "parkhat" },
-      { src: "/images/boottoe.jpg", caption: "boottoe" },
-      { src: "/images/toehat.jpg", caption: "toehat" },
+      { src: "/images/hatboots.jpg", caption: "hat and boots" },
+      { src: "/images/fullhat.jpg", caption: "full hat" },
+      { src: "/images/tallboot.jpg", caption: "tall boot" },
+      { src: "/images/bootsign.jpg", caption: "boot and sign" },
+      { src: "/images/skyboot.jpg", caption: "sky boot" },
+      { src: "/images/pichat.jpg", caption: "picnic and hat" },
+      { src: "/images/bigboot.jpg", caption: "big boot" },
+      { src: "/images/treehat.jpg", caption: "tree hat" },
+      { src: "/images/parkhat.jpg", caption: "park and hat" },
+      { src: "/images/boottoe.jpg", caption: "boot toe" },
+      { src: "/images/toehat.jpg", caption: "toe and hat" },
       { src: "/images/picnic.jpg", caption: "picnic" }
     ]
   },
   {
-    id: "005", title: "Blocks", photographer: "Robert Corrigan",
-    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-06",
-    pullQuote: "rain on a flat surface is its own kind of calm.",
-    intro: "orange blocks holding still in the rain. grasses leaning over them like they\u2019re checking in. everything relaxed, structured, quiet. the color just sits there glowing while the city blurs behind it. blocking out the noise. letting the water collect + settle.",
+    id: "005", title: "oranges", photographer: "Robert Corrigan",
+    location: "Redmond, WA", camera: "Olympus Trip 35", film: "Kodak 400", date: "2026-06",
+    pullQuote: "rain shining in an overcast light making a zen moment for the lens.",
+    intro: "new things are fine. they will age in time. these images might be about the grass, or the water, or the actual big orange block. i don\u2019t feel like it\u2019s important which it\u2019s about. the subtle visual symphony is there and I\u2019m happy with how these elements showed up in the shots.",
     images: [
-      { src: "/images/or1.jpg", caption: "or1" },
-      { src: "/images/or2.jpg", caption: "or2" },
-      { src: "/images/or3.jpg", caption: "or3" }
+      { src: "/images/or1.jpg", caption: "orange 1" },
+      { src: "/images/or2.jpg", caption: "orange 2" },
+      { src: "/images/or3.jpg", caption: "orange 3" }
     ]
   },
   {
-    id: "004", title: "Seaside Sun", photographer: "Robert Corrigan",
-    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-05",
-    pullQuote: "i will get outside in all of it. there\u2019s very few days i\u2019m scared of.",
-    intro: "a long lingering road leading to sunshine + sea. going where the trails are and wandering slightly off center. rain, shine, it\u2019s all going to work out fine. having film on hand makes any little boondoggle a worthy experience. chasing light and charming hearts. point + shoot to win warmth on film.",
+    id: "004", title: "tucked away in timeless territory", photographer: "Robert Corrigan",
+    location: "Dingle, IE", camera: "Olympus Trip 35", film: "Revolog", date: "2026-05",
+    pullQuote: "i travel to breathe new air. i click the shutter to hold that time for longer.",
+    intro: "stop and go slow near the Blasket islands. connect with a jagged coastline. the friendliest little islands off in the distance waving back. pockets of sun finding their way through the clouds. time stopped for a while, until I was ready to come back.",
     images: [
       { src: "/images/x7.jpg", caption: "tinged mango" },
       { src: "/images/q8.jpg", caption: "sun pocket grazing the field" },
       { src: "/images/w2.jpg", caption: "trees breeze (slightly)" },
-      { src: "/images/e7.jpg", caption: "simply sky" },
+      { src: "/images/e7.jpg", caption: "simply sky" }
     ]
   },
   {
-    id: "003", title: "A Touch of Structure", photographer: "Robert Corrigan",
-    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-04",
-    pullQuote: "even demure light gives so much to our world.",
-    intro: "letting imperfection take over is freeing. letting lo-fi mean fun and a picture be simple. subtle and free. why not enjoy something simple? letting the experience live on, letting the color come back on film stronger than the image in memory. finding these soft moments is such a joy.",
+    id: "003", title: "made by hands", photographer: "Robert Corrigan",
+    location: "Killarney & Dublin, IE", camera: "Olympus Trip 35", film: "Revolog", date: "2026-04",
+    pullQuote: "the architecture serves us because we know where to go without asking.",
+    intro: "there is a special cozy feeling when finding structures that want to be recognized. some want to show beauty, others strength. the castle is an idea. the imagination seeks this safety in time. buildings give us so much warmth and a place to make meaning.",
     images: [
-      { src: "/images/c4.jpg", caption: "brutal corner of campus" },
-      { src: "/images/w4.jpg", caption: "stacked for success" },
+      { src: "/images/c4.jpg", caption: "brutal corner" },
+      { src: "/images/w4.jpg", caption: "stacked" },
       { src: "/images/x3.jpg", caption: "fortress of fun" },
       { src: "/images/e2.jpg", caption: "lights up" },
-      { src: "/images/z2.jpg", caption: "lean on the scene" }
+      { src: "/images/z2.jpg", caption: "lean low" }
     ]
   },
   {
-    id: "002", title: "Tucked in Corners", photographer: "Robert Corrigan",
-    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2026-03",
-    pullQuote: "Hi. I\u2019m Robert.",
-    intro: "running far and away, around the world with just simple mechanics, letting light hit film for a fraction of a second. searing the image to be seen again. there\u2019s almost nothing more poetic than grabbing a masterpiece from your life.",
+    id: "002", title: "road, rocks, & rain", photographer: "Robert Corrigan",
+    location: "Dingle & Killarney, IE · Cabo San Lucas, MX", camera: "Olympus Trip 35, disposable Kodak", film: "Revolog & Kodak 400", date: "2026-03",
+    pullQuote: "imperfectly perfect is fine sometimes.",
+    intro: "composing on location, briefly, then finding out months or weeks later that the shot you imagined really came together. the catch has been caught. there\u2019s a reason this little light collecting device means so much to everyone. taking a look and feeling lighter. warmth connects you to that time.",
     images: [
       { src: "/images/e4.jpg", caption: "took a hike" },
       { src: "/images/e6.jpg", caption: "high point" },
@@ -474,9 +474,9 @@ const EDITIONS = [
   },
   {
     id: "001", title: "Plugged In", photographer: "Robert Corrigan",
-    location: "Seattle, WA", camera: "Olympus Trip 35", film: "revolog", date: "2025-08",
-    pullQuote: "even a disposable 35mm can give an amazing picture if you let the light shine over you well enough.",
-    intro: "press start. fired up. lights on. the machine runs. welcome.",
+    location: "Redmond, WA · Dingle, IE · Cabo San Lucas, MX", camera: "Olympus Trip 35", film: "Revolog", date: "2025-08",
+    pullQuote: "proving beauty is not hard. show up, wait, appreciate. she usually reveals herself.",
+    intro: "there\u2019s an audible crunch when the shutter clicks. there\u2019s a chance that all the light pushed it\u2019s way into the film in a way that will astound you later. i like knowing that it is okay to have fun and not to need to be the absolute best at enjoying a day outside. coming back with only the souvenir of memory.",
     images: [
       { src: "/images/doorsagain.jpg", caption: "2 2" },
       { src: "/images/gaolagainagain.jpg", caption: "a dream within" },
@@ -585,7 +585,7 @@ function filmWrap(src, alt) {
   return '<div class="film-wrap"><img src="'+esc(src)+'" alt="'+esc(alt)+'" loading="lazy"><div class="light-leak"></div><div class="img-grain"></div></div>';
 }
 function newsletterHTML() {
-  return '<div class="newsletter-bar"><div class="newsletter-label">the monthly dispatch</div><p class="newsletter-desc">one email a month. new selections, a short essay + one from the archive. worth forwarding.</p><div class="newsletter-row"><input class="newsletter-input" type="email" placeholder="your@email.com"><button class="newsletter-btn">subscribe</button></div></div>';
+  return '<div class="newsletter-bar"><div class="newsletter-label">the SVM email</div><p class="newsletter-desc">monthly email, a short essay + one pic from the archive. worth forwarding.</p><div class="newsletter-row"><input class="newsletter-input" type="email" placeholder="your@email.com"><button class="newsletter-btn">subscribe</button></div></div>';
 }
 
 // ═══════════════════════════════════════
@@ -647,7 +647,7 @@ function showDrop(id) {
 function renderHome() {
   const e = EDITIONS[0];
   document.getElementById('page-home').innerHTML = '<div class="home">'
-    +'<div class="home-label"><span>&#9679;</span> new &mdash; edition '+e.id+'</div>'
+    +'<div class="home-label"><span>&#9679;</span> Welcome &mdash; edition '+e.id+'</div>'
     +'<h1 class="home-title">'+esc(e.title)+'</h1>'
     +'<div class="home-byline">'+esc(e.photographer)+' &middot; '+esc(e.location)+'</div>'
     +'<div class="home-hero">'+filmWrap(e.images[0].src, e.images[0].caption)+'</div>'
@@ -658,7 +658,7 @@ function renderHome() {
       +'<div class="meta-item"><span class="meta-label">film</span><span class="meta-value">'+esc(e.film)+'</span></div>'
       +'<div class="meta-item"><span class="meta-label">location</span><span class="meta-value">'+esc(e.location)+'</span></div>'
     +'</div>'
-    +'<button class="enter-btn" onclick="showEdition(\''+e.id+'\')">collection <span class="enter-arrow"></span></button>'
+    +'<button class="enter-btn" onclick="showEdition(\''+e.id+'\')">full edition <span class="enter-arrow"></span></button>'
     +'</div>';
 }
 
@@ -706,8 +706,8 @@ function renderEditions() {
       +'<div class="ed-card-images">'+e.images.length+' photographs &middot; '+esc(e.film)+'</div></div></div>';
   });
   document.getElementById('page-editions').innerHTML = '<div class="editions-index">'
-    +'<h1 class="editions-h">editions</h1>'
-    +'<p class="editions-sub">001 &ndash; present. bodies of work. not posts.</p>'
+    +'<h1 class="editions-h">edition</h1>'
+    +'<p class="editions-sub">each edition an exhibition and intentional.</p>'
     +cards+'</div>';
 }
 
@@ -720,8 +720,8 @@ function renderArchive() {
   });
   document.getElementById('page-archive').innerHTML = '<div class="archive">'
     +'<h1 class="archive-h">archive</h1>'
-    +'<p class="archive-sub">feel free to peruse. hand-selected.</p>'
-    +'<div class="archive-count">'+ARCHIVE.length+' drops in the machine</div>'
+    +'<p class="archive-sub">curated for your review</p>'
+    +'<div class="archive-count">'+ARCHIVE.length+' pics in the machine</div>'
     +items+'</div>';
 }
 
@@ -733,25 +733,25 @@ function renderDrop(id) {
     +'<div class="single-date">'+fmtDate(p.date)+'</div>'
     +'<h1 class="single-title">'+esc(p.title)+'</h1>'
     +filmWrap(p.img, p.title)
-    +'<div class="single-byline">Robert Corrigan &middot; Olympus Trip 35 &middot; revolog</div>'
+    +'<div class="single-byline">Robert Corrigan &middot; Olympus Trip 35 &middot; Revolog</div>'
     +'</div>';
 }
 
 function renderAbout() {
   document.getElementById('page-about').innerHTML = '<div class="about">'
     +'<h1 class="about-h">about</h1>'
-    +'<p class="about-p">we review and showcase your work with care. <a href="#" onclick="showPage(\'submit\');return false" style="color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px;cursor:pointer">submit</a> film photography.</p>'
+    +'<p class="about-p"><a href="#" onclick="showPage(\'submit\');return false" style="color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px;cursor:pointer">submit</a> film photography. take a look around. enjoy.</p>'
     +'<div class="manifesto"><div class="manifesto-label">what this place is</div>'
-      +'<div class="m-item">no followers. no likes. no algorithm.</div>'
+      +'<div class="m-item">no followers. no algorithm. just a nice, simple place.</div>'
       +'<div class="m-item">the grain is real. the light leaks are earned.</div>'
       +'<div class="m-item">colors from chemistry, not presets.</div>'
-      +'<div class="m-item">the work speaks louder than the place showing it.</div>'
-      +'<div class="m-item">the open web still matters. this is a website, not an app.</div>'
+      +'<div class="m-item">the work speaks</div>'
+      +'<div class="m-item">the open web still matters.</div>'
     +'</div>'
-    +'<div class="about-section"><div class="about-section-label">vend</div><p class="about-section-body">hit the mango button. one photograph falls off the rack like a candy bar. no feed. no scroll. the machine decides. you receive.</p></div>'
-    +'<div class="about-section"><div class="about-section-label">submit</div><p class="about-section-body">the machine selects good vibes and great composition.</p></div>'
-    +'<div class="about-section"><div class="about-section-label">film only</div><p class="about-section-body">this is a film camera zone. the colors come from chemistry. the grain is a gift.</p></div>'
-    +'<p class="about-p" style="font-size:16px;color:var(--fg-2);margin-top:48px">come live in the machine. it&rsquo;s cozy in here.</p>'
+    +'<div class="about-section"><div class="about-section-label">vend</div><p class="about-section-body">hit the vend button.</p></div>'
+    +'<div class="about-section"><div class="about-section-label">submit</div><p class="about-section-body">share your work.</p></div>'
+    +'<div class="about-section"><div class="about-section-label">film only</div><p class="about-section-body">let&rsquo;s see your analog film shots. they don&rsquo;t have to be perfect photography, just something that inspires you to go out and make more art.</p></div>'
+    +'<p class="about-p" style="font-size:16px;color:var(--fg-2);margin-top:48px">built by a need to show soft light to millions.</p>'
     +newsletterHTML()
     +'</div>';
 }
@@ -760,16 +760,16 @@ function renderSubmit() {
   document.getElementById('page-submit').innerHTML = '<div class="submit">'
     +'<div class="success-msg" id="success-msg">THNX!</div>'
     +'<div class="error-msg" id="error-msg">&#10007; something went wrong. try again.</div>'
-    +'<h1 class="submit-h">stock the machine</h1>'
-    +'<p class="submit-sub">share your work. the machine selects good vibes and great composition.</p>'
-    +'<div class="submit-invite"><p>all work will be reviewed thoughtfully and carefully. please use the form below to submit or ask questions. all skill levels are welcome.</p></div>'
-    +'<div class="form-g"><span class="form-num">01</span><label class="form-l">title</label><input id="sf-title" class="form-i" placeholder="what are we looking at"></div>'
-    +'<div class="form-g"><span class="form-num">02</span><label class="form-l">body</label><textarea id="sf-body" class="form-ta" placeholder="tell us about the vibe (optional but encouraged)" rows="5"></textarea></div>'
-    +'<div class="form-g"><span class="form-num">03</span><label class="form-l">image link or portfolio</label><input id="sf-img" class="form-i" placeholder="imgur, instagram, flickr, portfolio site, etc."><div class="form-hint">drop a direct image link, your instagram, your portfolio &mdash; wherever your work lives.</div></div>'
-    +'<div class="form-g"><span class="form-num">04</span><label class="form-l">your name (optional)</label><input id="sf-name" class="form-i" placeholder="anonymous is fine"></div>'
+    +'<h1 class="submit-h">share your pictures</h1>'
+    +'<p class="submit-sub">if you love your photography, we probably will too. please use the fields below to help us see what you have been creating.</p>'
+    +'<div class="submit-invite"><p>all work will be reviewed thoughtfully and carefully. you will be contacted directly if your work is selected. please use the form below to submit or ask questions. all skill levels are welcome.</p></div>'
+    +'<div class="form-g"><span class="form-num">01</span><label class="form-l">title</label><input id="sf-title" class="form-i" placeholder="what did you find?"></div>'
+    +'<div class="form-g"><span class="form-num">02</span><label class="form-l">body</label><textarea id="sf-body" class="form-ta" placeholder="full disclosure (optional but encouraged)" rows="5"></textarea></div>'
+    +'<div class="form-g"><span class="form-num">03</span><label class="form-l">image link or portfolio</label><input id="sf-img" class="form-i" placeholder="imgur, instagram, flickr, portfolio site, etc."><div class="form-hint">drop a direct image link, your instagram, your portfolio</div></div>'
+    +'<div class="form-g"><span class="form-num">04</span><label class="form-l">your name (optional)</label><input id="sf-name" class="form-i" placeholder="nice to meet you!"></div>'
     +'<div class="form-g"><span class="form-num">05</span><label class="form-l">email</label><input id="sf-email" class="form-i" type="email" placeholder="so we can reach you" required></div>'
     +'<button class="submit-btn" id="submit-btn" onclick="submitForm()">submit work</button>'
-    +'<p class="form-note">the grain is real. the light leaks are earned. colors from chemistry.</p>'
+    +'<p class="form-note">hunting the right light. finding gold down the street, or across the pond.</p>'
     +'</div>';
 }
 
