@@ -16,11 +16,11 @@
   --table-edge: #dcddd6;   /* light table, falloff */
   --rebate: #0c0a09;       /* film base around the frames */
   --print: #e8a44a;        /* edge printing, the SVM mango */
-  --strip: min(1060px, calc(100vw - 48px));
-  --margin: 54px;          /* rebate on each side of the frames */
-  --hole-w: 20px;
-  --hole-in: 9px;          /* gap between holes and the frames */
-  --pitch: 30px;
+  --strip: min(640px, calc(100vw - 48px));
+  --margin: 44px;          /* rebate on each side of the frames */
+  --hole-w: 16px;
+  --hole-in: 8px;          /* gap between holes and the frames */
+  --pitch: 24px;
   --edge-font: 'Doto', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -118,7 +118,48 @@ body::before {
   max-height: 64%; overflow: hidden; text-overflow: ellipsis;
 }
 
+/* ── full-size view (desktop) ── */
+@media (min-width: 701px) {
+  .frame img { cursor: zoom-in; }
+  /* portrait frames stay a comfortable size instead of filling the screen */
+  .frame img, .frame.tall img {
+    width: auto; height: auto;
+    max-width: 100%; max-height: min(78vh, 600px);
+  }
+}
+.viewer {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  padding: 3vh 3vw;
+  background: rgba(12,10,9,.96);
+  cursor: zoom-out;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s ease, visibility 0s linear .25s;
+}
+.viewer.open { opacity: 1; visibility: visible; transition: opacity .25s ease; }
+.viewer img {
+  /* scale every photo, large or small, to fill the screen without cropping */
+  display: block; flex: 0 1 auto;
+  width: 100%; height: calc(94vh - 30px);
+  object-fit: contain;
+}
+.viewer-cap {
+  font-family: var(--edge-font); font-weight: 600; font-size: 12px;
+  letter-spacing: .18em; color: var(--print); opacity: .85;
+}
+.viewer-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: none; border: 0; padding: 24px 18px; cursor: pointer;
+  font-family: var(--edge-font); font-weight: 800; font-size: 22px; color: var(--print);
+  opacity: .55; transition: opacity .2s;
+}
+.viewer-btn:hover, .viewer-btn:focus-visible { opacity: 1; outline: none; }
+.viewer-prev { left: 6px; }
+.viewer-next { right: 6px; }
+.viewer-close { top: 14px; right: 6px; transform: none; font-size: 18px; padding: 14px 18px; }
+
 @media (max-width: 700px) {
+  .viewer { display: none; }
   :root { --strip: 100vw; --margin: 30px; --hole-w: 11px; --hole-in: 4px; --pitch: 18px; }
   .strip { box-shadow: none; }
   .strip::before, .strip::after {
@@ -159,13 +200,13 @@ body::before {
     <figure class="frame wide">
       <span class="edge num" aria-hidden="true">&#9656; 3</span>
       <span class="edge half" aria-hidden="true">3A</span>
-      <img src="/images/tallboot.jpg" width="3024" height="2005" alt="tall boot" loading="lazy" decoding="async">
+      <img src="/images/tallboot.jpg" width="2005" height="3024" alt="tall boot" loading="lazy" decoding="async">
       <figcaption class="edge name">tall boot</figcaption>
     </figure>
     <figure class="frame wide">
       <span class="edge num" aria-hidden="true">&#9656; 4</span>
       <span class="edge half" aria-hidden="true">4A</span>
-      <img src="/images/bootsign.jpg" width="3024" height="2005" alt="boot sign" loading="lazy" decoding="async">
+      <img src="/images/bootsign.jpg" width="2005" height="3024" alt="boot sign" loading="lazy" decoding="async">
       <figcaption class="edge name">boot sign</figcaption>
     </figure>
     <figure class="frame wide">
@@ -663,6 +704,13 @@ body::before {
   <div class="tail"><span class="tail-mark">&copy; 2026 ROBERT CORRIGAN</span></div>
 </main>
 <div class="strip-end" aria-hidden="true"></div>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Photo" aria-hidden="true">
+  <img alt="">
+  <div class="viewer-cap"></div>
+  <button class="viewer-btn viewer-prev" type="button" aria-label="Previous photo">&#9666;</button>
+  <button class="viewer-btn viewer-next" type="button" aria-label="Next photo">&#9656;</button>
+  <button class="viewer-btn viewer-close" type="button" aria-label="Close">&#10005;</button>
+</div>
 <script>
 // Fade each frame in once it has actually loaded, so nothing pops in half-drawn.
 document.querySelectorAll('.frame img').forEach(function (img) {
@@ -670,6 +718,56 @@ document.querySelectorAll('.frame img').forEach(function (img) {
   if (img.complete && img.naturalWidth) show();
   else { img.addEventListener('load', show); img.addEventListener('error', show); }
 });
+
+// Desktop: click a frame to see that photo full size; click again or Esc to go back.
+(function () {
+  var desktop = window.matchMedia('(min-width: 701px)');
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('.frame img'));
+  var viewer = document.getElementById('viewer');
+  var big = viewer.querySelector('img');
+  var cap = viewer.querySelector('.viewer-cap');
+  var current = -1;
+
+  function show(i) {
+    current = (i + imgs.length) % imgs.length;
+    var src = imgs[current];
+    big.src = src.currentSrc || src.src;
+    big.alt = src.alt;
+    cap.textContent = (current + 1) + ' · ' + src.alt;
+  }
+  function open(i) {
+    show(i);
+    viewer.classList.add('open');
+    viewer.setAttribute('aria-hidden', 'false');
+    document.documentElement.style.overflow = 'hidden';
+    viewer.querySelector('.viewer-close').focus({ preventScroll: true });
+  }
+  function close() {
+    if (current < 0) return;
+    viewer.classList.remove('open');
+    viewer.setAttribute('aria-hidden', 'true');
+    document.documentElement.style.overflow = '';
+    imgs[current].scrollIntoView({ block: 'center' });
+    current = -1;
+  }
+
+  imgs.forEach(function (img, i) {
+    img.addEventListener('click', function () { if (desktop.matches) open(i); });
+  });
+  viewer.addEventListener('click', function (e) {
+    var btn = e.target.closest('.viewer-btn');
+    if (btn && btn.classList.contains('viewer-prev')) { show(current - 1); return; }
+    if (btn && btn.classList.contains('viewer-next')) { show(current + 1); return; }
+    close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (current < 0) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(current - 1);
+    else if (e.key === 'ArrowRight') show(current + 1);
+  });
+  desktop.addEventListener('change', function (e) { if (!e.matches) close(); });
+})();
 </script>
 <noscript><style>.frame img { opacity: 1; }</style></noscript>
 </body>
