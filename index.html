@@ -32,6 +32,7 @@
   --hole-w: 16px;
   --hole-in: 8px;          /* gap between holes and the frames */
   --pitch: 24px;
+  --cap-h: 40px;           /* caption line under each photo */
   --edge-font: 'Doto', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -79,10 +80,15 @@ body::before {
   position: relative; height: 180px;
   display: flex; align-items: center; justify-content: center;
 }
-.leader { height: 220px; }
+.leader { height: auto; min-height: 220px; padding: 72px 0 calc(2in - 7px); }
 .leader-mark, .tail-mark {
   font-family: var(--edge-font); font-weight: 800; color: var(--print);
   font-size: 13px; letter-spacing: .32em; opacity: .9;
+}
+.leader-mark {
+  font-size: 39px; letter-spacing: .2em; line-height: 1.3;
+  text-align: center; text-wrap: balance;
+  margin-right: -.2em; /* letter-spacing trails the last letter; keep it centred */
 }
 .tail-mark { font-size: 11px; font-weight: 600; opacity: .65; letter-spacing: .24em; }
 .strip-end {
@@ -97,8 +103,17 @@ body::before {
 /* ── frames ── */
 .frame {
   position: relative;
-  display: flex; justify-content: center;
+  display: flex; flex-direction: column; align-items: center;
   padding: 7px 0;
+}
+/* 2 inches of film between one photo and the next; the caption sits in it */
+.frame + .frame { margin-top: calc(2in - 14px - var(--cap-h)); }
+.cap {
+  height: var(--cap-h); padding-top: 18px;
+  font-family: var(--edge-font); font-weight: 600;
+  font-size: 15px; line-height: 1.2; letter-spacing: .08em;
+  color: var(--print); text-align: center;
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .frame img {
   display: block;
@@ -122,12 +137,8 @@ body::before {
   white-space: nowrap;
   writing-mode: vertical-rl;
 }
-.edge.num  { left: calc(-1 * var(--margin) + 7px); top: 18%; transform: rotate(180deg); }
-.edge.half { left: calc(-1 * var(--margin) + 7px); top: 72%; transform: rotate(180deg); opacity: .7; }
-.edge.name {
-  right: calc(-1 * var(--margin) + 7px); top: 18%;
-  max-height: 64%; overflow: hidden; text-overflow: ellipsis;
-}
+.edge.num  { left: calc(-1 * var(--margin) + 7px); top: 14%; transform: rotate(180deg); }
+.edge.half { left: calc(-1 * var(--margin) + 7px); top: 58%; transform: rotate(180deg); opacity: .7; }
 
 /* ── full-size view (desktop) ── */
 @media (min-width: 701px) {
@@ -178,10 +189,12 @@ body::before {
   }
   .edge { font-size: 8px; letter-spacing: .1em; }
   .edge.num, .edge.half { left: calc(-1 * var(--margin) + 3px); }
-  .edge.name { right: calc(-1 * var(--margin) + 3px); }
   .frame { padding: 4px 0; }
-  .leader { height: 150px; }
-  .leader-mark { font-size: 10px; }
+  .frame + .frame { margin-top: calc(2in - 8px - var(--cap-h)); }
+  .cap { font-size: 13px; padding-top: 14px; }
+  :root { --cap-h: 34px; }
+  .leader { min-height: 150px; padding: 56px 0 calc(2in - 4px); }
+  .leader-mark { font-size: 30px; }
   .tail-mark { font-size: 9px; }
   .strip-end { border-radius: 0 0 8px 8px; margin-bottom: 64px; }
   .strip-top { height: 0; }
@@ -200,521 +213,521 @@ body::before {
 <div class="strip-top" aria-hidden="true"></div>
 <main class="strip">
   <div class="leader" aria-hidden="true"><span class="leader-mark">SECRET VENDING MACHINE</span></div>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 1</span>
       <span class="edge half" aria-hidden="true">1A</span>
-      <img src="/images/hatboots.jpg" width="3024" height="2005" alt="hat boots, film photograph by Robert Corrigan" fetchpriority="high" decoding="async">
-      <figcaption class="edge name">hat boots</figcaption>
+      <img src="/images/r1.jpg" width="640" height="424" alt="taking over, film photograph by Robert Corrigan" fetchpriority="high" decoding="async">
+      <figcaption class="cap">taking over</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 2</span>
       <span class="edge half" aria-hidden="true">2A</span>
-      <img src="/images/fullhat.jpg" width="3024" height="2005" alt="full hat, film photograph by Robert Corrigan" fetchpriority="high" decoding="async">
-      <figcaption class="edge name">full hat</figcaption>
+      <img src="/images/w6.jpg" width="640" height="424" alt="tuck me away here, film photograph by Robert Corrigan" fetchpriority="high" decoding="async">
+      <figcaption class="cap">tuck me away here</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="oranges">
       <span class="edge num" aria-hidden="true">&#9656; 3</span>
       <span class="edge half" aria-hidden="true">3A</span>
-      <img src="/images/tallboot.jpg" width="2005" height="3024" alt="tall boot, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">tall boot</figcaption>
+      <img src="/images/or3.jpg" width="3024" height="2005" alt="orange 3, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">orange 3</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 4</span>
       <span class="edge half" aria-hidden="true">4A</span>
-      <img src="/images/bootsign.jpg" width="2005" height="3024" alt="boot sign, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">boot sign</figcaption>
+      <img src="/images/q1.jpg" width="640" height="424" alt="10/10 guardrail, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">10/10 guardrail</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 5</span>
       <span class="edge half" aria-hidden="true">5A</span>
-      <img src="/images/skyboot.jpg" width="3024" height="2005" alt="sky boot, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">sky boot</figcaption>
+      <img src="/images/e2.jpg" width="640" height="424" alt="lights up, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">lights up</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 6</span>
       <span class="edge half" aria-hidden="true">6A</span>
-      <img src="/images/pichat.jpg" width="3024" height="2005" alt="picnic hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">picnic hat</figcaption>
+      <img src="/images/x8.jpg" width="640" height="424" alt="can anybody fly this thing?, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">can anybody fly this thing?</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 7</span>
       <span class="edge half" aria-hidden="true">7A</span>
-      <img src="/images/bigboot.jpg" width="3024" height="2005" alt="big boot, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">big boot</figcaption>
+      <img src="/images/treehat.jpg" width="3024" height="2005" alt="tree hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">tree hat</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 8</span>
       <span class="edge half" aria-hidden="true">8A</span>
-      <img src="/images/treehat.jpg" width="3024" height="2005" alt="tree hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">tree hat</figcaption>
+      <img src="/images/e6.jpg" width="640" height="424" alt="high point, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">high point</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 9</span>
       <span class="edge half" aria-hidden="true">9A</span>
-      <img src="/images/parkhat.jpg" width="3024" height="2005" alt="park hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">park hat</figcaption>
+      <img src="/images/r3.jpg" width="640" height="424" alt="candle chandelier, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">candle chandelier</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 10</span>
       <span class="edge half" aria-hidden="true">10A</span>
-      <img src="/images/boottoe.jpg" width="3024" height="2005" alt="boot toe, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">boot toe</figcaption>
+      <img src="/images/q3.jpg" width="640" height="424" alt="shoop, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">shoop</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="early">
       <span class="edge num" aria-hidden="true">&#9656; 11</span>
       <span class="edge half" aria-hidden="true">11A</span>
-      <img src="/images/toehat.jpg" width="3024" height="2005" alt="toe hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">toe hat</figcaption>
+      <img src="/images/doorsagain.jpg" width="640" height="424" alt="2 2, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">2 2</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 12</span>
       <span class="edge half" aria-hidden="true">12A</span>
-      <img src="/images/picnic.jpg" width="3024" height="2005" alt="picnic, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">picnic</figcaption>
+      <img src="/images/x5.jpg" width="640" height="424" alt="rocks plotting escape, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">rocks plotting escape</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="oranges">
       <span class="edge num" aria-hidden="true">&#9656; 13</span>
       <span class="edge half" aria-hidden="true">13A</span>
-      <img src="/images/or3.jpg" width="3024" height="2005" alt="orange 3, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">orange 3</figcaption>
+      <img src="/images/or2.jpg" width="3024" height="2005" alt="orange 2, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">orange 2</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 14</span>
       <span class="edge half" aria-hidden="true">14A</span>
-      <img src="/images/or2.jpg" width="3024" height="2005" alt="orange 2, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">orange 2</figcaption>
+      <img src="/images/pichat.jpg" width="3024" height="2005" alt="picnic hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">picnic hat</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 15</span>
       <span class="edge half" aria-hidden="true">15A</span>
-      <img src="/images/or1.jpg" width="3024" height="2005" alt="orange 1, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">orange 1</figcaption>
+      <img src="/images/e9.jpg" width="640" height="424" alt="well, we can always go, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">well, we can always go</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 16</span>
       <span class="edge half" aria-hidden="true">16A</span>
-      <img src="/images/x7.jpg" width="640" height="424" alt="tinged mango, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">tinged mango</figcaption>
+      <img src="/images/parkhat.jpg" width="3024" height="2005" alt="park hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">park hat</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="t">
       <span class="edge num" aria-hidden="true">&#9656; 17</span>
       <span class="edge half" aria-hidden="true">17A</span>
-      <img src="/images/q1.jpg" width="640" height="424" alt="10/10 guardrail, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">10/10 guardrail</figcaption>
+      <img src="/images/t2.jpg" width="640" height="424" alt="crash landing, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">crash landing</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 18</span>
       <span class="edge half" aria-hidden="true">18A</span>
-      <img src="/images/q2.jpg" width="640" height="424" alt="moo, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">moo</figcaption>
+      <img src="/images/z4.jpg" width="640" height="424" alt="something borrowed, something blue, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">something borrowed, something blue</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 19</span>
       <span class="edge half" aria-hidden="true">19A</span>
-      <img src="/images/q3.jpg" width="640" height="424" alt="shoop, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">shoop</figcaption>
+      <img src="/images/hatboots.jpg" width="3024" height="2005" alt="hat boots, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">hat boots</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 20</span>
       <span class="edge half" aria-hidden="true">20A</span>
-      <img src="/images/q4.jpg" width="640" height="424" alt="sea shapes, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">sea shapes</figcaption>
+      <img src="/images/r6.jpg" width="640" height="424" alt="omg, hey, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">omg, hey</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 21</span>
       <span class="edge half" aria-hidden="true">21A</span>
-      <img src="/images/q5.jpg" width="640" height="424" alt="sliver of each, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">sliver of each</figcaption>
+      <img src="/images/z6.jpg" width="640" height="424" alt="fleurs, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">fleurs</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="c">
       <span class="edge num" aria-hidden="true">&#9656; 22</span>
       <span class="edge half" aria-hidden="true">22A</span>
-      <img src="/images/q6.jpg" width="640" height="424" alt="stocked rocks, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">stocked rocks</figcaption>
+      <img src="/images/c4.jpg" width="640" height="424" alt="brutal corner of campus, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">brutal corner of campus</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame tall" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 23</span>
       <span class="edge half" aria-hidden="true">23A</span>
-      <img src="/images/q7.jpg" width="640" height="424" alt="terraced and feudal, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">terraced and feudal</figcaption>
+      <img src="/images/z8.jpg" width="424" height="640" alt="see you through, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">see you through</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="t">
       <span class="edge num" aria-hidden="true">&#9656; 24</span>
       <span class="edge half" aria-hidden="true">24A</span>
-      <img src="/images/q8.jpg" width="640" height="424" alt="sun pocket grazing the field, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">sun pocket grazing the field</figcaption>
+      <img src="/images/t3.jpg" width="640" height="424" alt="build the boat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">build the boat</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 25</span>
       <span class="edge half" aria-hidden="true">25A</span>
-      <img src="/images/q9.jpg" width="640" height="424" alt="we rock, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">we rock</figcaption>
+      <img src="/images/q4.jpg" width="640" height="424" alt="sea shapes, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">sea shapes</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 26</span>
       <span class="edge half" aria-hidden="true">26A</span>
-      <img src="/images/w8.jpg" width="640" height="424" alt="enough mango to enter, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">enough mango to enter</figcaption>
+      <img src="/images/e8.jpg" width="640" height="424" alt="not night, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">not night</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame tall" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 27</span>
       <span class="edge half" aria-hidden="true">27A</span>
-      <img src="/images/w7.jpg" width="640" height="424" alt="lit rocks, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">lit rocks</figcaption>
+      <img src="/images/r9.jpg" width="424" height="640" alt="of alignment, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">of alignment</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 28</span>
       <span class="edge half" aria-hidden="true">28A</span>
-      <img src="/images/w6.jpg" width="640" height="424" alt="tuck me away here, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">tuck me away here</figcaption>
+      <img src="/images/tallboot.jpg" width="2005" height="3024" alt="tall boot, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">tall boot</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 29</span>
       <span class="edge half" aria-hidden="true">29A</span>
-      <img src="/images/w5.jpg" width="640" height="424" alt="cozy cottage, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">cozy cottage</figcaption>
+      <img src="/images/e3.jpg" width="640" height="424" alt="who me?, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">who me?</figcaption>
     </figure>
-    <figure class="frame tall">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 30</span>
       <span class="edge half" aria-hidden="true">30A</span>
-      <img src="/images/w4.jpg" width="424" height="640" alt="stacked for success, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">stacked for success</figcaption>
+      <img src="/images/skyboot.jpg" width="3024" height="2005" alt="sky boot, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">sky boot</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 31</span>
       <span class="edge half" aria-hidden="true">31A</span>
-      <img src="/images/w2.jpg" width="640" height="424" alt="trees breeze (slightly), film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">trees breeze (slightly)</figcaption>
+      <img src="/images/r8.jpg" width="640" height="424" alt="best one yet, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">best one yet</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 32</span>
       <span class="edge half" aria-hidden="true">32A</span>
       <img src="/images/w1.jpg" width="640" height="424" alt="slide by ya real quick, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">slide by ya real quick</figcaption>
+      <figcaption class="cap">slide by ya real quick</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="early">
       <span class="edge num" aria-hidden="true">&#9656; 33</span>
       <span class="edge half" aria-hidden="true">33A</span>
-      <img src="/images/e7.jpg" width="640" height="424" alt="simply sky, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">simply sky</figcaption>
+      <img src="/images/de73e2bc-be60-4ede-a44f-fb57c381e6c9.jpg" width="640" height="424" alt="rainbow stairway, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">rainbow stairway</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 34</span>
       <span class="edge half" aria-hidden="true">34A</span>
-      <img src="/images/e6.jpg" width="640" height="424" alt="high point, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">high point</figcaption>
+      <img src="/images/q9.jpg" width="640" height="424" alt="we rock, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">we rock</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 35</span>
       <span class="edge half" aria-hidden="true">35A</span>
-      <img src="/images/e5.jpg" width="640" height="424" alt="lil scared, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">lil scared</figcaption>
+      <img src="/images/r4.jpg" width="640" height="424" alt="melon horizon, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">melon horizon</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 36</span>
       <span class="edge half" aria-hidden="true">36A</span>
-      <img src="/images/e4.jpg" width="640" height="424" alt="took a hike, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">took a hike</figcaption>
+      <img src="/images/q8.jpg" width="640" height="424" alt="sun pocket grazing the field, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">sun pocket grazing the field</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 37</span>
       <span class="edge half" aria-hidden="true">37A</span>
-      <img src="/images/e3.jpg" width="640" height="424" alt="who me?, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">who me?</figcaption>
+      <img src="/images/x2.jpg" width="640" height="424" alt="blue coming through, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">blue coming through</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="c">
       <span class="edge num" aria-hidden="true">&#9656; 38</span>
       <span class="edge half" aria-hidden="true">38A</span>
-      <img src="/images/e2.jpg" width="640" height="424" alt="lights up, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">lights up</figcaption>
+      <img src="/images/c1.jpg" width="640" height="424" alt="subtle light in the north sky, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">subtle light in the north sky</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 39</span>
       <span class="edge half" aria-hidden="true">39A</span>
-      <img src="/images/e1.jpg" width="640" height="424" alt="aye cap, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">aye cap</figcaption>
+      <img src="/images/z3.jpg" width="640" height="424" alt="not sure. is cool. 2., film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">not sure. is cool. 2.</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="early">
       <span class="edge num" aria-hidden="true">&#9656; 40</span>
       <span class="edge half" aria-hidden="true">40A</span>
-      <img src="/images/w9.jpg" width="640" height="424" alt="steady sailing, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">steady sailing</figcaption>
+      <img src="/images/8eaf0b76-ace2-4a1e-b9b0-e51f696da14d.jpg" width="640" height="424" alt="purple park power, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">purple park power</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 41</span>
       <span class="edge half" aria-hidden="true">41A</span>
-      <img src="/images/r6.jpg" width="640" height="424" alt="omg, hey, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">omg, hey</figcaption>
+      <img src="/images/e4.jpg" width="640" height="424" alt="took a hike, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">took a hike</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="t">
       <span class="edge num" aria-hidden="true">&#9656; 42</span>
       <span class="edge half" aria-hidden="true">42A</span>
-      <img src="/images/r5.jpg" width="640" height="424" alt="four of &#x27;em, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">four of &#x27;em</figcaption>
+      <img src="/images/t5.jpg" width="640" height="424" alt="shorn, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">shorn</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 43</span>
       <span class="edge half" aria-hidden="true">43A</span>
-      <img src="/images/r4.jpg" width="640" height="424" alt="melon horizon, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">melon horizon</figcaption>
+      <img src="/images/q6.jpg" width="640" height="424" alt="stocked rocks, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">stocked rocks</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 44</span>
       <span class="edge half" aria-hidden="true">44A</span>
-      <img src="/images/r3.jpg" width="640" height="424" alt="candle chandelier, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">candle chandelier</figcaption>
+      <img src="/images/boottoe.jpg" width="3024" height="2005" alt="boot toe, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">boot toe</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="t">
       <span class="edge num" aria-hidden="true">&#9656; 45</span>
       <span class="edge half" aria-hidden="true">45A</span>
-      <img src="/images/r2.jpg" width="640" height="424" alt="french movie cat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">french movie cat</figcaption>
+      <img src="/images/t4.jpg" width="640" height="424" alt="see the breeze, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">see the breeze</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 46</span>
       <span class="edge half" aria-hidden="true">46A</span>
-      <img src="/images/r1.jpg" width="640" height="424" alt="taking over, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">taking over</figcaption>
+      <img src="/images/x6.jpg" width="640" height="424" alt="safe and sound, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">safe and sound</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 47</span>
       <span class="edge half" aria-hidden="true">47A</span>
-      <img src="/images/e9.jpg" width="640" height="424" alt="well, we can always go, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">well, we can always go</figcaption>
+      <img src="/images/e7.jpg" width="640" height="424" alt="simply sky, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">simply sky</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 48</span>
       <span class="edge half" aria-hidden="true">48A</span>
-      <img src="/images/e8.jpg" width="640" height="424" alt="not night, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">not night</figcaption>
+      <img src="/images/bigboot.jpg" width="3024" height="2005" alt="big boot, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">big boot</figcaption>
     </figure>
-    <figure class="frame tall">
+    <figure class="frame wide" data-series="c">
       <span class="edge num" aria-hidden="true">&#9656; 49</span>
       <span class="edge half" aria-hidden="true">49A</span>
-      <img src="/images/r7.jpg" width="424" height="640" alt="hidden gradience, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">hidden gradience</figcaption>
+      <img src="/images/c5.jpg" width="640" height="424" alt="floating in wait, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">floating in wait</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 50</span>
       <span class="edge half" aria-hidden="true">50A</span>
-      <img src="/images/r8.jpg" width="640" height="424" alt="best one yet, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">best one yet</figcaption>
+      <img src="/images/picnic.jpg" width="3024" height="2005" alt="picnic, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">picnic</figcaption>
     </figure>
-    <figure class="frame tall">
+    <figure class="frame wide" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 51</span>
       <span class="edge half" aria-hidden="true">51A</span>
-      <img src="/images/r9.jpg" width="424" height="640" alt="of alignment, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">of alignment</figcaption>
+      <img src="/images/w7.jpg" width="640" height="424" alt="lit rocks, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">lit rocks</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame tall" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 52</span>
       <span class="edge half" aria-hidden="true">52A</span>
-      <img src="/images/t1.jpg" width="640" height="424" alt="always on time, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">always on time</figcaption>
+      <img src="/images/z1.jpg" width="424" height="640" alt="patina pristine, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">patina pristine</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 53</span>
       <span class="edge half" aria-hidden="true">53A</span>
-      <img src="/images/t2.jpg" width="640" height="424" alt="crash landing, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">crash landing</figcaption>
+      <img src="/images/toehat.jpg" width="3024" height="2005" alt="toe hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">toe hat</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 54</span>
       <span class="edge half" aria-hidden="true">54A</span>
-      <img src="/images/t3.jpg" width="640" height="424" alt="build the boat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">build the boat</figcaption>
+      <img src="/images/e1.jpg" width="640" height="424" alt="aye cap, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">aye cap</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame tall" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 55</span>
       <span class="edge half" aria-hidden="true">55A</span>
-      <img src="/images/t4.jpg" width="640" height="424" alt="see the breeze, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">see the breeze</figcaption>
+      <img src="/images/r7.jpg" width="424" height="640" alt="hidden gradience, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">hidden gradience</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 56</span>
       <span class="edge half" aria-hidden="true">56A</span>
-      <img src="/images/t5.jpg" width="640" height="424" alt="shorn, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">shorn</figcaption>
+      <img src="/images/w9.jpg" width="640" height="424" alt="steady sailing, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">steady sailing</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 57</span>
       <span class="edge half" aria-hidden="true">57A</span>
-      <img src="/images/c2.jpg" width="640" height="424" alt="dancing down the stairs, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">dancing down the stairs</figcaption>
+      <img src="/images/x4.jpg" width="640" height="424" alt="ensconced, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">ensconced</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 58</span>
       <span class="edge half" aria-hidden="true">58A</span>
-      <img src="/images/x6.jpg" width="640" height="424" alt="safe and sound, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">safe and sound</figcaption>
+      <img src="/images/z5.jpg" width="640" height="424" alt="whip it round, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">whip it round</figcaption>
     </figure>
-    <figure class="frame tall">
+    <figure class="frame wide" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 59</span>
       <span class="edge half" aria-hidden="true">59A</span>
-      <img src="/images/z8.jpg" width="424" height="640" alt="see you through, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">see you through</figcaption>
+      <img src="/images/w5.jpg" width="640" height="424" alt="cozy cottage, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">cozy cottage</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame tall" data-series="c">
       <span class="edge num" aria-hidden="true">&#9656; 60</span>
       <span class="edge half" aria-hidden="true">60A</span>
-      <img src="/images/z3.jpg" width="640" height="424" alt="not sure. is cool. 2., film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">not sure. is cool. 2.</figcaption>
+      <img src="/images/c6.jpg" width="424" height="640" alt="north sky shining bright, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">north sky shining bright</figcaption>
     </figure>
-    <figure class="frame tall">
+    <figure class="frame wide" data-series="t">
       <span class="edge num" aria-hidden="true">&#9656; 61</span>
       <span class="edge half" aria-hidden="true">61A</span>
-      <img src="/images/z9.jpg" width="424" height="640" alt="hwhip it, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">hwhip it</figcaption>
+      <img src="/images/t1.jpg" width="640" height="424" alt="always on time, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">always on time</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 62</span>
       <span class="edge half" aria-hidden="true">62A</span>
-      <img src="/images/c1.jpg" width="640" height="424" alt="subtle light in the north sky, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">subtle light in the north sky</figcaption>
+      <img src="/images/q5.jpg" width="640" height="424" alt="sliver of each, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">sliver of each</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="early">
       <span class="edge num" aria-hidden="true">&#9656; 63</span>
       <span class="edge half" aria-hidden="true">63A</span>
-      <img src="/images/c4.jpg" width="640" height="424" alt="brutal corner of campus, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">brutal corner of campus</figcaption>
+      <img src="/images/gaolagainagain.jpg" width="640" height="424" alt="a dream within, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">a dream within</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 64</span>
       <span class="edge half" aria-hidden="true">64A</span>
-      <img src="/images/x8.jpg" width="640" height="424" alt="can anybody fly this thing?, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">can anybody fly this thing?</figcaption>
+      <img src="/images/z2.jpg" width="640" height="424" alt="lean on the scene, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">lean on the scene</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 65</span>
       <span class="edge half" aria-hidden="true">65A</span>
-      <img src="/images/z7.jpg" width="640" height="424" alt="jagged and dragging, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">jagged and dragging</figcaption>
+      <img src="/images/x1.jpg" width="640" height="424" alt="soft cross, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">soft cross</figcaption>
     </figure>
-    <figure class="frame tall">
+    <figure class="frame wide" data-series="early">
       <span class="edge num" aria-hidden="true">&#9656; 66</span>
       <span class="edge half" aria-hidden="true">66A</span>
-      <img src="/images/z1.jpg" width="424" height="640" alt="patina pristine, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">patina pristine</figcaption>
+      <img src="/images/cc766f6c-a253-4f12-a6bc-174e04b89c67.jpg" width="640" height="424" alt="yesterday today, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">yesterday today</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 67</span>
       <span class="edge half" aria-hidden="true">67A</span>
-      <img src="/images/c5.jpg" width="640" height="424" alt="floating in wait, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">floating in wait</figcaption>
+      <img src="/images/bootsign.jpg" width="2005" height="3024" alt="boot sign, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">boot sign</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 68</span>
       <span class="edge half" aria-hidden="true">68A</span>
-      <img src="/images/x1.jpg" width="640" height="424" alt="soft cross, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">soft cross</figcaption>
+      <img src="/images/w8.jpg" width="640" height="424" alt="enough mango to enter, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">enough mango to enter</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 69</span>
       <span class="edge half" aria-hidden="true">69A</span>
-      <img src="/images/x5.jpg" width="640" height="424" alt="rocks plotting escape, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">rocks plotting escape</figcaption>
+      <img src="/images/z7.jpg" width="640" height="424" alt="jagged and dragging, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">jagged and dragging</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 70</span>
       <span class="edge half" aria-hidden="true">70A</span>
-      <img src="/images/z5.jpg" width="640" height="424" alt="whip it round, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">whip it round</figcaption>
+      <img src="/images/r2.jpg" width="640" height="424" alt="french movie cat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">french movie cat</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame tall" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 71</span>
       <span class="edge half" aria-hidden="true">71A</span>
-      <img src="/images/z4.jpg" width="640" height="424" alt="something borrowed, something blue, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">something borrowed, something blue</figcaption>
+      <img src="/images/w3.jpg" width="424" height="640" alt="hello rose, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">hello rose</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 72</span>
       <span class="edge half" aria-hidden="true">72A</span>
-      <img src="/images/c3.jpg" width="640" height="424" alt="back street sneak around, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">back street sneak around</figcaption>
+      <img src="/images/x3.jpg" width="640" height="424" alt="fortress of fun, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">fortress of fun</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="e">
       <span class="edge num" aria-hidden="true">&#9656; 73</span>
       <span class="edge half" aria-hidden="true">73A</span>
-      <img src="/images/x2.jpg" width="640" height="424" alt="blue coming through, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">blue coming through</figcaption>
+      <img src="/images/e5.jpg" width="640" height="424" alt="lil scared, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">lil scared</figcaption>
     </figure>
-    <figure class="frame tall">
+    <figure class="frame wide" data-series="oranges">
       <span class="edge num" aria-hidden="true">&#9656; 74</span>
       <span class="edge half" aria-hidden="true">74A</span>
-      <img src="/images/w3.jpg" width="424" height="640" alt="hello rose, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">hello rose</figcaption>
+      <img src="/images/or1.jpg" width="3024" height="2005" alt="orange 1, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">orange 1</figcaption>
     </figure>
-    <figure class="frame tall">
+    <figure class="frame wide" data-series="boots">
       <span class="edge num" aria-hidden="true">&#9656; 75</span>
       <span class="edge half" aria-hidden="true">75A</span>
-      <img src="/images/c6.jpg" width="424" height="640" alt="north sky shining bright, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">north sky shining bright</figcaption>
+      <img src="/images/fullhat.jpg" width="3024" height="2005" alt="full hat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">full hat</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 76</span>
       <span class="edge half" aria-hidden="true">76A</span>
-      <img src="/images/z2.jpg" width="640" height="424" alt="lean on the scene, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">lean on the scene</figcaption>
+      <img src="/images/x7.jpg" width="640" height="424" alt="tinged mango, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">tinged mango</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 77</span>
       <span class="edge half" aria-hidden="true">77A</span>
-      <img src="/images/x9.jpg" width="640" height="424" alt="sneaky sailboat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">sneaky sailboat</figcaption>
+      <img src="/images/w2.jpg" width="640" height="424" alt="trees breeze (slightly), film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">trees breeze (slightly)</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="c">
       <span class="edge num" aria-hidden="true">&#9656; 78</span>
       <span class="edge half" aria-hidden="true">78A</span>
-      <img src="/images/x3.jpg" width="640" height="424" alt="fortress of fun, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">fortress of fun</figcaption>
+      <img src="/images/c2.jpg" width="640" height="424" alt="dancing down the stairs, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">dancing down the stairs</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="early">
       <span class="edge num" aria-hidden="true">&#9656; 79</span>
       <span class="edge half" aria-hidden="true">79A</span>
-      <img src="/images/x4.jpg" width="640" height="424" alt="ensconced, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">ensconced</figcaption>
+      <img src="/images/zagagain.jpg" width="640" height="424" alt="zig then zag, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">zig then zag</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame tall" data-series="w">
       <span class="edge num" aria-hidden="true">&#9656; 80</span>
       <span class="edge half" aria-hidden="true">80A</span>
-      <img src="/images/z6.jpg" width="640" height="424" alt="fleurs, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">fleurs</figcaption>
+      <img src="/images/w4.jpg" width="424" height="640" alt="stacked for success, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">stacked for success</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="r">
       <span class="edge num" aria-hidden="true">&#9656; 81</span>
       <span class="edge half" aria-hidden="true">81A</span>
-      <img src="/images/8eaf0b76-ace2-4a1e-b9b0-e51f696da14d.jpg" width="640" height="424" alt="purple park power, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">purple park power</figcaption>
+      <img src="/images/r5.jpg" width="640" height="424" alt="four of &#x27;em, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">four of &#x27;em</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 82</span>
       <span class="edge half" aria-hidden="true">82A</span>
-      <img src="/images/cc766f6c-a253-4f12-a6bc-174e04b89c67.jpg" width="640" height="424" alt="yesterday today, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">yesterday today</figcaption>
+      <img src="/images/q7.jpg" width="640" height="424" alt="terraced and feudal, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">terraced and feudal</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="x">
       <span class="edge num" aria-hidden="true">&#9656; 83</span>
       <span class="edge half" aria-hidden="true">83A</span>
-      <img src="/images/de73e2bc-be60-4ede-a44f-fb57c381e6c9.jpg" width="640" height="424" alt="rainbow stairway, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">rainbow stairway</figcaption>
+      <img src="/images/x9.jpg" width="640" height="424" alt="sneaky sailboat, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">sneaky sailboat</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="c">
       <span class="edge num" aria-hidden="true">&#9656; 84</span>
       <span class="edge half" aria-hidden="true">84A</span>
-      <img src="/images/zagagain.jpg" width="640" height="424" alt="zig then zag, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">zig then zag</figcaption>
+      <img src="/images/c3.jpg" width="640" height="424" alt="back street sneak around, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">back street sneak around</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame wide" data-series="q">
       <span class="edge num" aria-hidden="true">&#9656; 85</span>
       <span class="edge half" aria-hidden="true">85A</span>
-      <img src="/images/gaolagainagain.jpg" width="640" height="424" alt="a dream within, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">a dream within</figcaption>
+      <img src="/images/q2.jpg" width="640" height="424" alt="moo, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">moo</figcaption>
     </figure>
-    <figure class="frame wide">
+    <figure class="frame tall" data-series="z">
       <span class="edge num" aria-hidden="true">&#9656; 86</span>
       <span class="edge half" aria-hidden="true">86A</span>
-      <img src="/images/doorsagain.jpg" width="640" height="424" alt="2 2, film photograph by Robert Corrigan" loading="lazy" decoding="async">
-      <figcaption class="edge name">2 2</figcaption>
+      <img src="/images/z9.jpg" width="424" height="640" alt="hwhip it, film photograph by Robert Corrigan" loading="lazy" decoding="async">
+      <figcaption class="cap">hwhip it</figcaption>
     </figure>
   <div class="tail"><span class="tail-mark">&copy; 2026 ROBERT CORRIGAN</span></div>
 </main>
@@ -732,6 +745,38 @@ body::before {
   <button class="viewer-btn viewer-close" type="button" aria-label="Close">&#10005;</button>
 </div>
 <script>
+// Deal the photos in a fresh order on every visit, never two from the same roll in a row.
+(function () {
+  var strip = document.querySelector('.strip');
+  var tail = strip.querySelector('.tail');
+  var left = Array.prototype.slice.call(strip.querySelectorAll('.frame'));
+  var out = [];
+  function rand(a) { return a[Math.floor(Math.random() * a.length)]; }
+  while (left.length) {
+    var last = out.length ? out[out.length - 1].dataset.series : null;
+    var counts = {}, big = null;
+    left.forEach(function (f) {
+      var k = f.dataset.series; counts[k] = (counts[k] || 0) + 1;
+      if (big === null || counts[k] > counts[big]) big = k;
+    });
+    var pool = (big !== last && counts[big] * 2 > left.length)
+      ? left.filter(function (f) { return f.dataset.series === big; })
+      : left.filter(function (f) { return f.dataset.series !== last; });
+    if (!pool.length) pool = left;
+    var pick = rand(pool);
+    left.splice(left.indexOf(pick), 1);
+    out.push(pick);
+  }
+  out.forEach(function (f, i) {
+    var n = i + 1, img = f.querySelector('img');
+    f.querySelector('.edge.num').innerHTML = '&#9656; ' + n;
+    f.querySelector('.edge.half').textContent = n + 'A';
+    if (i < 2) { img.loading = 'eager'; img.fetchPriority = 'high'; }
+    else { img.loading = 'lazy'; img.fetchPriority = 'auto'; }
+    strip.insertBefore(f, tail);
+  });
+})();
+
 // Fade each frame in once it has actually loaded, so nothing pops in half-drawn.
 document.querySelectorAll('.frame img').forEach(function (img) {
   function show() { img.classList.add('in'); }
